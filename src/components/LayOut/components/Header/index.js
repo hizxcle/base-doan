@@ -2,7 +2,7 @@ import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
-import SearchBar from '../SearchBar';
+import SearchBar from '~/components/SearchBar';
 
 const cx = classNames.bind(styles);
 
