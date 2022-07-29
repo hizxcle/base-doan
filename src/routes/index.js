@@ -1,6 +1,6 @@
 import Home from '~/pages/Home';
 import Shop from '~/pages/Shop';
-import Sale from '~/pages/Sale';
+import About from '~/pages/About';
 import Login from '~/pages/Login';
 import Cart from '~/pages/Cart';
 import Search from '~/pages/Search';
@@ -24,8 +24,8 @@ const PublicRoutes = [
         component: Cart,
     },
     {
-        path: '/sale',
-        component: Sale,
+        path: '/about',
+        component: About,
     },
     {
         path: '/search',
