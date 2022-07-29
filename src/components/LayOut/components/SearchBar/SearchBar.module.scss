@@ -1,0 +1,64 @@
+// Search bar
+
+.search-bar-wrapper {
+    height: 20%;
+}
+
+.search-bar {
+    background-color: rgb(239, 239, 239);
+    width: 360px;
+    height: 46px;
+    border-radius: 92px;
+    padding-left: 16px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+    border: 1.5px solid transparent;
+
+    input {
+        color: #000000;
+        background-color: transparent;
+        padding: 12px 0;
+        font-size: 1.4rem;
+        flex: 1;
+    }
+
+    &::after {
+        position: absolute;
+        content: '';
+        height: 28px;
+        width: 1px;
+        background-color: #ccc9c9;
+        right: 51px;
+        top: 8px;
+    }
+
+    &:focus-within {
+        border-color: rgb(167, 166, 166);
+    }
+}
+
+.search-button {
+    height: 100%;
+    width: 52px;
+    color: rgb(166, 166, 166);
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgb(219, 219, 219);
+        transition: linear 0.3s;
+    }
+}
+
+.deleteInput {
+    margin: auto;
+    padding-right: 8px;
+    color: #8e8c8c;
+
+    &:hover {
+        color: #4f4d4d;
+        cursor: pointer;
+    }
+}
