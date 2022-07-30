@@ -1,7 +1,7 @@
 // Search bar
 
 .search-bar-wrapper {
-    height: calc(140px - 70%);
+    height: calc(140px - 60%);
 }
 
 .search-bar {
@@ -61,4 +61,26 @@
         color: #4f4d4d;
         cursor: pointer;
     }
+}
+
+//Drop down search result
+
+.wrapper-result {
+    width: 100%;
+    margin-top: 5px;
+    background-color: #fff;
+    box-shadow: rgb(0 0 0/ 12%) 0px 2px 12px;
+    border-radius: 8px;
+    min-height: 100px;
+    max-height: min((100vh - 96px) - 60px, 734px);
+}
+
+.search-result {
+    width: 360px;
+    padding-top: 8px;
+}
+
+.search-result-prods {
+    font-size: 1.4rem;
+    font-weight: 400;
 }

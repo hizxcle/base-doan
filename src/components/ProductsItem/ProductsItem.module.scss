@@ -1,0 +1,46 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+}
+
+.img-product {
+    width: 60px;
+    height: 50px;
+}
+
+.product-info {
+    margin-top: 8px;
+    flex: 1;
+    padding-left: 10px;
+}
+
+.name-products {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.sale-product {
+    background-color: rgb(249, 52, 52);
+    border-radius: 70%;
+    margin-left: 3px;
+    color: #fff;
+    font-size: 1.4rem;
+}
+
+.name-sale {
+    display: flex;
+}
+
+.cost-quanity {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cost-products,
+.quanity-products {
+    color: rgb(161, 159, 159);
+    font-size: 1.4rem;
+}
+.quanity-products {
+    padding-right: 8px;
+}

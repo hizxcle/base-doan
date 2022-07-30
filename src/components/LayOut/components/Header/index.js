@@ -47,6 +47,7 @@ function Header() {
                 </div>
             </div>
             <SearchBar />
+            <hr></hr>
         </header>
     );
 }
