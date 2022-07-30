@@ -34,7 +34,7 @@ function DefaultLayout({ children }) {
     return (
         <div>
             <Header />
-            <div className={cx('container')}>
+            <div>
                 <div>{children}</div>
             </div>
             <Footer />

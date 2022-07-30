@@ -1,0 +1,52 @@
+.wrapper {
+    min-height: 1000px;
+}
+
+.breadcrums {
+    background-color: rgb(214, 214, 214);
+    height: 30px;
+    display: flex;
+    align-items: center;
+    width: 100% !important;
+}
+.breadcrums-text {
+    font-size: 1.4rem;
+    margin-left: 120px;
+}
+
+.div {
+    height: 80px;
+}
+
+.shop-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+
+.header-text {
+    font-size: 4.6rem;
+    font-weight: 500;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.collections-filter {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.select {
+    border: none;
+    outline: none;
+    color: rgb(135, 135, 135);
+    font-size: 1.5rem;
+}
+
+.quantity-prods {
+    color: rgb(6, 6, 6);
+    font-size: 1.8rem;
+    font-weight: 300;
+}

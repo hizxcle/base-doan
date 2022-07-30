@@ -13,21 +13,27 @@ import ProductsItem from '../ProductsItem';
 const cx = classNames.bind(styles);
 
 function SearchBar() {
-    const [inputValue, setInputValue] = useState('');
+    const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
+    const [showResult, setShowResult] = useState(true);
 
     const focusRef = useRef(null);
 
     const handleFocus = () => {
-        setInputValue('');
+        setSearchValue('');
         focusRef.current.focus();
+        setSearchResult([]);
     };
 
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setSearchResult([1, 2, 3]);
-    //     }, 3000);
-    // }, []);
+    const handleHideResult = () => {
+        setShowResult(false);
+    };
+
+    useEffect(() => {
+        setTimeout(() => {
+            setSearchResult([1, 2, 3]);
+        }, 1000);
+    }, []);
 
     return (
         <Tippy
@@ -44,21 +50,25 @@ function SearchBar() {
                 </div>
             )}
             placement={'bottom'}
-            visible={searchResult.length > 0}
+            visible={showResult && searchResult.length > 0}
             interactive
+            onClickOutside={handleHideResult}
         >
             <div className={cx('search-bar-wrapper')}>
                 <div className={cx('search-bar')}>
                     <input
                         ref={focusRef}
-                        value={inputValue}
+                        value={searchValue}
                         onChange={(e) => {
-                            setInputValue(e.target.value);
+                            setSearchValue(e.target.value);
                         }}
                         placeholder="Search whatever you want...."
                         spellCheck={false}
+                        onFocus={() => {
+                            setShowResult(true);
+                        }}
                     ></input>
-                    {inputValue && (
+                    {searchValue && (
                         <FontAwesomeIcon
                             onClick={handleFocus}
                             icon={faCircleXmark}
