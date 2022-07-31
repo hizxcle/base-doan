@@ -15,7 +15,7 @@ function Products({ data }) {
                         <div className={cx('thumbs')}>
                             <img
                                 className={cx('thumbs-img')}
-                                src={item.anhdaidien}
+                                src={`http://localhost:2222/images/${item.anhdaidien}`}
                                 alt={item.tensp}
                             />
                             {item.soluong <= 2 && (
