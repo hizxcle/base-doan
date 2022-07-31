@@ -4,6 +4,7 @@ import About from '~/pages/About';
 import Login from '~/pages/Login';
 import Cart from '~/pages/Cart';
 import Search from '~/pages/Search';
+import Contact from '~/pages/Contact';
 
 // Public Routes
 const PublicRoutes = [
@@ -27,6 +28,11 @@ const PublicRoutes = [
         path: '/about',
         component: About,
     },
+    {
+        path: '/contact',
+        component: Contact,
+    },
+
     {
         path: '/search',
         component: Search,

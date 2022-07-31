@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 
 function Home() {
     return (
-        <home className={cx('wrapper')}>
+        <div className={cx('wrapper')}>
             <div className={cx('container-1')}>
                 <div className={cx('container-left')}>
                     <div className={cx('container-left-wrapper')}>
@@ -51,7 +51,7 @@ function Home() {
                 </div>
             </div>
             <div className={cx('breadcrums')}></div>
-        </home>
+        </div>
     );
 }
 

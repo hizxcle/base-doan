@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from '~/components/SearchBar';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -21,20 +22,41 @@ function Header() {
                 </div>
                 <div className={cx('page')}>
                     <ul className={cx('page-list')}>
-                        <li className={cx('page-list-item')}> HOME </li>
-                        <li className={cx('page-list-item')}> SHOP </li>
-                        <li className={cx('page-list-item')}> ABOUT </li>
-                        <li className={cx('page-list-item')}> CONTACT </li>
+                        <li className={cx('page-list-item')}>
+                            <Link to="/" className={cx('link-router')}>
+                                {' '}
+                                HOME{' '}
+                            </Link>
+                        </li>
+                        <li className={cx('page-list-item')}>
+                            <Link to="/shop" className={cx('link-router')}>
+                                {' '}
+                                SHOP{' '}
+                            </Link>
+                        </li>
+                        <li className={cx('page-list-item')}>
+                            <Link to="/about" className={cx('link-router')}>
+                                ABOUT
+                            </Link>
+                        </li>
+                        <li className={cx('page-list-item')}>
+                            {' '}
+                            <Link to="/contact" className={cx('link-router')}>
+                                CONTACT
+                            </Link>{' '}
+                        </li>
                     </ul>
                 </div>
                 <div className={cx('actions')}>
                     <div className={cx('actions-items')}>
                         <div className={cx('actions-item')}>
-                            <FontAwesomeIcon
-                                icon={faBagShopping}
-                                className={cx('item-icon')}
-                            />
-                            <span className={cx('item-span')}> 0 </span>
+                            <Link to="/cart">
+                                <FontAwesomeIcon
+                                    icon={faBagShopping}
+                                    className={cx('item-icon')}
+                                />
+                                <span className={cx('item-span')}> 0 </span>
+                            </Link>
                         </div>
                         <div className={cx('actions-item')}>
                             <FontAwesomeIcon
@@ -42,7 +64,11 @@ function Header() {
                                 className={cx('item-icon')}
                             />
                         </div>
-                        <div className={cx('actions-item-login')}> LOGIN </div>
+                        <div className={cx('actions-item-login')}>
+                            <Link to="/login" className={cx('link-router')}>
+                                LOGIN
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
