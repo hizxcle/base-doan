@@ -3,9 +3,10 @@ import styles from './Shop.module.scss';
 
 import { useEffect, useState } from 'react';
 
-import Products from '~/components/Products';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
+import Products from '~/components/Products';
 
 const cx = classNames.bind(styles);
 
