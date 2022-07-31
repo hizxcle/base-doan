@@ -18,6 +18,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .thumbs {
@@ -27,6 +28,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden;
 }
 
 .thumbs-img {
@@ -76,14 +78,12 @@
     background-color: red;
     width: 50px;
     color: var(--white-color);
-    display: none;
 }
 
 .new {
     background-color: black;
     width: 50px;
     color: var(--white-color);
-    display: none;
 }
 
 .outstock {

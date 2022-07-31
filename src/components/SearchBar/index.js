@@ -2,7 +2,7 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 import styles from './SearchBar.module.scss';
 import classNames from 'classnames/bind';
@@ -29,11 +29,11 @@ function SearchBar() {
         setShowResult(false);
     };
 
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1, 2, 3]);
-        }, 1000);
-    }, []);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setSearchResult([1, 2, 3]);
+    //     }, 1000);
+    // }, []);
 
     return (
         <Tippy

@@ -1,83 +1,50 @@
 import styles from './Products.module.scss';
 import classNames from 'classnames/bind';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
-function Products() {
+function Products({ data }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <div className={cx('product-item')}>
-                    <div className={cx('thumbs')}>
-                        <img
-                            className={cx('thumbs-img')}
-                            src="https://wallpapercave.com/wp/wp5390669.jpg"
-                            alt="san pham"
-                        />
-                        <span className={cx('sale')}>-15%</span>
-                        <span className={cx('new')}>New</span>
-                        <span className={cx('outstock')}>Out stock</span>
-                        <FontAwesomeIcon
-                            icon={faHeart}
-                            className={cx('heart')}
-                        />
+                {data.map((item, index) => (
+                    <div className={cx('product-item')} key={index}>
+                        <div className={cx('thumbs')}>
+                            <img
+                                className={cx('thumbs-img')}
+                                src={item.anhdaidien}
+                                alt={item.tensp}
+                            />
+                            {item.soluong <= 2 && (
+                                <span className={cx('sale')}>-15%</span>
+                            )}
+                            {item.soluong >= 5 && (
+                                <span className={cx('new')}>New</span>
+                            )}
+                            {item.soluong === 0 && (
+                                <span className={cx('outstock')}>
+                                    Out stock
+                                </span>
+                            )}
+                            <FontAwesomeIcon
+                                icon={faHeart}
+                                className={cx('heart')}
+                            />
+                        </div>
+                        <div className={cx('info')}>
+                            <a className={cx('name-product')}>{item.tensp}</a>
+                            <span className={cx('price-product')}>
+                                {item.gia.toLocaleString(undefined, {
+                                    maximumFractionDigits: 2,
+                                })}{' '}
+                                VND
+                            </span>
+                        </div>
                     </div>
-                    <div className={cx('info')}>
-                        <a className={cx('name-product')}>
-                            Acer 14 Spin 7 2in1 Multitouch Notebook
-                        </a>
-                        <span className={cx('price-product')}> $80.00</span>
-                    </div>
-                </div>
-
-                <div className={cx('product-item')}>
-                    <div className={cx('thumbs')}>
-                        <img
-                            className={cx('thumbs-img')}
-                            src="https://wallpapercave.com/wp/wp5390669.jpg"
-                            alt="san pham"
-                        />
-                    </div>
-                    <div className={cx('info')}>
-                        <a className={cx('name-product')}>
-                            Acer 14 Spin 7 2in1 Multitouch
-                            Notebookasdsadasdasdasdasdasdasdds
-                        </a>
-                        <span className={cx('price-product')}> $80.00</span>
-                    </div>
-                </div>
-                <div className={cx('product-item')}>
-                    <div className={cx('thumbs')}>
-                        <img
-                            className={cx('thumbs-img')}
-                            src="https://wallpapercave.com/wp/wp5390669.jpg"
-                            alt="san pham"
-                        />
-                    </div>
-                    <div className={cx('info')}></div>
-                </div>
-                <div className={cx('product-item')}>
-                    <div className={cx('thumbs')}>
-                        <img
-                            className={cx('thumbs-img')}
-                            src="https://wallpapercave.com/wp/wp5390669.jpg"
-                            alt="san pham"
-                        />
-                    </div>
-                    <div className={cx('info')}></div>
-                </div>
-                <div className={cx('product-item')}>
-                    <div className={cx('thumbs')}>
-                        <img
-                            className={cx('thumbs-img')}
-                            src="https://wallpapercave.com/wp/wp5390669.jpg"
-                            alt="san pham"
-                        />
-                    </div>
-                    <div className={cx('info')}></div>
-                </div>
+                ))}
             </div>
         </div>
     );
