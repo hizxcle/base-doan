@@ -1,5 +1,9 @@
 .wrapper {
     width: 100%;
+}
+
+.container {
+    width: 100%;
     display: flex;
 }
 
@@ -12,6 +16,9 @@
     margin-top: 8px;
     flex: 1;
     padding-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .name-products {

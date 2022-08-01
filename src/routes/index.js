@@ -3,8 +3,8 @@ import Shop from '~/pages/Shop';
 import About from '~/pages/About';
 import Login from '~/pages/Login';
 import Cart from '~/pages/Cart';
-import Search from '~/pages/Search';
 import Contact from '~/pages/Contact';
+import SearchProducts from '~/pages/SearchProducts';
 
 // Public Routes
 const PublicRoutes = [
@@ -31,11 +31,6 @@ const PublicRoutes = [
     {
         path: '/contact',
         component: Contact,
-    },
-
-    {
-        path: '/search',
-        component: Search,
     },
 ];
 

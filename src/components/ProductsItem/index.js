@@ -3,22 +3,30 @@ import styles from './ProductsItem.module.scss';
 
 const cx = classNames.bind(styles);
 
-function ProductsItem() {
+function ProductsItem({ data }) {
     return (
         <div className={cx('wrapper')}>
-            <img
-                src="https://cdn.shopify.com/s/files/1/0453/5035/5103/files/img_02_130x30_crop_center.png?v=1644318438"
-                alt="Product"
-                className={cx('img-product')}
-            />
-            <div className={cx('product-info')}>
-                <div className={cx('name-sale')}>
-                    <p className={cx('name-products')}> Ten san pham</p>
-                    <p className={cx('sale-product')}> -31% </p>
-                </div>
-                <div className={cx('cost-quanity')}>
-                    <span className={cx('cost-products')}>120.000VND</span>
-                    <span className={cx('quanity-products')}>So luong : 2</span>
+            <div className={cx('container')}>
+                <img
+                    src={`http://localhost:2222/images/${data.anhdaidien}`}
+                    alt={data.tensp}
+                    className={cx('img-product')}
+                />
+                <div className={cx('product-info')}>
+                    <div className={cx('name-sale')}>
+                        <p className={cx('name-products')}>{data.tensp}</p>
+                    </div>
+                    <div className={cx('cost-quanity')}>
+                        <span className={cx('cost-products')}>
+                            {data.gia.toLocaleString(undefined, {
+                                maximumFractionDigits: 2,
+                            })}{' '}
+                            VND
+                        </span>
+                        <span className={cx('quanity-products')}>
+                            So luong : {data.soluong}
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>

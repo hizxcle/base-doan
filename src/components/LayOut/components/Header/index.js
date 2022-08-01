@@ -72,7 +72,6 @@ function Header() {
                     </div>
                 </div>
             </div>
-            <SearchBar />
             <hr></hr>
         </header>
     );
