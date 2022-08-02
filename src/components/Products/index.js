@@ -35,11 +35,13 @@ function Products({ data }) {
                             />
                         </div>
                         <div className={cx('info')}>
-                            <a className={cx('name-product')}>{item.tensp}</a>
+                            <span className={cx('name-product')}>
+                                {item.tensp}
+                            </span>
                             <span className={cx('price-product')}>
                                 {item.gia.toLocaleString(undefined, {
                                     maximumFractionDigits: 2,
-                                })}{' '}
+                                })}
                                 VND
                             </span>
                         </div>

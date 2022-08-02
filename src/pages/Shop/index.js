@@ -14,7 +14,7 @@ function Shop() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:2222/api/product/`)
+        fetch('http://localhost:2222/api/product')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -56,12 +56,12 @@ function Shop() {
                     <ul>
                         <div className={cx('pagination-pages')}>
                             <span className={cx('pagination-item')}>1</span>
-                            <a href="#" className={cx('pagination-item')}>
+                            <span href="#" className={cx('pagination-item')}>
                                 2
-                            </a>
-                            <a href="#" className={cx('pagination-item')}>
+                            </span>
+                            <span href="#" className={cx('pagination-item')}>
                                 3
-                            </a>
+                            </span>
                         </div>
                         <span className={cx('next-button')}>
                             Next

@@ -3,10 +3,23 @@ import classNames from 'classnames/bind';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
 function ProductTable({ data }) {
+    const [method, setMethod] = useState('');
+
+    const handleEdit = (e) => {
+        e.preventDefault();
+        setMethod('get');
+    };
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        setMethod('delete');
+    };
+
     return (
         <div>
             <div className={cx('form')}>
@@ -94,47 +107,64 @@ function ProductTable({ data }) {
                 </form>
             </div>
 
-            <table border="1" className={cx('table')}>
-                <thead>
-                    <tr>
-                        <th>Ma San pham</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Loại sản phẩm</th>
-                        <th>Gia</th>
-                        <th>Nha cung cap</th>
-                        <th>Don vi</th>
-                        <th>So luong</th>
-                        <th>Anh dai dien</th>
-                        <th className={cx('album-images')}>Anh khac</th>
-                        <th colSpan="2">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((item) => (
-                        <tr key={item.masp} className={cx('font')}>
-                            <td>{item.masp}</td>
-                            <td>{item.tensp}</td>
-                            <td>{item.loaisp}</td>
-                            <td>{item.gia}</td>
-                            <td>{item.nhacungcap}</td>
-                            <td>{item.donvi}</td>
-                            <td>{item.soluong}</td>
-                            <td>{item.anhdaidien}</td>
-                            <td className={cx('album-images')}>{item.anhsp}</td>
-                            <td>
-                                <button className={cx('edit-button')}>
-                                    <FontAwesomeIcon icon={faPenToSquare} /> Sửa
-                                </button>
-                            </td>
-                            <td>
-                                <button className={cx('delete-button')}>
-                                    <FontAwesomeIcon icon={faTrash} /> Xóa
-                                </button>
-                            </td>
+            <form
+                action="http://localhost:2222/api/product/:masp"
+                method={method}
+                enctype="multipart/form-data"
+            >
+                <table border="1" className={cx('table')}>
+                    <thead>
+                        <tr>
+                            <th>Ma San pham</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Loại sản phẩm</th>
+                            <th>Gia</th>
+                            <th>Nha cung cap</th>
+                            <th>Don vi</th>
+                            <th>So luong</th>
+                            <th>Anh dai dien</th>
+                            <th className={cx('album-images')}>Anh khac</th>
+                            <th colSpan="2">Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {data.map((item) => (
+                            <tr key={item.masp} className={cx('font')}>
+                                <td>{item.masp}</td>
+                                <td>{item.tensp}</td>
+                                <td>{item.loaisp}</td>
+                                <td>{item.gia}</td>
+                                <td>{item.nhacungcap}</td>
+                                <td>{item.donvi}</td>
+                                <td>{item.soluong}</td>
+                                <td>{item.anhdaidien}</td>
+                                <td className={cx('album-images')}>
+                                    {item.anhsp}
+                                </td>
+                                <td>
+                                    <button
+                                        className={cx('edit-button')}
+                                        onClick={handleEdit}
+                                        type="submit"
+                                    >
+                                        <FontAwesomeIcon icon={faPenToSquare} />{' '}
+                                        Sửa
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        className={cx('delete-button')}
+                                        onClick={handleDelete}
+                                        type="submit"
+                                    >
+                                        <FontAwesomeIcon icon={faTrash} /> Xóa
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </form>
         </div>
     );
 }
