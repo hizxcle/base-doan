@@ -9,6 +9,7 @@ const cx = classNames.bind(styles);
 function SearchProducts({ data }) {
     return (
         <div className={cx('wrapper')}>
+            <p className={cx('title')}>Search Result</p>
             <div className={cx('container')}>
                 {data.map((item, index) => (
                     <div className={cx('product-item')} key={index}>

@@ -4,7 +4,7 @@ import About from '~/pages/About';
 import Login from '~/pages/Login';
 import Cart from '~/pages/Cart';
 import Contact from '~/pages/Contact';
-import SearchProducts from '~/pages/SearchProducts';
+import AdminLayout from '~/components/LayOut/AdminLayout';
 
 // Public Routes
 const PublicRoutes = [
@@ -31,6 +31,11 @@ const PublicRoutes = [
     {
         path: '/contact',
         component: Contact,
+    },
+    {
+        path: '/adminlayout',
+        component: AdminLayout,
+        layout: null,
     },
 ];
 

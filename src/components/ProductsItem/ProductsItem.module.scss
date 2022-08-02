@@ -3,7 +3,6 @@
 }
 
 .container {
-    width: 100%;
     display: flex;
 }
 
@@ -24,6 +23,7 @@
 .name-products {
     font-size: 1.6rem;
     font-weight: 500;
+    width: 100%;
 }
 
 .sale-product {

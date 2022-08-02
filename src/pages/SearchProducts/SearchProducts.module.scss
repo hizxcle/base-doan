@@ -3,18 +3,19 @@
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    background-color: #ccc;
 }
 
 .title {
     text-align: center;
+    font-size: 3rem;
 }
 
 .container {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 20px;
-    background-color: #ccc;
+    padding-top: 10px;
 }
 
 .product-item {
@@ -40,7 +41,6 @@
 .thumbs-img {
     width: 222px;
     height: 280px;
-    overflow: hidden;
     transition: transform 0.2s;
     &:hover {
         transform: scale(1.02);
