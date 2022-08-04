@@ -120,7 +120,7 @@ function QLSP({ data, setPosts, setAlert }) {
                     </button>
                 </form>
             </div>
-
+            
             <form encType="multipart/form-data">
                 <table border="1" className={cx('table')}>
                     <thead>

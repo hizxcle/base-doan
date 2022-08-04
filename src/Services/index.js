@@ -29,7 +29,9 @@ const updateApi = (link, id, data) => {
     var Option = {
         method: 'PUT',
         body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+        },
     };
     return fetch(`http://localhost:2222/api/${link}/${id}`, Option);
 };

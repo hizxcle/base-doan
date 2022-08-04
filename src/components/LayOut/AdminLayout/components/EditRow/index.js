@@ -12,7 +12,6 @@ const cx = classNames.bind(styles);
 
 function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
     const [inputValue, setInputValue] = useState({
-        masp: selectedProduct.masp,
         tensp: selectedProduct.tensp,
         loaisp: selectedProduct.loaisp,
         gia: selectedProduct.gia,
@@ -20,19 +19,26 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
         donvi: selectedProduct.donvi,
         soluong: selectedProduct.soluong,
         anhdaidien: selectedProduct.anhdaidien,
-        anhsp: selectedProduct.anhsp,
+        anhsp: selectedProduct.anhsp,   
     });
+    console.log(inputValue)
 
-    const handleUpdate = async () => {
+    const handleUpdate = async () => {   
         try {
             const res = await updateApi(
                 'product',
                 selectedProduct.masp,
                 inputValue,
             );
-            await res.json();
-            const newData = await getData();
-            setPosts(newData);
+            const response = await res.json();
+            if (response?.status !== 'OK') {
+                console.log('Error');
+            } else {
+                const newData = await getData();
+                console.log('new data', newData);
+                await setPosts(newData);
+                console.log('Success');
+            }
         } catch (e) {
             console.log(e);
         }
@@ -46,7 +52,7 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-large')}
                     type="text"
                     placeholder="Ten san pham"
-                    name="tensp"
+          
                     value={inputValue.tensp}
                     onChange={(e) => {
                         setInputValue({ ...inputValue, tensp: e.target.value });
@@ -58,7 +64,7 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-medium')}
                     type="text"
                     placeholder="Loai san pham"
-                    name="loaisp"
+                  
                     value={inputValue.loaisp}
                     onChange={(e) => {
                         setInputValue({
@@ -73,7 +79,7 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-medium')}
                     type="text"
                     placeholder="Gia"
-                    name="gia"
+                 
                     value={inputValue.gia}
                     onChange={(e) => {
                         setInputValue({ ...inputValue, gia: e.target.value });
@@ -85,7 +91,7 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-medium')}
                     type="text"
                     placeholder="Nha cung cap"
-                    name="nhacungcap"
+                    
                     value={inputValue.nhacungcap}
                     onChange={(e) => {
                         setInputValue({
@@ -100,7 +106,7 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-small')}
                     type="text"
                     placeholder="Don vi"
-                    name="donvi"
+                   
                     value={inputValue.donvi}
                     onChange={(e) => {
                         setInputValue({ ...inputValue, donvi: e.target.value });
@@ -112,7 +118,7 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-small')}
                     type="text"
                     placeholder="So luong"
-                    name="soluong"
+                  
                     value={inputValue.soluong}
                     onChange={(e) => {
                         setInputValue({
@@ -127,27 +133,26 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-large')}
                     type="file"
                     placeholder="Anh dai dien"
-                    name="thumb"
-                    value={inputValue.thumb}
-                    onChange={(e) => {
-                        setInputValue({
-                            ...inputValue,
-                            anhdaidien: e.target.value,
-                        });
-                    }}
+                    
+                    // value={inputValue.anhdaidien}
+                    // onChange={(e) => {
+                    //     setInputValue({
+                    //         ...inputValue,
+                    //         anhdaidien: e.target.value,
+                    //     });
+                    // }}
                 />
             </td>
             <td>
                 <input
                     className={cx('input-large')}
-                    onChange={(e) => {
-                        setInputValue({
-                            ...inputValue,
-                            anhsp: e.target.value,
-                        });
-                    }}
-                    value={inputValue.images}
-                    name="images"
+                    // value={inputValue.anhsp}
+                    // onChange={(e) => {
+                    //     setInputValue({
+                    //         ...inputValue,
+                    //         anhsp: e.target.value,
+                    //     });
+                    // }}
                     type="file"
                     placeholder="Anh trung bay"
                     multiple

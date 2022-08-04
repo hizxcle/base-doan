@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 function OnlyReadRow({ item, handleEdit, handleDelete }) {
     return (
-        <tr key={item.masp} className={cx('font')}>
+        <tr className={cx('font')}>
             <td>{item.masp}</td>
             <td>{item.tensp}</td>
             <td>{item.loaisp}</td>
@@ -19,16 +19,18 @@ function OnlyReadRow({ item, handleEdit, handleDelete }) {
             <td>
                 {item.anhdaidien}
                 <img
+                    className={cx('img-item')}
                     alt="anh dai dien"
-                    src={`http://localhost:2222/api/product/${item.anhdaidien}`}
+                    src={`http://localhost:2222/images/${item.anhdaidien}`}
                 />
             </td>
             <td className={cx('album-images')}>
                 {item.anhsp}
-                <img
-                    src={`http://localhost:2222/api/product/${item.anhsp}||`}
+                {/* <img
+                    className={cx('img-item')}
+                    src={`http://localhost:2222/images/${item.anhsp}`}
                     alt="Anh san pham"
-                />
+                /> */}
             </td>
             <td>
                 <button
