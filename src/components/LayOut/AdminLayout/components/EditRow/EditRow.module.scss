@@ -1,0 +1,32 @@
+td {
+    font-size: 1.2rem;
+    width: 100%;
+    height: 100%;
+}
+
+input {
+    font-size: 1.2rem;
+    object-fit: fill;
+}
+
+.input-small {
+    width: 30px;
+}
+
+.input-medium {
+    width: 65px;
+}
+
+.input-large {
+    width: 86px;
+    display: table-cell;
+}
+
+button {
+    margin: 8px;
+}
+
+.ten {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

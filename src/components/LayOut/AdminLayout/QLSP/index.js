@@ -1,32 +1,46 @@
 import styles from './QLSP.module.scss';
 import classNames from 'classnames/bind';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
+import OnlyReadRow from '../components/OnlyReadRow';
+import EditRow from '../components/EditRow';
 
+import { getData, deleteApi } from '~/Services';
 const cx = classNames.bind(styles);
 
-function ProductTable({ data }) {
-    const [method, setMethod] = useState('');
+function QLSP({ data, setPosts, setAlert }) {
+    const [editID, setEditId] = useState(null);
 
-    const handleEdit = (e) => {
+    const selectedRef = useRef();
+
+    const handleEdit = (e, item) => {
         e.preventDefault();
-        setMethod('get');
+        setEditId(item.masp);
+        selectedRef.current = item;
     };
 
-    const handleDelete = (e) => {
-        e.preventDefault();
-        setMethod('delete');
+    const handleCancel = () => {
+        setEditId(null);
+    };
+
+    const handleDelete = async (idProduct) => {
+        try {
+            const res = await deleteApi('product', idProduct);
+            await res.json();
+            const newData = await getData();
+            setPosts(newData);
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return (
-        <div>
+        <div className={cx('wrapper')}>
             <div className={cx('form')}>
                 <form
                     action="http://localhost:2222/api/product"
                     method="post"
-                    enctype="multipart/form-data"
+                    encType="multipart/form-data"
                 >
                     <p>
                         Ten san pham :
@@ -107,11 +121,7 @@ function ProductTable({ data }) {
                 </form>
             </div>
 
-            <form
-                action="http://localhost:2222/api/product/:masp"
-                method={method}
-                enctype="multipart/form-data"
-            >
+            <form encType="multipart/form-data">
                 <table border="1" className={cx('table')}>
                     <thead>
                         <tr>
@@ -128,39 +138,26 @@ function ProductTable({ data }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((item) => (
-                            <tr key={item.masp} className={cx('font')}>
-                                <td>{item.masp}</td>
-                                <td>{item.tensp}</td>
-                                <td>{item.loaisp}</td>
-                                <td>{item.gia}</td>
-                                <td>{item.nhacungcap}</td>
-                                <td>{item.donvi}</td>
-                                <td>{item.soluong}</td>
-                                <td>{item.anhdaidien}</td>
-                                <td className={cx('album-images')}>
-                                    {item.anhsp}
-                                </td>
-                                <td>
-                                    <button
-                                        className={cx('edit-button')}
-                                        onClick={handleEdit}
-                                        type="submit"
-                                    >
-                                        <FontAwesomeIcon icon={faPenToSquare} />{' '}
-                                        Sửa
-                                    </button>
-                                </td>
-                                <td>
-                                    <button
-                                        className={cx('delete-button')}
-                                        onClick={handleDelete}
-                                        type="submit"
-                                    >
-                                        <FontAwesomeIcon icon={faTrash} /> Xóa
-                                    </button>
-                                </td>
-                            </tr>
+                        {data.map((item, index) => (
+                            <Fragment key={index}>
+                                {editID === item.masp ? (
+                                    <EditRow
+                                        item={item}
+                                        setAlert={setAlert}
+                                        handleCancel={handleCancel}
+                                        selectedProduct={{
+                                            ...selectedRef.current,
+                                        }}
+                                        setPosts={setPosts}
+                                    />
+                                ) : (
+                                    <OnlyReadRow
+                                        item={item}
+                                        handleEdit={handleEdit}
+                                        handleDelete={handleDelete}
+                                    />
+                                )}
+                            </Fragment>
                         ))}
                     </tbody>
                 </table>
@@ -168,4 +165,5 @@ function ProductTable({ data }) {
         </div>
     );
 }
-export default ProductTable;
+
+export default QLSP;

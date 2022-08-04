@@ -1,7 +1,6 @@
 import styles from './HeaderAdmin.module.scss';
 import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBagShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
+
 import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
@@ -30,9 +29,9 @@ function HeaderAdmin({
                             className={cx('button')}
                         >
                             <li className={cx('page-list-item')}>
-                                <li className={cx('link-router')}>
+                                <span className={cx('link-router')}>
                                     Quan li san pham
-                                </li>
+                                </span>
                             </li>
                         </button>
                         <button
@@ -40,9 +39,9 @@ function HeaderAdmin({
                             className={cx('button')}
                         >
                             <li className={cx('page-list-item')}>
-                                <li className={cx('link-router')}>
+                                <span className={cx('link-router')}>
                                     Quan li khach hang
-                                </li>
+                                </span>
                             </li>
                         </button>
                         <button
@@ -50,20 +49,16 @@ function HeaderAdmin({
                             className={cx('button')}
                         >
                             <li className={cx('page-list-item')}>
-                                <li to="/about" className={cx('link-router')}>
+                                <span to="/about" className={cx('link-router')}>
                                     Quan li don hang
-                                </li>
+                                </span>
                             </li>
                         </button>
                     </ul>
                 </div>
                 <div className={cx('actions')}>
                     <div className={cx('actions-items')}>
-                        <div className={cx('actions-item-login')}>
-                            <Link to="/login" className={cx('link-router')}>
-                                LOGIN
-                            </Link>
-                        </div>
+                        <div>LOGIN</div>
                     </div>
                 </div>
             </div>

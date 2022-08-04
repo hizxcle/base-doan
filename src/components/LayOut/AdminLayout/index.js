@@ -16,6 +16,11 @@ const cx = classNames.bind(styles);
 function AdminLayout() {
     const [table, setTable] = useState('product');
     const [posts, setPosts] = useState([]);
+    const [alert, setAlert] = useState({
+        show: false,
+        message: '',
+        type: '',
+    });
 
     useEffect(() => {
         fetch(`http://localhost:2222/api/${table}/`)
@@ -46,7 +51,7 @@ function AdminLayout() {
                 onChangeToOrder={handleOrder}
             />
             <SearchBar />
-            {table === 'product' && <QLSP data={posts} />}
+            {table === 'product' && <QLSP data={posts} setPosts={setPosts} />}
             {table === 'customer' && <QLKH data={posts} />}
             {table === 'order' && <QLDH data={posts} />}
 

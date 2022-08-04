@@ -1,26 +1,13 @@
-.album-images {
-    width: 200px;
-}
-
 .form {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
 }
 
-.input {
-    outline: 1px !important;
-    width: 400px;
-}
-
 .table {
-    width: 1200px;
+    width: 900px;
     margin-left: auto;
     margin-right: auto;
-}
-
-.font {
-    font-size: 1.2rem;
 }
 
 .button-add {
@@ -37,4 +24,8 @@
         background-color: var(--black-color);
         color: var(--white-color);
     }
+}
+
+.album-images {
+    width: 50px;
 }

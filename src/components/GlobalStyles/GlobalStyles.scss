@@ -25,6 +25,10 @@ body {
     text-rendering: optimizeSpeed;
 }
 
+button {
+    cursor: pointer;
+}
+
 button,
 input,
 [tabIndex] {
