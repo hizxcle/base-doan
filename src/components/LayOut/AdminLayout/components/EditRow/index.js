@@ -10,7 +10,7 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-function EditRow({ item, handleCancel, selectedProduct, setPosts, setAlert }) {
+function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
     const [inputValue, setInputValue] = useState({
         masp: selectedProduct.masp,
         tensp: selectedProduct.tensp,

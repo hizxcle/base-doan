@@ -16,11 +16,6 @@ const cx = classNames.bind(styles);
 function AdminLayout() {
     const [table, setTable] = useState('product');
     const [posts, setPosts] = useState([]);
-    const [alert, setAlert] = useState({
-        show: false,
-        message: '',
-        type: '',
-    });
 
     useEffect(() => {
         fetch(`http://localhost:2222/api/${table}/`)
