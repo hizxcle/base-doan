@@ -25,16 +25,15 @@ const deleteApi = (link, id) => {
     };
     return fetch(`http://localhost:2222/api/${link}/${id}`, Option);
 };
+
 const updateApi = (link, id, data) => {
     var Option = {
         method: 'PUT',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        body: data,
     };
     return fetch(`http://localhost:2222/api/${link}/${id}`, Option);
 };
+
 const addProduct = (FormData) => {
     var Option = {
         method: 'POST',
@@ -43,4 +42,10 @@ const addProduct = (FormData) => {
     return fetch(`http://localhost:2222/api/product`, Option);
 };
 
-export { getData, AddApi, deleteApi, updateApi, addProduct, userApi };
+const getCart = async (id) => {
+    const res = await fetch(`http://localhost:2222/api/cart/getByUser/${id}`);
+    const reponse = await res.json();
+    return reponse;
+};
+
+export { getData, AddApi, deleteApi, updateApi, addProduct, userApi, getCart };

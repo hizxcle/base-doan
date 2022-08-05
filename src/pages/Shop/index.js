@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Shop.module.scss';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';

@@ -19,16 +19,20 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
         donvi: selectedProduct.donvi,
         soluong: selectedProduct.soluong,
         anhdaidien: selectedProduct.anhdaidien,
-        anhsp: selectedProduct.anhsp,   
+        anhsp: selectedProduct.anhsp,
     });
-    console.log(inputValue)
+    console.log(inputValue);
 
-    const handleUpdate = async () => {   
+    const handleUpdate = async () => {
         try {
+            const formData = new FormData();
+            Object.keys(inputValue).forEach((Element) => {
+                formData.append(`${Element}`, `${inputValue[Element]}`);
+            });
             const res = await updateApi(
                 'product',
                 selectedProduct.masp,
-                inputValue,
+                formData,
             );
             const response = await res.json();
             if (response?.status !== 'OK') {
@@ -52,7 +56,6 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-large')}
                     type="text"
                     placeholder="Ten san pham"
-          
                     value={inputValue.tensp}
                     onChange={(e) => {
                         setInputValue({ ...inputValue, tensp: e.target.value });
@@ -64,7 +67,6 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-medium')}
                     type="text"
                     placeholder="Loai san pham"
-                  
                     value={inputValue.loaisp}
                     onChange={(e) => {
                         setInputValue({
@@ -79,7 +81,6 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-medium')}
                     type="text"
                     placeholder="Gia"
-                 
                     value={inputValue.gia}
                     onChange={(e) => {
                         setInputValue({ ...inputValue, gia: e.target.value });
@@ -91,7 +92,6 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-medium')}
                     type="text"
                     placeholder="Nha cung cap"
-                    
                     value={inputValue.nhacungcap}
                     onChange={(e) => {
                         setInputValue({
@@ -106,7 +106,6 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-small')}
                     type="text"
                     placeholder="Don vi"
-                   
                     value={inputValue.donvi}
                     onChange={(e) => {
                         setInputValue({ ...inputValue, donvi: e.target.value });
@@ -118,7 +117,6 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-small')}
                     type="text"
                     placeholder="So luong"
-                  
                     value={inputValue.soluong}
                     onChange={(e) => {
                         setInputValue({
@@ -133,7 +131,7 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     className={cx('input-large')}
                     type="file"
                     placeholder="Anh dai dien"
-                    
+
                     // value={inputValue.anhdaidien}
                     // onChange={(e) => {
                     //     setInputValue({

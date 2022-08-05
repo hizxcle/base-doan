@@ -1,10 +1,15 @@
 .wrapper {
-    height: 100px;
+    width: 100%;
     margin-bottom: 20px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    display: block;
+    background-color: var(--white-color);
 }
 
 .inner {
-    height: 100%;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -98,3 +103,8 @@
 }
 
 //
+
+.wrapper-result {
+    width: 50px;
+    height: 100%;
+}

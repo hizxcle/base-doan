@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 function Header() {
     return (
-        <header className={cx('wrapper')}>
+        <div className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('img-block')}>
                     <a href="/">
@@ -72,7 +72,7 @@ function Header() {
                 </div>
             </div>
             <hr></hr>
-        </header>
+        </div>
     );
 }
 

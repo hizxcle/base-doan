@@ -1,6 +1,13 @@
 .wrapper {
     height: 100px;
     margin-bottom: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    display: block;
+    background-color: var(--white-color);
 }
 
 .inner {

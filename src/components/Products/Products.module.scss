@@ -5,6 +5,29 @@
     margin-right: auto;
 }
 
+.view-details {
+    position: absolute;
+    bottom: 70px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--black-color);
+    display: none;
+    transition: background-color linear 1s;
+
+    &:hover {
+        background-color: #ccc;
+        .view-details-icon {
+            color: var(--black-color);
+        }
+    }
+}
+
+.view-details-icon {
+    z-index: 1;
+    color: var(--white-color);
+}
+
 .container {
     width: 100%;
     display: flex;
@@ -29,6 +52,12 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
+
+    &:hover {
+        .view-details {
+            display: block;
+        }
+    }
 }
 
 .thumbs-img {

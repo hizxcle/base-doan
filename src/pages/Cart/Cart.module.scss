@@ -1,0 +1,55 @@
+.wrapper {
+    width: 100%;
+    min-height: 1000px;
+}
+
+.container {
+    width: calc(100% - 100px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.list-cart {
+    width: 100%;
+    border: 1px solid #000;
+}
+
+.list-item {
+    display: flex;
+    margin: 20px;
+    border: 1px solid #000;
+}
+
+.title {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ccc;
+    margin-bottom: 50px;
+
+    span {
+        font-size: 4rem;
+    }
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+.image {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.info-name {
+    font-size: 2rem;
+}
+
+.info-calc {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
