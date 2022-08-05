@@ -4,8 +4,6 @@ import styles from './Cart.module.scss';
 import classNames from 'classnames/bind';
 
 import { useEffect, useState } from 'react';
-import { removeInternalBabelPlugin } from 'customize-cra';
-
 const cx = classNames.bind(styles);
 function Cart() {
     const [data, setData] = useState([]);
@@ -22,17 +20,23 @@ function Cart() {
     }, []);
 
     useEffect(() => {
+        console.log('test use affect');
         fetch(`http://localhost:2222/api/product`)
             .then((res) => res.json())
-            .then((res) => setData(res));
+            .then((res) => {
+                console.log('res', res);
+                setData(res);
+            });
     }, []);
 
-    console.log(cart);
-    console.log(data);
+    console.log('cart', cart);
+    console.log('data 11111', data);
 
-    const filterData = data.filter((item) => {});
+    const filterData = data.filter((item) => {
+        return productId.includes(item.masp);
+    });
 
-    console.log(filterData);
+    console.log('last val', filterData);
 
     return (
         <div className={cx('wrapper')}>
