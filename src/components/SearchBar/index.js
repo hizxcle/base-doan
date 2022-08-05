@@ -8,8 +8,8 @@ import styles from './SearchBar.module.scss';
 import classNames from 'classnames/bind';
 
 import Tippy from '@tippyjs/react/headless';
-import ProductsItem from '../ProductsItem';
-import SearchProducts from '~/components/SearchProducts';
+import ProductsItem from './components/SearchItems';
+import SearchProducts from '~/components/SearchBar/components/SearchProducts';
 
 const cx = classNames.bind(styles);
 

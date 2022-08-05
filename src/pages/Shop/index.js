@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-import Products from '~/pages/Shop/Products';
+import Products from '~/pages/Shop/components/Products';
 
 const cx = classNames.bind(styles);
 
