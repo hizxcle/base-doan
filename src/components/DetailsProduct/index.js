@@ -3,15 +3,22 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus, faClose } from '@fortawesome/free-solid-svg-icons';
 
+import { addToCart } from '~/Services';
+
 const cx = classNames.bind(styles);
 
 function DetailProduct({ setShowDetail, item }) {
+    const handleAddToCart = () => {
+        setShowDetail(false);
+        addToCart(8, item.masp, 1);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <div className={cx('container-image')}>
                     <img
-                        src="https://cdn.shopify.com/s/files/1/0453/5035/5103/files/img_02_130x30_crop_center.png?v=1644318438"
+                        src={`http://localhost:2222/images/${item.anhdaidien}`}
                         alt="anh san pham"
                         className={cx('image')}
                     />
@@ -22,13 +29,28 @@ function DetailProduct({ setShowDetail, item }) {
                         <li>
                             <span>In Stock</span>
                         </li>
+                        <li className={cx('infor-nameprod')}>
+                            Product ID {item.masp}
+                        </li>
                         <li className={cx('infor-nameprod')}>{item.tensp}</li>
-                        <li className={cx('infor-price')}>{item.gia}</li>
-                        <li className={cx('infor-nameprod')}>Color</li>
-                        <li className={cx('infor-nameprod')}>Options</li>
-                        <li className={cx('infor-nameprod')}>{item.soluong}</li>
+                        <li className={cx('infor-nameprod')}>
+                            Brand : {item.nhacungcap}
+                        </li>
+                        <li className={cx('infor-price')}>
+                            Price :{' '}
+                            {item.gia.toLocaleString(undefined, {
+                                maximumFractionDigits: 2,
+                            })}{' '}
+                            VND
+                        </li>
+                        <li className={cx('infor-nameprod')}>
+                            quanity : {item.soluong}
+                        </li>
                         <li>
-                            <button className={cx('button-addtocart')}>
+                            <button
+                                className={cx('button-addtocart')}
+                                onClick={handleAddToCart}
+                            >
                                 <FontAwesomeIcon icon={faCartPlus} />
                                 Add to Cart
                             </button>

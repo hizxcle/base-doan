@@ -10,6 +10,8 @@ function Cart() {
     const [data, setData] = useState([]);
     const [cart, setCart] = useState([]);
 
+    console.log('cart', cart);
+
     useEffect(() => {
         fetch(`http://localhost:2222/api/cart/getByUser/8`)
             .then((res) => res.json())
@@ -26,14 +28,6 @@ function Cart() {
         cart.map((item) => item.masp).includes(item.masp),
     );
 
-    const quantityCart = cart.filter((item) =>
-        filterData.map((item) => item.masp).includes(item.masp),
-    );
-
-    const getQuantity = () => {};
-
-    console.log(quantityCart);
-
     return (
         <div className={cx('wrapper')}>
             <div className={cx('title')}>
@@ -42,11 +36,7 @@ function Cart() {
             <div className={cx('container')}>
                 <ul className={cx('list-cart')}>
                     {filterData.map((item) => (
-                        <CartItem
-                            key={item.masp}
-                            item={item}
-                            quantityCart={quantityCart}
-                        />
+                        <CartItem key={item.masp} item={item} />
                     ))}
                 </ul>
             </div>

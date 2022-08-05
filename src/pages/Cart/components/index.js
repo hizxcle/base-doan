@@ -2,14 +2,20 @@ import classNames from 'classnames/bind';
 import styles from './CartItem.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { faMinus, faPlus, faClose } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from 'react';
+import { getCart } from '~/Services';
 
 const cx = classNames.bind(styles);
 
-function CartItem({ item, quantityCart }) {
+function CartItem({ item }) {
     const [quantity, setQuantity] = useState(1);
     const [show, setShow] = useState(true);
+    const [cart, setCart] = useState([]);
+
+    useEffect(() => {
+        getCart(8).then(setCart);
+    }, []);
 
     const handleMinus = () => {
         setQuantity(quantity - 1);
@@ -24,7 +30,7 @@ function CartItem({ item, quantityCart }) {
         if (quantity === 1) {
             setTimeout(() => {
                 setShow(false);
-            }, 500);
+            }, 300);
         }
     };
 
@@ -32,14 +38,28 @@ function CartItem({ item, quantityCart }) {
         <div>
             {show && (
                 <li className={cx('list-item')}>
-                    <span> Item {item.masp}</span>
                     <img
                         src={`http://localhost:2222/images/${item.anhdaidien}`}
                         alt="anh san pham"
                         className={cx('image')}
                     />
                     <div className={cx('info')}>
-                        <span className={cx('info-name')}>{item.tensp}</span>
+                        <div className={cx('info-calc')}>
+                            <span className={cx('info-name')}>
+                                <p className={cx('id')}>
+                                    {' '}
+                                    Product ID {item.masp}
+                                </p>
+                                {item.tensp}
+                            </span>
+
+                            <button
+                                className={cx('button-2')}
+                                onClick={handleMinus}
+                            >
+                                <FontAwesomeIcon icon={faClose} />
+                            </button>
+                        </div>
                         <div className={cx('info-calc')}>
                             <span>
                                 Quantity :

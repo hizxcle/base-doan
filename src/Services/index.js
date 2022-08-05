@@ -19,12 +19,12 @@ const getData = async () => {
     const reponse = await res.json();
     return reponse;
 };
-const getProductById = (id) => {
-    var Option = {
-        method: 'GET',
-    };
-    return fetch(`http://localhost:2222/api/product/${id}`, Option);
+const getProductById = async (id) => {
+    const res = await fetch(`http://localhost:2222/api/product/${id}`);
+    const reponse = await res.json();
+    return reponse;
 };
+
 const deleteApi = (link, id) => {
     const Option = {
         method: 'DELETE',
@@ -48,8 +48,22 @@ const addProduct = (FormData) => {
     return fetch(`http://localhost:2222/api/product`, Option);
 };
 
+//cart
+
 const getCart = async (id) => {
     const res = await fetch(`http://localhost:2222/api/cart/getByUser/${id}`);
+    const reponse = await res.json();
+    return reponse;
+};
+
+const addToCart = async (userId, prodId, quantity) => {
+    var Option = {
+        method: 'POST',
+    };
+    const res = await fetch(
+        `http://localhost:2222/api/cart/addNew/${userId}/${prodId}/${quantity}`,
+        Option,
+    );
     const reponse = await res.json();
     return reponse;
 };
@@ -63,4 +77,5 @@ export {
     userApi,
     getCart,
     getProductById,
+    addToCart,
 };

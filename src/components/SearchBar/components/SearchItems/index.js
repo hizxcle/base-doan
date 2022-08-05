@@ -12,6 +12,7 @@ function SearchItems({ data }) {
                     alt={data.tensp}
                     className={cx('img-product')}
                 />
+
                 <div className={cx('product-info')}>
                     <div className={cx('name-sale')}>
                         <p className={cx('name-products')}>{data.tensp}</p>

@@ -3,10 +3,18 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getCart } from '~/Services';
 
 const cx = classNames.bind(styles);
 
 function Header() {
+    const [cart, setCart] = useState([]);
+
+    useEffect(() => {
+        getCart(8).then(setCart);
+    });
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -54,7 +62,9 @@ function Header() {
                                     icon={faBagShopping}
                                     className={cx('item-icon')}
                                 />
-                                <span className={cx('item-span')}> 0 </span>
+                                <span className={cx('item-span')}>
+                                    {cart.length}
+                                </span>
                             </Link>
                         </div>
                         <div className={cx('actions-item')}>
