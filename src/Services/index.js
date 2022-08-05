@@ -19,6 +19,12 @@ const getData = async () => {
     const reponse = await res.json();
     return reponse;
 };
+const getProductById = (id) => {
+    var Option = {
+        method: 'GET',
+    };
+    return fetch(`http://localhost:2222/api/product/${id}`, Option);
+};
 const deleteApi = (link, id) => {
     const Option = {
         method: 'DELETE',
@@ -48,4 +54,13 @@ const getCart = async (id) => {
     return reponse;
 };
 
-export { getData, AddApi, deleteApi, updateApi, addProduct, userApi, getCart };
+export {
+    getData,
+    AddApi,
+    deleteApi,
+    updateApi,
+    addProduct,
+    userApi,
+    getCart,
+    getProductById,
+};

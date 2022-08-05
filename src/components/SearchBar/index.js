@@ -8,8 +8,9 @@ import styles from './SearchBar.module.scss';
 import classNames from 'classnames/bind';
 
 import Tippy from '@tippyjs/react/headless';
-import ProductsItem from './components/SearchItems';
+
 import SearchProducts from '~/components/SearchBar/components/SearchProducts';
+import SearchItems from './components/SearchItems';
 
 const cx = classNames.bind(styles);
 
@@ -68,7 +69,7 @@ function SearchBar() {
                                 Products
                             </h3>
                             {searchResult.map((result, index) => (
-                                <ProductsItem key={index} data={result} />
+                                <SearchItems key={index} data={result} />
                             ))}
                         </div>
                     </div>

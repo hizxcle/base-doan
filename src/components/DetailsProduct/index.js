@@ -5,7 +5,7 @@ import { faCartPlus, faClose } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
-function DetailProduct({ setShowDetail, data, selectedProduct }) {
+function DetailProduct({ setShowDetail, item }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -22,11 +22,11 @@ function DetailProduct({ setShowDetail, data, selectedProduct }) {
                         <li>
                             <span>In Stock</span>
                         </li>
-                        <li className={cx('infor-nameprod')}>Acer</li>
-                        <li className={cx('infor-price')}>80$</li>
+                        <li className={cx('infor-nameprod')}>{item.tensp}</li>
+                        <li className={cx('infor-price')}>{item.gia}</li>
                         <li className={cx('infor-nameprod')}>Color</li>
                         <li className={cx('infor-nameprod')}>Options</li>
-                        <li className={cx('infor-nameprod')}>So luong</li>
+                        <li className={cx('infor-nameprod')}>{item.soluong}</li>
                         <li>
                             <button className={cx('button-addtocart')}>
                                 <FontAwesomeIcon icon={faCartPlus} />

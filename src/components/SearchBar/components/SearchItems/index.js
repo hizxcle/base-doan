@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
-import styles from './ProductsItem.module.scss';
+import styles from './SearchItems.module.scss';
 
 const cx = classNames.bind(styles);
 
-function ProductsItem({ data }) {
+function SearchItems({ data }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -33,4 +33,4 @@ function ProductsItem({ data }) {
     );
 }
 
-export default ProductsItem;
+export default SearchItems;
