@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faEye } from '@fortawesome/free-solid-svg-icons';
 import { useRef, useState } from 'react';
-import DetailProduct from '~/pages/DetailsProduct';
+import DetailProduct from '~/components/DetailsProduct';
 
 const cx = classNames.bind(styles);
 

@@ -1,5 +1,5 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import SearchBar from '~/components/SearchBar';
 import styles from './DefaultLayout.module.scss';
 import classNames from 'classnames/bind';

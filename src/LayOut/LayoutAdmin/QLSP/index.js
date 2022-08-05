@@ -2,8 +2,8 @@ import styles from './QLSP.module.scss';
 import classNames from 'classnames/bind';
 
 import { Fragment, useRef, useState } from 'react';
-import OnlyReadRow from '../components/OnlyReadRow';
-import EditRow from '../components/EditRow';
+import OnlyReadRow from './components/OnlyReadRow';
+import EditRow from './components/EditRow';
 
 import { getData, deleteApi } from '~/Services';
 const cx = classNames.bind(styles);
@@ -120,7 +120,7 @@ function QLSP({ data, setPosts, setAlert }) {
                     </button>
                 </form>
             </div>
-            
+
             <form encType="multipart/form-data">
                 <table border="1" className={cx('table')}>
                     <thead>

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
 import SearchBar from '~/components/SearchBar';
-import Footer from '../components/Footer';
-import HeaderAdmin from '../components/HeaderAdmin';
+import Footer from '../DefaultLayout/components/Footer';
+import HeaderAdmin from './components/HeaderAdmin';
 
 import classNames from 'classnames/bind';
 import styles from './AdminLayout.module.scss';

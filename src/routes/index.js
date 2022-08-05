@@ -4,7 +4,7 @@ import About from '~/pages/About';
 import Login from '~/pages/Login';
 import Cart from '~/pages/Cart';
 import Contact from '~/pages/Contact';
-import AdminLayout from '~/components/LayOut/AdminLayout';
+import AdminLayout from '~/LayOut/LayoutAdmin';
 
 // Public Routes
 const PublicRoutes = [

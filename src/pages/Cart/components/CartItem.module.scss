@@ -1,0 +1,34 @@
+.list-item {
+    display: flex;
+    margin: 20px;
+    border: 1px solid #000;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+.image {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.info-name {
+    font-size: 2rem;
+}
+
+.info-calc {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-1 {
+    height: 100%;
+    width: 30px;
+    background-color: var(--white-color);
+    margin: 0 10px 5px;
+    border: 1px solid #000;
+}

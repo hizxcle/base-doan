@@ -9,7 +9,7 @@ import classNames from 'classnames/bind';
 
 import Tippy from '@tippyjs/react/headless';
 import ProductsItem from '../ProductsItem';
-import SearchProducts from '~/pages/SearchProducts';
+import SearchProducts from '~/components/SearchProducts';
 
 const cx = classNames.bind(styles);
 
