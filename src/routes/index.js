@@ -16,10 +16,10 @@ const PublicRoutes = [
         path: '/shop',
         component: Shop,
     },
-    {
-        path: '/login',
-        component: Login,
-    },
+    // {
+    //     path: '/login',
+    //     component: Login,
+    // },
     {
         path: '/cart',
         component: Cart,
@@ -32,11 +32,11 @@ const PublicRoutes = [
         path: '/contact',
         component: Contact,
     },
-    {
-        path: '/adminlayout',
-        component: AdminLayout,
-        layout: null,
-    },
+    // {
+    //     path: '/adminlayout',
+    //     component: AdminLayout,
+    //     layout: null,
+    // },
 ];
 
 // Private Routes

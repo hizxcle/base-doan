@@ -12,7 +12,7 @@ const userApi = (endPoint, data) => {
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json' },
     };
-    return fetch(`http://localhost:2222/api/user/${endPoint}`, options);
+    return fetch(`http://localhost:2222/api/user/${endPoint}/`, options);
 };
 const getData = async () => {
     const res = await fetch(`http://localhost:2222/api/product`);
