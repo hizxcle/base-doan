@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import SearchBar from '~/components/SearchBar';
 import Footer from '../DefaultLayout/components/Footer';
 import HeaderAdmin from './components/HeaderAdmin';
 
@@ -10,6 +9,7 @@ import styles from './AdminLayout.module.scss';
 import QLSP from './QLSP';
 import QLKH from './QLKH';
 import QLDH from './QLDH';
+import SearchBarAdmin from '~/LayOut/LayoutAdmin/components/SearchBarAdmin';
 
 const cx = classNames.bind(styles);
 
@@ -45,7 +45,7 @@ function AdminLayout() {
                 onChangeToCustomer={handleCustomer}
                 onChangeToOrder={handleOrder}
             />
-            <SearchBar />
+            <SearchBarAdmin />
             {table === 'product' && <QLSP data={posts} setPosts={setPosts} />}
             {table === 'customer' && <QLKH data={posts} />}
             {table === 'order' && <QLDH data={posts} />}

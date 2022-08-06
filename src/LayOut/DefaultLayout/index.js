@@ -1,6 +1,6 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
-import SearchBar from '~/components/SearchBar';
+import SearchBar from '~/LayOut/DefaultLayout/components/SearchBar';
 import styles from './DefaultLayout.module.scss';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';

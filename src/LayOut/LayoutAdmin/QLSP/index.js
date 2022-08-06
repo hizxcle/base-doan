@@ -2,6 +2,7 @@ import styles from './QLSP.module.scss';
 import classNames from 'classnames/bind';
 
 import { Fragment, useRef, useState } from 'react';
+
 import OnlyReadRow from './components/OnlyReadRow';
 import EditRow from './components/EditRow';
 
@@ -36,6 +37,10 @@ function QLSP({ data, setPosts, setAlert }) {
 
     return (
         <div className={cx('wrapper')}>
+            <div className={cx('title')}>
+                <p>QUẢN LÝ SẢN PHẨM</p>
+            </div>
+
             <div className={cx('form')}>
                 <form
                     action="http://localhost:2222/api/product"

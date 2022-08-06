@@ -51,7 +51,7 @@
     transform-origin: left;
 
     &:hover,
-    &:focus {
+    &:active {
         border-bottom: solid 1px #000;
         cursor: pointer;
     }

@@ -68,7 +68,23 @@ const addToCart = async (userId, prodId, quantity) => {
     return reponse;
 };
 
+// User
+
+const getUser = async () => {
+    const res = await fetch(`http://localhost:2222/api/user/allUser`);
+    const reponse = await res.json();
+    return reponse;
+};
+
+const deleteUser = (link, id) => {
+    const Option = {
+        method: 'DELETE',
+    };
+    return fetch(`http://localhost:2222/api/user/${link}/${id}`, Option);
+};
+
 export {
+    deleteUser,
     getData,
     AddApi,
     deleteApi,
@@ -78,4 +94,5 @@ export {
     getCart,
     getProductById,
     addToCart,
+    getUser,
 };

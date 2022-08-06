@@ -10,8 +10,6 @@ function Cart() {
     const [data, setData] = useState([]);
     const [cart, setCart] = useState([]);
 
-    console.log('cart', cart);
-
     useEffect(() => {
         fetch(`http://localhost:2222/api/cart/getByUser/8`)
             .then((res) => res.json())
