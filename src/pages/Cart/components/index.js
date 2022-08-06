@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './CartItem.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus, faClose } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { getCart } from '~/Services';
 
@@ -30,59 +30,57 @@ function CartItem({ item }) {
         if (quantity === 1) {
             setTimeout(() => {
                 setShow(false);
-            }, 300);
+            }, 200);
         }
     };
 
     return (
-        <div>
+        <tbody>
             {show && (
-                <li className={cx('list-item')}>
-                    <img
-                        src={`http://localhost:2222/images/${item.anhdaidien}`}
-                        alt="anh san pham"
-                        className={cx('image')}
-                    />
-                    <div className={cx('info')}>
-                        <div className={cx('info-calc')}>
-                            <span className={cx('info-name')}>
-                                <p className={cx('id')}>
-                                    {' '}
-                                    Product ID {item.masp}
-                                </p>
-                                {item.tensp}
-                            </span>
-
-                            <button
-                                className={cx('button-2')}
-                                onClick={handleMinus}
-                            >
-                                <FontAwesomeIcon icon={faClose} />
+                <tr className={cx('table')}>
+                    <td className={cx('table-item1')}>
+                        <img
+                            src={`http://localhost:2222/images/${item.anhdaidien}`}
+                            className={cx('image')}
+                        />
+                        <span>{item.tensp}</span>
+                    </td>
+                    <td className={cx('table-item2')}>
+                        {item.gia.toLocaleString(undefined, {
+                            maximumFractionDigits: 2,
+                        })}{' '}
+                        $
+                    </td>
+                    <td className={cx('table-item3')}>
+                        <div className={cx('quantity-box')}>
+                            <button onClick={handleMinus}>
+                                <FontAwesomeIcon icon={faMinus} />
+                            </button>
+                            <span>{quantity}</span>
+                            <button onClick={handlePlus}>
+                                <FontAwesomeIcon icon={faPlus} />
                             </button>
                         </div>
-                        <div className={cx('info-calc')}>
+                    </td>
+                    <td className={cx('table-item2')}>
+                        <div className={cx('total-box')}>
                             <span>
-                                Quantity :
-                                <button
-                                    className={cx('button-1')}
-                                    onClick={handleMinus}
-                                >
-                                    <FontAwesomeIcon icon={faMinus} />
-                                </button>
-                                <span>{quantity}</span>
-                                <button className={cx('button-1')}>
-                                    <FontAwesomeIcon
-                                        icon={faPlus}
-                                        onClick={handlePlus}
-                                    />
-                                </button>
+                                {(item.gia * quantity).toLocaleString(
+                                    undefined,
+                                    {
+                                        maximumFractionDigits: 2,
+                                    },
+                                )}{' '}
+                                $
                             </span>
-                            <span>Total : {quantity * item.gia}</span>
+                            <button onClick={handleDelete}>
+                                <FontAwesomeIcon icon={faTrash} />
+                            </button>
                         </div>
-                    </div>
-                </li>
+                    </td>
+                </tr>
             )}
-        </div>
+        </tbody>
     );
 }
 
