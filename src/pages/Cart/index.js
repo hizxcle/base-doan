@@ -21,9 +21,6 @@ function Cart() {
         fetch(`http://localhost:2222/api/cart/getByUser/8`)
             .then((res) => res.json())
             .then((res) => setCart(res));
-    }, []);
-
-    useEffect(() => {
         fetch(`http://localhost:2222/api/product`)
             .then((res) => res.json())
             .then((res) => setData(res));

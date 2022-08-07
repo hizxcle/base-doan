@@ -5,12 +5,13 @@ import { faCartPlus, faClose } from '@fortawesome/free-solid-svg-icons';
 
 import { addToCart, getCart } from '~/Services';
 import { useEffect, useMemo, useState } from 'react';
+import Alert from '../infoModals/Alert';
 
 const cx = classNames.bind(styles);
 
 function DetailProduct({ setShowDetail, item }) {
     const [cart, setCart] = useState([]);
-    const [showAlert, setShowAlert] = useState(false);
+    const [alert, setAlert] = useState({ type: '', message: '', show: false });
 
     useEffect(() => {
         getCart(8).then(setCart);
@@ -20,17 +21,28 @@ function DetailProduct({ setShowDetail, item }) {
         if (!filterData) {
             addToCart(8, item.masp, 1);
             setShowDetail(false);
+            setAlert({
+                type: 'success',
+                message: 'Them vao gio hang thanh cong',
+                show: true,
+            });
         } else {
-            setShowAlert(true);
+            setAlert({
+                type: 'error',
+                message: 'San pham da ton tai trong gio hang',
+                show: true,
+            });
+            setShowDetail(false);
         }
     };
 
-    const filterData = useMemo(() =>
-        cart.map((item) => item.masp).includes(item.masp),
-    );
+    const filterData = cart.map((item) => item.masp).includes(item.masp);
+
+    console.log('filterData', filterData);
 
     return (
         <div className={cx('wrapper')}>
+            {alert.show && <Alert alert={alert} setAlert={setAlert} />}
             <div className={cx('container')}>
                 <div className={cx('container-image')}>
                     <img
