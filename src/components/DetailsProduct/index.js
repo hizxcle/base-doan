@@ -3,15 +3,31 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus, faClose } from '@fortawesome/free-solid-svg-icons';
 
-import { addToCart } from '~/Services';
+import { addToCart, getCart } from '~/Services';
+import { useEffect, useMemo, useState } from 'react';
 
 const cx = classNames.bind(styles);
 
 function DetailProduct({ setShowDetail, item }) {
+    const [cart, setCart] = useState([]);
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        getCart(8).then(setCart);
+    }, []);
+
     const handleAddToCart = () => {
-        setShowDetail(false);
-        addToCart(8, item.masp, 1);
+        if (!filterData) {
+            addToCart(8, item.masp, 1);
+            setShowDetail(false);
+        } else {
+            setShowAlert(true);
+        }
     };
+
+    const filterData = useMemo(() =>
+        cart.map((item) => item.masp).includes(item.masp),
+    );
 
     return (
         <div className={cx('wrapper')}>

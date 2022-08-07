@@ -17,20 +17,13 @@ function Cart() {
     const [data, setData] = useState([]);
     const [cart, setCart] = useState([]);
 
-    // useEffect(() => {
-    //     return async () => {
-    //         const res = (
-    //             await fetch(`http://localhost:2222/api/cart/getByUser/8`)
-    //         ).json();
-    //         // setCart(res);
-    //     };
-    // }, []);
+    useEffect(() => {
+        fetch(`http://localhost:2222/api/cart/getByUser/8`)
+            .then((res) => res.json())
+            .then((res) => setCart(res));
+    }, []);
 
     useEffect(() => {
-        fetch(`http://localhost:2222/api/cart/getByUser/9`).then((res) => {
-            setCart(res.json());
-        });
-        console.log('test use affect');
         fetch(`http://localhost:2222/api/product`)
             .then((res) => res.json())
             .then((res) => {
@@ -43,7 +36,8 @@ function Cart() {
             data.filter((item) =>
                 cart.map((item) => item.masp).includes(item.masp),
             ),
-        [data, cart],
+        [data],
+        [cart],
     );
 
     // const totalPrice = useMemo(() => {
@@ -58,7 +52,6 @@ function Cart() {
         <div className={cx('wrapper')}>
             {filterData ? (
                 <>
-                    {' '}
                     <div className={cx('title')}>
                         <span className={cx('title-text')}>
                             Your Shopping Cart
@@ -139,7 +132,8 @@ function Cart() {
                                 <div className={cx('container-right-footer')}>
                                     <p>
                                         Mobilex process all orders in USD.
-                                        Shipping & taxes calculated at checkout.
+                                        Shipping and taxes calculated at
+                                        checkout.
                                     </p>
                                 </div>
                             </div>

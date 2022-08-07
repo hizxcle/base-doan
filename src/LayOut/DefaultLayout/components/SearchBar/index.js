@@ -11,6 +11,8 @@ import Tippy from '@tippyjs/react/headless';
 
 import SearchProducts from '~/LayOut/DefaultLayout/components/SearchBar/components/SearchProducts';
 import SearchItems from './components/SearchItems';
+import SearchType from './components/SearchType';
+import SearchBrand from './components/SearchBrand';
 
 const cx = classNames.bind(styles);
 
@@ -35,6 +37,8 @@ function SearchBar() {
                 setSearchResult(res);
             });
     }, [searchValue]);
+
+    console.log(searchResult);
 
     const focusRef = useRef(null);
 
@@ -71,6 +75,19 @@ function SearchBar() {
                             {searchResult.map((result, index) => (
                                 <SearchItems key={index} data={result} />
                             ))}
+                            <hr></hr>
+                            <h3 className={cx('search-result-prods')}>
+                                Type Products
+                            </h3>
+                            {searchResult.map((result, index) => (
+                                <SearchType key={index} data={result} />
+                            ))}
+                            <hr></hr>
+                            <h3 className={cx('search-result-prods')}>Brand</h3>
+                            {searchResult.map((result, index) => (
+                                <SearchBrand key={index} data={result} />
+                            ))}
+                            <hr></hr>
                         </div>
                     </div>
                 )}
