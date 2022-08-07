@@ -47,7 +47,7 @@ function Cart() {
 
     return (
         <div className={cx('wrapper')}>
-            {filterData ? (
+            {filterData.length !== 0 ? (
                 <>
                     <div className={cx('title')}>
                         <span className={cx('title-text')}>
@@ -87,7 +87,10 @@ function Cart() {
                                     <textarea />
                                 </div>
                                 <div className={cx('container-left-items')}>
-                                    <Link to="/shop">
+                                    <Link
+                                        to="/shop"
+                                        className={cx('link-router')}
+                                    >
                                         <div className={cx('item2')}>
                                             <FontAwesomeIcon
                                                 icon={faArrowLeft}

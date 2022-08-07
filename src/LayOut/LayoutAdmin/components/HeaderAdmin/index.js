@@ -1,5 +1,8 @@
 import styles from './HeaderAdmin.module.scss';
 import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOut } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -7,6 +10,7 @@ function HeaderAdmin({
     onChangeToProduct,
     onChangeToCustomer,
     onChangeToOrder,
+    user,
 }) {
     return (
         <header className={cx('wrapper')}>
@@ -56,7 +60,14 @@ function HeaderAdmin({
                 </div>
                 <div className={cx('actions')}>
                     <div className={cx('actions-items')}>
-                        <div>LOGIN</div>
+                        <div>
+                            <Link to="/" className={cx('link-router')}>
+                                <span className={cx('sign-out')}>
+                                    Đăng xuất
+                                </span>
+                                <FontAwesomeIcon icon={faSignOut} />
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,8 @@ import DefaultLayout from './LayOut/DefaultLayout';
 import ProtectedRoutes from './routes/ProtectedRoutes';
 import AdminLayout from './LayOut/LayoutAdmin';
 import Login from './pages/Login';
+import Header from './LayOut/DefaultLayout/components/Header';
+import Footer from './LayOut/DefaultLayout/components/Footer';
 
 function App() {
     return (
@@ -14,10 +16,7 @@ function App() {
                 <div>
                     <Routes>
                         {PublicRoutes.map((route, index) => {
-                            const Layout =
-                                route.layout === null
-                                    ? Fragment
-                                    : DefaultLayout;
+                            const Layout = DefaultLayout;
                             const Page = route.component;
                             return (
                                 <Route
@@ -48,9 +47,9 @@ function App() {
                         <Route
                             path="/login"
                             element={
-                                <Fragment>
+                                <DefaultLayout>
                                     <Login />
-                                </Fragment>
+                                </DefaultLayout>
                             }
                         />
                         {/* <Route path="register" element={<Register />} /> */}

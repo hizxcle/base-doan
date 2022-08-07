@@ -16,12 +16,18 @@ const cx = classNames.bind(styles);
 function AdminLayout() {
     const [table, setTable] = useState('product');
     const [posts, setPosts] = useState([]);
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
         fetch(`http://localhost:2222/api/${table}/`)
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
+            });
+        fetch(`http://localhost:2222/api/user/allUser`)
+            .then((res) => res.json())
+            .then((res) => {
+                setUser(res);
             });
     }, [table]);
 
@@ -44,6 +50,7 @@ function AdminLayout() {
                 onChangeToProduct={handleProducts}
                 onChangeToCustomer={handleCustomer}
                 onChangeToOrder={handleOrder}
+                user={user}
             />
             <SearchBarAdmin />
             {table === 'product' && <QLSP data={posts} setPosts={setPosts} />}

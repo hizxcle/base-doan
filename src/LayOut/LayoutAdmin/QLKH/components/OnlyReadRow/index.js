@@ -25,9 +25,9 @@ function OnlyReadRow({ item, handleDelete }) {
             <td>{item.email}</td>
             <td>
                 {item.quyen === '1'
-                    ? 'Admin'
-                    : item.quyen === '0'
                     ? 'User'
+                    : item.quyen === '0'
+                    ? 'Admin'
                     : ''}
             </td>
             <td>
