@@ -2,14 +2,10 @@ import { Fragment } from 'react';
 import AuthContentProvider from '~/components/contexts/AuthContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { PublicRoutes } from '~/routes';
-<<<<<<< HEAD
 import DefaultLayout from './LayOut/DefaultLayout';
-=======
 import ProtectedRoutes from './routes/ProtectedRoutes';
-import DefaultLayout from './components/LayOut/DefaultLayout';
-import AdminLayout from './components/LayOut/AdminLayout';
+import AdminLayout from './LayOut/LayoutAdmin';
 import Login from './pages/Login';
->>>>>>> fixbug
 
 function App() {
     return (
