@@ -1,7 +1,7 @@
 import styles from './Cart.module.scss';
 import classNames from 'classnames/bind';
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, memo } from 'react';
 import { Link } from 'react-router-dom';
 
 import CartItem from './components';
@@ -21,7 +21,7 @@ function Cart() {
         fetch(`http://localhost:2222/api/cart/getByUser/8`)
             .then((res) => res.json())
             .then((res) => setCart(res));
-    }, [filterData]);
+    }, []);
 
     useEffect(() => {
         fetch(`http://localhost:2222/api/product`)
@@ -34,7 +34,8 @@ function Cart() {
             data.filter((item) =>
                 cart.map((item) => item.masp).includes(item.masp),
             ),
-        [],
+        [data],
+        [cart],
     );
 
     // const totalPrice = useMemo(() => {
@@ -129,7 +130,8 @@ function Cart() {
                                 <div className={cx('container-right-footer')}>
                                     <p>
                                         Mobilex process all orders in USD.
-                                        Shipping & taxes calculated at checkout.
+                                        Shipping and taxes calculated at
+                                        checkout.
                                     </p>
                                 </div>
                             </div>
@@ -154,4 +156,4 @@ function Cart() {
     );
 }
 
-export default Cart;
+export default memo(Cart);
