@@ -23,9 +23,11 @@ function Cart() {
             .then((res) => setCart(res));
         fetch(`http://localhost:2222/api/product`)
             .then((res) => res.json())
-            .then((res) => setData(res));
+            .then((res) => {
+                console.log('res', res);
+                setData(res);
+            });
     }, []);
-
     const filterData = useMemo(
         () =>
             data.filter((item) =>
