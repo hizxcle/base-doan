@@ -30,11 +30,14 @@ function Cart() {
         fetch(`http://localhost:2222/api/cart/getByUser/9`).then((res) => {
             setCart(res.json());
         });
+        console.log('test use affect');
         fetch(`http://localhost:2222/api/product`)
             .then((res) => res.json())
-            .then((res) => setData(res));
+            .then((res) => {
+                console.log('res', res);
+                setData(res);
+            });
     }, []);
-
     const filterData = useMemo(
         () =>
             data.filter((item) =>
