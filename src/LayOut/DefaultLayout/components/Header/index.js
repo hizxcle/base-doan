@@ -3,18 +3,21 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import useAuth from '~/hooks/useAuth';
+import { useEffect, useState, memo, Fragment } from 'react';
 import { getCart } from '~/Services';
 
 const cx = classNames.bind(styles);
-
 function Header() {
+    const auth = useAuth();
     const [cart, setCart] = useState([]);
-
     useEffect(() => {
         getCart(8).then(setCart);
     }, []);
-
+    const logout = (e) => {
+        e.preventDefault();
+        auth.logout();
+    };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -52,6 +55,28 @@ function Header() {
                                 CONTACT
                             </Link>{' '}
                         </li>
+
+                        {auth.isLogin && (
+                            <Fragment>
+                                <li className={cx('page-list-item')}>
+                                    <Link
+                                        to="/order"
+                                        className={cx('link-router')}
+                                    >
+                                        ORDER
+                                    </Link>
+                                </li>
+                                <li className={cx('page-list-item')}>
+                                    {' '}
+                                    <Link
+                                        to="/profile"
+                                        className={cx('link-router')}
+                                    >
+                                        PROFILE
+                                    </Link>{' '}
+                                </li>
+                            </Fragment>
+                        )}
                     </ul>
                 </div>
                 <div className={cx('actions')}>
@@ -67,16 +92,25 @@ function Header() {
                                 </span>
                             </Link>
                         </div>
-                        <div className={cx('actions-item')}>
+                        <div className={cx('actions-item', 'heart-box')}>
                             <FontAwesomeIcon
                                 icon={faHeart}
                                 className={cx('item-icon')}
                             />
+                            {auth.isLogin && (
+                                <span>
+                                    {auth.userInfo.hoten || auth.userInfo.tentk}
+                                </span>
+                            )}
                         </div>
                         <div className={cx('actions-item-login')}>
-                            <Link to="/login" className={cx('link-router')}>
-                                LOGIN
-                            </Link>
+                            {auth.isLogin ? (
+                                <a onClick={logout}>LOGOUT</a>
+                            ) : (
+                                <Link to="/login" className={cx('link-router')}>
+                                    LOGIN
+                                </Link>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -86,4 +120,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default memo(Header);

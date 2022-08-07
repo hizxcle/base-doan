@@ -1,9 +1,10 @@
 import Home from '~/pages/Home';
 import Shop from '~/pages/Shop';
 import About from '~/pages/About';
-import Login from '~/pages/Login';
 import Cart from '~/pages/Cart';
 import Contact from '~/pages/Contact';
+import Order from '~/pages/Order';
+import Profile from '~/pages/Profile';
 import AdminLayout from '~/LayOut/LayoutAdmin';
 
 // Public Routes
@@ -40,6 +41,15 @@ const PublicRoutes = [
 ];
 
 // Private Routes
-const PrivateRoutes = [];
+const PrivateRoutes = [
+    {
+        path: '/order',
+        component: Order,
+    },
+    {
+        path: '/profile',
+        component: Profile,
+    },
+];
 
 export { PublicRoutes, PrivateRoutes };
