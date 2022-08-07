@@ -21,7 +21,7 @@ function Cart() {
         fetch(`http://localhost:2222/api/cart/getByUser/8`)
             .then((res) => res.json())
             .then((res) => setCart(res));
-    }, []);
+    }, [filterData]);
 
     useEffect(() => {
         fetch(`http://localhost:2222/api/product`)
@@ -34,8 +34,7 @@ function Cart() {
             data.filter((item) =>
                 cart.map((item) => item.masp).includes(item.masp),
             ),
-        [data],
-        [cart],
+        [],
     );
 
     // const totalPrice = useMemo(() => {
@@ -50,7 +49,6 @@ function Cart() {
         <div className={cx('wrapper')}>
             {filterData ? (
                 <>
-                    {' '}
                     <div className={cx('title')}>
                         <span className={cx('title-text')}>
                             Your Shopping Cart
