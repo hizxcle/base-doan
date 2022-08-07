@@ -13,7 +13,7 @@ function Header() {
 
     useEffect(() => {
         getCart(8).then(setCart);
-    });
+    }, []);
 
     return (
         <div className={cx('wrapper')}>

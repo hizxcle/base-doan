@@ -1,7 +1,7 @@
 import styles from './Cart.module.scss';
 import classNames from 'classnames/bind';
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, memo } from 'react';
 import { Link } from 'react-router-dom';
 
 import CartItem from './components';
@@ -17,13 +17,19 @@ function Cart() {
     const [data, setData] = useState([]);
     const [cart, setCart] = useState([]);
 
-    useEffect(() => {
-        fetch(`http://localhost:2222/api/cart/getByUser/8`)
-            .then((res) => res.json())
-            .then((res) => setCart(res));
-    }, []);
+    // useEffect(() => {
+    //     return async () => {
+    //         const res = (
+    //             await fetch(`http://localhost:2222/api/cart/getByUser/8`)
+    //         ).json();
+    //         // setCart(res);
+    //     };
+    // }, []);
 
     useEffect(() => {
+        fetch(`http://localhost:2222/api/cart/getByUser/9`).then((res) => {
+            setCart(res.json());
+        });
         fetch(`http://localhost:2222/api/product`)
             .then((res) => res.json())
             .then((res) => setData(res));
@@ -34,8 +40,7 @@ function Cart() {
             data.filter((item) =>
                 cart.map((item) => item.masp).includes(item.masp),
             ),
-        [data],
-        [cart],
+        [data, cart],
     );
 
     // const totalPrice = useMemo(() => {
@@ -156,4 +161,4 @@ function Cart() {
     );
 }
 
-export default Cart;
+export default memo(Cart);
