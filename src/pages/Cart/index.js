@@ -129,16 +129,24 @@ function Cart() {
                                         <span> $154.00</span>
                                     </div>
                                     <div>
-                                        <button className={cx('button-update')}>
-                                            UPDATE
-                                        </button>
+                                        <Link to="/shop">
+                                            <button
+                                                className={cx('button-update')}
+                                            >
+                                                UPDATE ITEM
+                                            </button>
+                                        </Link>
                                     </div>
                                     <div>
-                                        <button
-                                            className={cx('button-checkout')}
-                                        >
-                                            GO TO CHECKOUT
-                                        </button>
+                                        <Link to="/payment">
+                                            <button
+                                                className={cx(
+                                                    'button-checkout',
+                                                )}
+                                            >
+                                                GO TO CHECK OUT
+                                            </button>
+                                        </Link>
                                     </div>
                                 </div>
                                 <div className={cx('container-right-footer')}>

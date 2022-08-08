@@ -55,7 +55,6 @@ function Header() {
                                 CONTACT
                             </Link>
                         </li>
-
                         {auth.isLogin && (
                             <Fragment>
                                 <li className={cx('page-list-item')}>

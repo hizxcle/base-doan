@@ -5,6 +5,7 @@ import Cart from '~/pages/Cart';
 import Contact from '~/pages/Contact';
 import Order from '~/pages/Order';
 import Profile from '~/pages/Profile';
+import PayMent from '~/pages/PayMent';
 
 // Public Routes
 const PublicRoutes = [
@@ -29,6 +30,11 @@ const PublicRoutes = [
         path: '/contact',
         component: Contact,
     },
+    {
+        path: '/payment',
+        component: PayMent,
+        type: null,
+    },
 ];
 
 // Private Routes
@@ -40,6 +46,11 @@ const PrivateRoutes = [
     {
         path: '/profile',
         component: Profile,
+    },
+    {
+        path: '/payment',
+        component: PayMent,
+        type: null,
     },
 ];
 
