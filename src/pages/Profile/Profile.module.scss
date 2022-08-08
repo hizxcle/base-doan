@@ -1,6 +1,23 @@
 .wrapper {
-    height: 500px;
+    min-height: 600px;
 }
 .header {
     text-align: center;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d6d6d6;
+    margin-bottom: 50px;
+}
+
+.breadcrums {
+    background-color: #d6d6d6;
+    padding-left: 170px;
+}
+
+.container {
+    width: 800px;
+    margin: 0 auto;
+    padding-left: 100px;
 }

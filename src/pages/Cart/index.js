@@ -6,12 +6,10 @@ import { Link } from 'react-router-dom';
 
 import useAuth from '~/hooks/useAuth';
 
-import CartItem from './components';
+import CartItem from './components/CartItem';
+import CartEmpty from '~/pages/Cart/components/CartEmpty';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faArrowLeft,
-    faCartArrowDown,
-} from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -21,20 +19,24 @@ function Cart() {
 
     const auth = useAuth();
 
-    useEffect(() => {
-        if (auth.isLogin) {
-            fetch(
-                `http://localhost:2222/api/cart/getByUser/${auth.userInfo.manguoidung}`,
-            )
+    useEffect(
+        () => {
+            if (auth.isLogin) {
+                fetch(
+                    `http://localhost:2222/api/cart/getByUser/${auth.userInfo.manguoidung}`,
+                )
+                    .then((res) => res.json())
+                    .then((res) => setCart(res));
+            }
+            fetch(`http://localhost:2222/api/product`)
                 .then((res) => res.json())
-                .then((res) => setCart(res));
-        }
-        fetch(`http://localhost:2222/api/product`)
-            .then((res) => res.json())
-            .then((res) => {
-                setData(res);
-            });
-    }, [auth.isLogin]);
+                .then((res) => {
+                    setData(res);
+                });
+        },
+        [auth.userInfo.manguoidung],
+        [auth.isLogin],
+    );
 
     const filterData = useMemo(
         () =>
@@ -45,13 +47,9 @@ function Cart() {
         [cart],
     );
 
-    // const totalPrice = useMemo(() => {
-    //     filterData.reduce((result) => {
-    //         result = filterData.gia * filterData.soluong;
-    //     });
-    // });
+    const filterTotal = cart.map((item) => item.soluong);
 
-    // console.log(totalPrice);
+    console.log('Total', filterTotal);
 
     return (
         <div className={cx('wrapper')}>
@@ -121,11 +119,16 @@ function Cart() {
                                     </div>
                                     <div className={cx('total')}>
                                         <span>Total weight</span>
-                                        <span> 9.92 lb</span>
+                                        <span>
+                                            {9.92 * filterData.length} lb(s)
+                                        </span>
                                     </div>
                                     <hr></hr>
                                     <div className={cx('total')}>
-                                        <span>TOTAL PRICE</span>
+                                        <span>
+                                            {filterData.gia *
+                                                filterData.soluong}
+                                        </span>
                                         <span> $154.00</span>
                                     </div>
                                     <div>
@@ -161,18 +164,7 @@ function Cart() {
                     </div>
                 </>
             ) : (
-                <div className={cx('container-empty')}>
-                    <FontAwesomeIcon
-                        icon={faCartArrowDown}
-                        className={cx('icon-empty')}
-                    />
-                    <p>Your cart is currently empty.</p>
-                    <button>
-                        <Link to="/shop" className={cx('link-router')}>
-                            RETURN TO SHOP
-                        </Link>
-                    </button>
-                </div>
+                <CartEmpty />
             )}
         </div>
     );

@@ -2,11 +2,11 @@ import { memo, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './EditItem.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
+import { faCancel, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '~/hooks/useAuth';
 
 const cx = classNames.bind(styles);
-function EditItem({ data, action }) {
+function EditItem({ data, action, setEdit }) {
     const auth = useAuth();
     const [input, setInput] = useState({
         hoten: data.hoten,
@@ -16,6 +16,10 @@ function EditItem({ data, action }) {
         email: data.email,
         diachi: data.diachi,
     });
+
+    const handleShowEdit = () => {
+        setEdit(false);
+    };
 
     const saveInfo = () => {
         const opt = {
@@ -43,9 +47,9 @@ function EditItem({ data, action }) {
     };
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('inner')}>
+            <div className={cx('container')}>
                 <div className={cx('item')}>
-                    <span className={cx('item-desc')}>Full name :</span>
+                    <p className={cx('item-desc')}>Full name :</p>
                     <input
                         className={cx('item-val')}
                         value={input.hoten}
@@ -55,95 +59,120 @@ function EditItem({ data, action }) {
                     />
                 </div>
                 <div className={cx('item')}>
-                    <span className={cx('item-desc')}>Gender :</span>
-                    <input
-                        name="gender"
-                        id="gendernam"
-                        value="1"
-                        className={cx('item-val')}
-                        type="radio"
-                        checked={input.gioitinh == 1}
-                        onChange={(e) => {
-                            setInput({ ...input, gioitinh: e.target.value });
-                        }}
-                    />
-                    <label htmlFor="gendernam">male</label>
-                    <input
-                        name="gender"
-                        id="gendernu"
-                        value="0"
-                        className={cx('item-val')}
-                        type="radio"
-                        checked={input.gioitinh == 0}
-                        onChange={(e) => {
-                            setInput({ ...input, gioitinh: e.target.value });
-                        }}
-                    />
-                    <label htmlFor="gendernu">female</label>
-                    <input
-                        name="gender"
-                        id="gender3"
-                        value="3"
-                        className={cx('item-val')}
-                        type="radio"
-                        checked={![1, 0].includes(input.gioitinh)}
-                        onChange={(e) => {
-                            setInput({ ...input, gioitinh: e.target.value });
-                        }}
-                    />
-                    <label htmlFor="gender3">other</label>
-                    <div className={cx('item')}>
-                        <span className={cx('item-desc')}>Date of birth :</span>
+                    <p className={cx('item-desc')}>Gender :</p>
+                    <p className={cx('item-radio')}>
                         <input
-                            type="date"
+                            name="gender"
+                            id="gendernam"
+                            value="1"
                             className={cx('item-val')}
-                            value={input.ngaysinh}
+                            type="radio"
+                            checked={input.gioitinh == 1}
                             onChange={(e) => {
                                 setInput({
                                     ...input,
-                                    ngaysinh: e.target.value,
+                                    gioitinh: e.target.value,
                                 });
                             }}
                         />
-                    </div>
-                    <div className={cx('item')}>
-                        <span className={cx('item-desc')}>Phone :</span>
+                        <label htmlFor="gendernam">Male</label>
+                    </p>
+                    <p className={cx('item-radio')}>
                         <input
-                            type="text"
+                            name="gender"
+                            id="gendernu"
+                            value="0"
                             className={cx('item-val')}
-                            value={input.sdt}
+                            type="radio"
+                            checked={input.gioitinh == 0}
                             onChange={(e) => {
-                                setInput({ ...input, sdt: e.target.value });
+                                setInput({
+                                    ...input,
+                                    gioitinh: e.target.value,
+                                });
                             }}
                         />
-                    </div>
-                    <div className={cx('item')}>
-                        <span className={cx('item-desc')}>Email :</span>
+                        <label htmlFor="gendernu">Female</label>
+                    </p>
+                    <p className={cx('item-radio')}>
                         <input
-                            type="email"
+                            name="gender"
+                            id="gender3"
+                            value="3"
                             className={cx('item-val')}
-                            value={input.email}
+                            type="radio"
+                            checked={![1, 0].includes(input.gioitinh)}
                             onChange={(e) => {
-                                setInput({ ...input, email: e.target.value });
+                                setInput({
+                                    ...input,
+                                    gioitinh: e.target.value,
+                                });
                             }}
                         />
-                    </div>
-                    <div className={cx('item')}>
-                        <span className={cx('item-desc')}>Address : </span>
-                        <input
-                            type="text"
-                            className={cx('item-val')}
-                            value={input.diachi}
-                            onChange={(e) => {
-                                setInput({ ...input, diachi: e.target.value });
-                            }}
-                        />
-                    </div>
+                        <label htmlFor="gender3">Other</label>
+                    </p>
                 </div>
-                <button className={cx('edit')} onClick={saveInfo}>
-                    <FontAwesomeIcon icon={faFloppyDisk} />
-                    <span>Save infor</span>
-                </button>
+
+                <div className={cx('item')}>
+                    <p className={cx('item-desc')}>Date of birth :</p>
+                    <input
+                        type="date"
+                        className={cx('item-val')}
+                        value={input.ngaysinh}
+                        onChange={(e) => {
+                            setInput({
+                                ...input,
+                                ngaysinh: e.target.value,
+                            });
+                        }}
+                    />
+                </div>
+
+                <div className={cx('item')}>
+                    <p className={cx('item-desc')}>Phone :</p>
+                    <input
+                        type="text"
+                        className={cx('item-val')}
+                        value={input.sdt}
+                        onChange={(e) => {
+                            setInput({ ...input, sdt: e.target.value });
+                        }}
+                    />
+                </div>
+
+                <div className={cx('item')}>
+                    <p className={cx('item-desc')}>Email :</p>
+                    <input
+                        type="email"
+                        className={cx('item-val')}
+                        value={input.email}
+                        onChange={(e) => {
+                            setInput({ ...input, email: e.target.value });
+                        }}
+                    />
+                </div>
+
+                <div className={cx('item')}>
+                    <p className={cx('item-desc')}>Address : </p>
+                    <input
+                        type="text"
+                        className={cx('item-val')}
+                        value={input.diachi}
+                        onChange={(e) => {
+                            setInput({ ...input, diachi: e.target.value });
+                        }}
+                    />
+                </div>
+                <div className={cx('edit')}>
+                    <button onClick={saveInfo}>
+                        <FontAwesomeIcon icon={faFloppyDisk} />
+                        <p>Save infor</p>
+                    </button>
+                    <button onClick={handleShowEdit}>
+                        <FontAwesomeIcon icon={faCancel} />
+                        <p>Cancel Edit</p>
+                    </button>
+                </div>
             </div>
         </div>
     );
