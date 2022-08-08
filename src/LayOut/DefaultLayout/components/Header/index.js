@@ -12,8 +12,11 @@ function Header() {
     const auth = useAuth();
     const [cart, setCart] = useState([]);
     useEffect(() => {
-        getCart(8).then(setCart);
-    }, []);
+        if (auth.isLogin) {
+            getCart(auth.manguoidung).then(setCart);
+        }
+    }, [auth.isLogin]);
+
     const logout = (e) => {
         e.preventDefault();
         auth.logout();
@@ -48,10 +51,9 @@ function Header() {
                             </Link>
                         </li>
                         <li className={cx('page-list-item')}>
-                            {' '}
                             <Link to="/contact" className={cx('link-router')}>
                                 CONTACT
-                            </Link>{' '}
+                            </Link>
                         </li>
 
                         {auth.isLogin && (

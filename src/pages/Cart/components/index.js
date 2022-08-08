@@ -4,7 +4,7 @@ import styles from './CartItem.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import { deleteCartItem, getCart } from '~/Services';
+import { deleteCartItem, getCart, updateCart } from '~/Services';
 import { useState, memo } from 'react';
 import useAuth from '~/hooks/useAuth';
 
@@ -15,23 +15,42 @@ function CartItem({ item, setCart }) {
     const [show, setShow] = useState(true);
     const auth = useAuth();
 
-    const handleMinus = () => {
-        setQuantity(quantity - 1);
-        if (quantity < 1) {
-            handleDelete();
+    const handleMinus = async () => {
+        await setQuantity(quantity - 1);
+        if (quantity === 0) {
+            await handleDelete();
         }
+        const res = await updateCart(
+            auth.userInfo.manguoidung,
+            item.masp,
+            quantity,
+        );
+        await res.json();
+        const newData = await getCart(auth.userInfo.manguoidung);
+        await setCart(newData);
     };
 
-    const handlePlus = () => {
+    const handlePlus = async () => {
         setQuantity(quantity + 1);
+        const res = await updateCart(
+            auth.userInfo.manguoidung,
+            item.masp,
+            quantity,
+        );
+        await res.json();
+        const newData = await getCart(auth.userInfo.manguoidung);
+        await setCart(newData);
     };
 
     const handleDelete = async () => {
         try {
-            const res = await deleteCartItem(auth.manguoidung, item.masp);
+            const res = await deleteCartItem(
+                auth.userInfo.manguoidung,
+                item.masp,
+            );
             await res.json();
             await setShow(false);
-            const newData = await getCart(auth.manguoidung);
+            const newData = await getCart(auth.userInfo.manguoidung);
             await setCart(newData);
         } catch (e) {
             console.log(e);

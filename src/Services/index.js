@@ -78,6 +78,16 @@ const deleteCartItem = (id, idProduct) => {
     );
 };
 
+const updateCart = (id, idProduct, quantity) => {
+    var Option = {
+        method: 'PUT',
+    };
+    return fetch(
+        `http://localhost:2222/api/cart/update/${id}/${idProduct}/${quantity}`,
+        Option,
+    );
+};
+
 // User
 
 const getUser = async () => {
@@ -106,4 +116,5 @@ export {
     addToCart,
     getUser,
     deleteCartItem,
+    updateCart,
 };

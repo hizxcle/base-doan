@@ -24,7 +24,7 @@ function Cart() {
     useEffect(() => {
         if (auth.isLogin) {
             fetch(
-                `http://localhost:2222/api/cart/getByUser/${auth.manguoidung}`,
+                `http://localhost:2222/api/cart/getByUser/${auth.userInfo.manguoidung}`,
             )
                 .then((res) => res.json())
                 .then((res) => setCart(res));

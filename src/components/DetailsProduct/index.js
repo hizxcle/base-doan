@@ -17,14 +17,14 @@ function DetailProduct({ setShowDetail, item }) {
 
     useEffect(() => {
         if (auth.isLogin) {
-            getCart(auth.manguoidung).then(setCart);
+            getCart(auth.userInfo.manguoidung).then(setCart);
         }
     }, []);
 
     const handleAddToCart = () => {
         if (!filterData) {
             if (auth.isLogin) {
-                addToCart(auth.manguoidung, item.masp, 1);
+                addToCart(auth.userInfo.manguoidung, item.masp, 1);
             }
             setShowDetail(false);
             setAlert({
