@@ -14,13 +14,17 @@ function ShowItem({ data, action }) {
                     <span className={cx('item-cont')}>{data.hoten}</span>
                 </div>
                 <div className={cx('item')}>
+                    <span className={cx('item-desc')}>Email :</span>
+                    <span className={cx('item-cont')}>{data.email}</span>
+                </div>
+                <div className={cx('item')}>
                     <span className={cx('item-desc')}>Gender :</span>
                     <span className={cx('item-cont')}>
-                        {data.gioitinh == 1
-                            ? 'male'
-                            : data.gioitinh == 0
-                            ? 'female'
-                            : 'other'}
+                        {data.gioitinh === 1
+                            ? 'Male'
+                            : data.gioitinh === 0
+                            ? 'Female'
+                            : 'Other'}
                     </span>
                 </div>
                 <div className={cx('item')}>
@@ -33,19 +37,18 @@ function ShowItem({ data, action }) {
                     <span className={cx('item-desc')}>Phone :</span>
                     <span className={cx('item-cont')}>{data.sdt}</span>
                 </div>
-                <div className={cx('item')}>
-                    <span className={cx('item-desc')}>Email :</span>
-                    <span className={cx('item-cont')}>{data.email}</span>
-                </div>
+
                 <div className={cx('item')}>
                     <span className={cx('item-desc')}>Address : </span>
                     <span className={cx('item-cont')}>{data.diachi}</span>
                 </div>
+                <div className={cx('edit')}>
+                    <button onClick={action}>
+                        <FontAwesomeIcon icon={faPenToSquare} />
+                        <span>Edit infor</span>
+                    </button>
+                </div>
             </div>
-            <button className={cx('edit')} onClick={action}>
-                <FontAwesomeIcon icon={faPenToSquare} />
-                <span>Edit infor</span>
-            </button>
         </div>
     );
 }
