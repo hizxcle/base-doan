@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus, faClose } from '@fortawesome/free-solid-svg-icons';
 
 import { addToCart, getCart } from '~/Services';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
+import useAuth from '~/hooks/useAuth';
 import Alert from '../infoModals/Alert';
 
 const cx = classNames.bind(styles);
@@ -12,14 +13,19 @@ const cx = classNames.bind(styles);
 function DetailProduct({ setShowDetail, item }) {
     const [cart, setCart] = useState([]);
     const [alert, setAlert] = useState({ type: '', message: '', show: false });
+    const auth = useAuth();
 
     useEffect(() => {
-        getCart(8).then(setCart);
+        if (auth.isLogin) {
+            getCart(auth.userInfo.manguoidung).then(setCart);
+        }
     }, []);
 
     const handleAddToCart = () => {
         if (!filterData) {
-            addToCart(8, item.masp, 1);
+            if (auth.isLogin) {
+                addToCart(auth.userInfo.manguoidung, item.masp, 1);
+            }
             setShowDetail(false);
             setAlert({
                 type: 'success',

@@ -4,6 +4,8 @@ import classNames from 'classnames/bind';
 import { useEffect, useState, useMemo, memo } from 'react';
 import { Link } from 'react-router-dom';
 
+import useAuth from '~/hooks/useAuth';
+
 import CartItem from './components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -17,17 +19,23 @@ function Cart() {
     const [data, setData] = useState([]);
     const [cart, setCart] = useState([]);
 
+    const auth = useAuth();
+
     useEffect(() => {
-        fetch(`http://localhost:2222/api/cart/getByUser/8`)
-            .then((res) => res.json())
-            .then((res) => setCart(res));
+        if (auth.isLogin) {
+            fetch(
+                `http://localhost:2222/api/cart/getByUser/${auth.userInfo.manguoidung}`,
+            )
+                .then((res) => res.json())
+                .then((res) => setCart(res));
+        }
         fetch(`http://localhost:2222/api/product`)
             .then((res) => res.json())
             .then((res) => {
-                console.log('res', res);
                 setData(res);
             });
-    }, []);
+    }, [auth.isLogin]);
+
     const filterData = useMemo(
         () =>
             data.filter((item) =>
@@ -47,7 +55,7 @@ function Cart() {
 
     return (
         <div className={cx('wrapper')}>
-            {filterData.length !== 0 ? (
+            {filterData.length >= 1 ? (
                 <>
                     <div className={cx('title')}>
                         <span className={cx('title-text')}>
@@ -66,7 +74,11 @@ function Cart() {
                             </thead>
 
                             {filterData.map((item) => (
-                                <CartItem key={item.masp} item={item} />
+                                <CartItem
+                                    key={item.masp}
+                                    item={item}
+                                    setCart={setCart}
+                                />
                             ))}
                         </table>
                         <hr></hr>
