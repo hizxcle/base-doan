@@ -14,10 +14,11 @@ const cx = classNames.bind(styles);
 
 function ProductItem({ item }) {
     const [showDetail, setShowDetail] = useState(false);
+    const [selected, setSelected] = useState([]);
 
     const handleShowDetail = () => {
         setShowDetail(true);
-        getProductById(item.masp);
+        getProductById(item.masp).then(setSelected);
     };
 
     return (
@@ -54,7 +55,11 @@ function ProductItem({ item }) {
                 </span>
             </div>
             {showDetail && (
-                <DetailProduct item={item} setShowDetail={setShowDetail} />
+                <DetailProduct
+                    item={item}
+                    setShowDetail={setShowDetail}
+                    selected={selected}
+                />
             )}
         </div>
     );

@@ -1,9 +1,6 @@
 import styles from './Products.module.scss';
 import classNames from 'classnames/bind';
 
-import { useState } from 'react';
-
-import { getProductById } from '~/Services';
 import ProductItem from '../ProductItem';
 
 const cx = classNames.bind(styles);

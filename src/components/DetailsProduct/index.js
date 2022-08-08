@@ -10,19 +10,22 @@ import Alert from '../infoModals/Alert';
 
 const cx = classNames.bind(styles);
 
-function DetailProduct({ setShowDetail, item }) {
+function DetailProduct({ setShowDetail, item, selected }) {
     const [cart, setCart] = useState([]);
     const [alert, setAlert] = useState({ type: '', message: '', show: false });
     const auth = useAuth();
 
     useEffect(() => {
-        if (auth.userInfo.isLogin) {
-            getCart(auth.userInfo.manguoidung).then(setCart);
-        }
-    }, [auth.userInfo.isLogin]);
+        getCart(auth.userInfo.manguoidung).then(setCart);
+    }, [auth.isLogin]);
 
     const handleAddToCart = () => {
-        if (filterData === false) {
+        const filterData = cart
+            .map((item) => item.masp)
+            .includes(selected.masp);
+        console.log('filterData', filterData);
+
+        if (!filterData) {
             if (auth.isLogin) {
                 addToCart(auth.userInfo.manguoidung, item.masp, 1);
             }
@@ -42,8 +45,7 @@ function DetailProduct({ setShowDetail, item }) {
         }
     };
 
-    const filterData = cart.map((item) => item.masp).includes(item.masp);
-    console.log('filterData', filterData);
+    console.log('cart', cart);
 
     return (
         <div className={cx('wrapper')}>
