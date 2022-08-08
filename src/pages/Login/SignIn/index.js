@@ -27,7 +27,7 @@ function SignIn({ setInputValue, inputValue, handleSubmit, alert, setAlert }) {
             </div>
             <div className={cx('container-left-main')}>
                 <div className={cx('container-left-main-item')}>
-                    <p>Username</p>
+                    <p>Username or Email</p>
                     <input
                         type="text"
                         name="usernameLogin"
@@ -44,7 +44,7 @@ function SignIn({ setInputValue, inputValue, handleSubmit, alert, setAlert }) {
                 <div className={cx('container-left-main-item')}>
                     <p>Password</p>
                     <input
-                        type={showPass ? 'password' : 'text'}
+                        type={showPass ? 'text' : 'password'}
                         name="passwordLogin"
                         value={inputValue.matkhau}
                         onChange={(e) =>
@@ -61,7 +61,7 @@ function SignIn({ setInputValue, inputValue, handleSubmit, alert, setAlert }) {
                             onClick={handleHidePass}
                         >
                             <FontAwesomeIcon
-                                icon={faEye}
+                                icon={faEyeSlash}
                                 className={cx('icon')}
                             />
                         </button>
@@ -71,7 +71,7 @@ function SignIn({ setInputValue, inputValue, handleSubmit, alert, setAlert }) {
                             onClick={handleShowPass}
                         >
                             <FontAwesomeIcon
-                                icon={faEyeSlash}
+                                icon={faEye}
                                 className={cx('icon')}
                             />
                         </button>

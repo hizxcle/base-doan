@@ -80,8 +80,8 @@ function SignUp({ setInputValue, inputValue, handleSubmit }) {
                 <div className={cx('container-left-main-item')}>
                     <p>Password</p>
                     <input
-                        type={showPass ? 'password' : 'text'}
-                        name="passwordLogin"
+                        type={showPass ? 'text' : 'password'}
+                        // name="passwordLogin"
                         // value={inputValue.matkhau}
                         // onChange={(e) =>
                         //     setInputValue({
@@ -89,7 +89,7 @@ function SignUp({ setInputValue, inputValue, handleSubmit }) {
                         //         matkhau: e.target.value,
                         //     })
                         // }
-                        placeholder="Password"
+                        placeholder="Password Sign Up"
                     />
                     {showPass ? (
                         <button
@@ -97,7 +97,7 @@ function SignUp({ setInputValue, inputValue, handleSubmit }) {
                             onClick={handleHidePass}
                         >
                             <FontAwesomeIcon
-                                icon={faEye}
+                                icon={faEyeSlash}
                                 className={cx('icon')}
                             />
                         </button>
@@ -107,7 +107,7 @@ function SignUp({ setInputValue, inputValue, handleSubmit }) {
                             onClick={handleShowPass}
                         >
                             <FontAwesomeIcon
-                                icon={faEyeSlash}
+                                icon={faEye}
                                 className={cx('icon')}
                             />
                         </button>
@@ -116,8 +116,8 @@ function SignUp({ setInputValue, inputValue, handleSubmit }) {
                 <div className={cx('container-left-main-item')}>
                     <p>Confirm Password</p>
                     <input
-                        type={showPass1 ? 'password' : 'text'}
-                        name="passwordLogin"
+                        type={showPass1 ? 'text' : 'password'}
+                        // name="passwordLogin"
                         // value={inputValue.matkhau}
                         // onChange={(e) =>
                         //     setInputValue({
@@ -133,7 +133,7 @@ function SignUp({ setInputValue, inputValue, handleSubmit }) {
                             onClick={handleHidePass1}
                         >
                             <FontAwesomeIcon
-                                icon={faEye}
+                                icon={faEyeSlash}
                                 className={cx('icon1')}
                             />
                         </button>
@@ -143,7 +143,7 @@ function SignUp({ setInputValue, inputValue, handleSubmit }) {
                             onClick={handleShowPass1}
                         >
                             <FontAwesomeIcon
-                                icon={faEyeSlash}
+                                icon={faEye}
                                 className={cx('icon1')}
                             />
                         </button>
