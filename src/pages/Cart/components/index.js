@@ -3,26 +3,38 @@ import styles from './CartItem.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+
+import { deleteCartItem, getCart } from '~/Services';
 import { useState, memo } from 'react';
+import useAuth from '~/hooks/useAuth';
 
 const cx = classNames.bind(styles);
 
-function CartItem({ item }) {
+function CartItem({ item, setCart }) {
     const [quantity, setQuantity] = useState(1);
     const [show, setShow] = useState(true);
+    const auth = useAuth();
 
     const handleMinus = () => {
         setQuantity(quantity - 1);
-        handleDelete();
+        if (quantity < 1) {
+            handleDelete();
+        }
     };
 
     const handlePlus = () => {
         setQuantity(quantity + 1);
     };
 
-    const handleDelete = () => {
-        if (quantity === 1) {
-            setShow(false);
+    const handleDelete = async () => {
+        try {
+            const res = await deleteCartItem(auth.manguoidung, item.masp);
+            await res.json();
+            await setShow(false);
+            const newData = await getCart(auth.manguoidung);
+            await setCart(newData);
+        } catch (e) {
+            console.log(e);
         }
     };
 

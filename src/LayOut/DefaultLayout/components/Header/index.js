@@ -1,7 +1,7 @@
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBagShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import useAuth from '~/hooks/useAuth';
 import { useEffect, useState, memo, Fragment } from 'react';
@@ -34,14 +34,12 @@ function Header() {
                     <ul className={cx('page-list')}>
                         <li className={cx('page-list-item')}>
                             <Link to="/" className={cx('link-router')}>
-                                {' '}
-                                HOME{' '}
+                                HOME
                             </Link>
                         </li>
                         <li className={cx('page-list-item')}>
                             <Link to="/shop" className={cx('link-router')}>
-                                {' '}
-                                SHOP{' '}
+                                SHOP
                             </Link>
                         </li>
                         <li className={cx('page-list-item')}>
@@ -63,7 +61,7 @@ function Header() {
                                         to="/order"
                                         className={cx('link-router')}
                                     >
-                                        ORDER
+                                        YOUR ORDER
                                     </Link>
                                 </li>
                                 <li className={cx('page-list-item')}>
@@ -81,28 +79,6 @@ function Header() {
                 </div>
                 <div className={cx('actions')}>
                     <div className={cx('actions-items')}>
-                        <div className={cx('actions-item')}>
-                            <Link to="/cart">
-                                <FontAwesomeIcon
-                                    icon={faBagShopping}
-                                    className={cx('item-icon')}
-                                />
-                                <span className={cx('item-span')}>
-                                    {cart.length}
-                                </span>
-                            </Link>
-                        </div>
-                        <div className={cx('actions-item', 'heart-box')}>
-                            <FontAwesomeIcon
-                                icon={faHeart}
-                                className={cx('item-icon')}
-                            />
-                            {auth.isLogin && (
-                                <span>
-                                    {auth.userInfo.hoten || auth.userInfo.tentk}
-                                </span>
-                            )}
-                        </div>
                         <div className={cx('actions-item-login')}>
                             {auth.isLogin ? (
                                 <a onClick={logout}>LOGOUT</a>
@@ -111,6 +87,22 @@ function Header() {
                                     LOGIN
                                 </Link>
                             )}
+                        </div>
+                        <div className={cx('actions-item', 'heart-box')}>
+                            {auth.isLogin && (
+                                <span>
+                                    <FontAwesomeIcon icon={faUser} />{' '}
+                                    {auth.userInfo.hoten || auth.userInfo.tentk}
+                                </span>
+                            )}
+                        </div>
+                        <div className={cx('actions-item')}>
+                            <Link to="/cart">
+                                <FontAwesomeIcon
+                                    icon={faBagShopping}
+                                    className={cx('item-icon')}
+                                />
+                            </Link>
                         </div>
                     </div>
                 </div>

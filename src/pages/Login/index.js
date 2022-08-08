@@ -67,6 +67,8 @@ const Login = () => {
                     setInputValue={setInputValue}
                     inputValue={inputValue}
                     handleSubmit={handleSubmit}
+                    alert={alert}
+                    setAlert={setAlert}
                 />
                 <SignUp setInputValue={setInputValue} inputValue={inputValue} />
             </div>

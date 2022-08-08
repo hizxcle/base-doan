@@ -7,6 +7,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import classNames from 'classnames/bind';
+
 import style from './Alert.module.scss';
 
 const cx = classNames.bind(style);
@@ -22,19 +23,19 @@ function Alert({ alert, setAlert }) {
         <div
             className={cx('wrapperAlert')}
             id={
-                type === 'warning'
+                'warning'
                     ? cx('alertWaring')
-                    : type === 'error'
+                    : 'error'
                     ? cx('alertError')
                     : cx('alertSucces')
             }
         >
-            {type === 'warning' ? (
+            {'warning' ? (
                 <FontAwesomeIcon
                     icon={faCircleExclamation}
                     className={cx('icon')}
                 />
-            ) : type === 'error' ? (
+            ) : 'error' ? (
                 <FontAwesomeIcon icon={faCircleXmark} className={cx('icon')} />
             ) : (
                 <FontAwesomeIcon icon={faCircleCheck} className={cx('icon')} />

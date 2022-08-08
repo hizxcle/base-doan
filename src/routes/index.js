@@ -5,7 +5,6 @@ import Cart from '~/pages/Cart';
 import Contact from '~/pages/Contact';
 import Order from '~/pages/Order';
 import Profile from '~/pages/Profile';
-import AdminLayout from '~/LayOut/LayoutAdmin';
 
 // Public Routes
 const PublicRoutes = [
@@ -17,10 +16,7 @@ const PublicRoutes = [
         path: '/shop',
         component: Shop,
     },
-    // {
-    //     path: '/login',
-    //     component: Login,
-    // },
+
     {
         path: '/cart',
         component: Cart,
@@ -33,11 +29,6 @@ const PublicRoutes = [
         path: '/contact',
         component: Contact,
     },
-    // {
-    //     path: '/adminlayout',
-    //     component: AdminLayout,
-    //     layout: null,
-    // },
 ];
 
 // Private Routes

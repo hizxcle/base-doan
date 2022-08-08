@@ -39,7 +39,7 @@ function SignUp({ setInputValue, inputValue, handleSubmit }) {
                     <p>Username</p>
                     <input
                         type="text"
-                        name="usernameLogin"
+                        // name="usernameLogin"
                         // value={inputValue.tentk}
                         // onChange={(e) =>
                         //     setInputValue({
@@ -52,7 +52,7 @@ function SignUp({ setInputValue, inputValue, handleSubmit }) {
                 <div className={cx('container-left-main-item')}>
                     <p>Email</p>
                     <input
-                        name="passwordLogin"
+                        // name="passwordLogin"
                         // value={inputValue.matkhau}
                         // onChange={(e) =>
                         //     setInputValue({
@@ -66,7 +66,7 @@ function SignUp({ setInputValue, inputValue, handleSubmit }) {
                 <div className={cx('container-left-main-item')}>
                     <p>Phone Number</p>
                     <input
-                        name="passwordLogin"
+                        // name="passwordLogin"
                         // value={inputValue.matkhau}
                         // onChange={(e) =>
                         //     setInputValue({
