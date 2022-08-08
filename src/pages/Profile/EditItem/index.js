@@ -32,7 +32,12 @@ function EditItem({ data, action }) {
         )
             .then((res) => res.json)
             .then((res) => {
-                auth.setUserInfo({ ...input, Quyen: 'user' });
+                auth.setUserInfo({
+                    ...input,
+                    Quyen: auth.userInfo.Quyen,
+                    tentk: auth.userInfo.tentk,
+                    manguoidung: auth.userInfo.manguoidung,
+                });
                 action(input);
             });
     };
