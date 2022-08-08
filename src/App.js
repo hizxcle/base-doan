@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import AuthContentProvider from '~/components/contexts/AuthContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { PublicRoutes } from '~/routes';
+import { PublicRoutes, PrivateRoutes } from '~/routes';
 import DefaultLayout from './LayOut/DefaultLayout';
 import ProtectedRoutes from './routes/ProtectedRoutes';
 import AdminLayout from './LayOut/LayoutAdmin';
@@ -43,6 +43,27 @@ function App() {
                                     </Fragment>
                                 }
                             />
+                        </Route>
+                        <Route
+                            element={
+                                <ProtectedRoutes allowedRoles={['user']} />
+                            }
+                        >
+                            {PrivateRoutes.map((route, index) => {
+                                const Layout = DefaultLayout;
+                                const Page = route.component;
+                                return (
+                                    <Route
+                                        key={index}
+                                        path={route.path}
+                                        element={
+                                            <Layout>
+                                                <Page />
+                                            </Layout>
+                                        }
+                                    />
+                                );
+                            })}
                         </Route>
                         <Route
                             path="/login"

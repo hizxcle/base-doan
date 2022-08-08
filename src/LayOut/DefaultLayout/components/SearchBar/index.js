@@ -2,7 +2,7 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, memo } from 'react';
 
 import styles from './SearchBar.module.scss';
 import classNames from 'classnames/bind';
@@ -134,4 +134,4 @@ function SearchBar() {
     );
 }
 
-export default SearchBar;
+export default memo(SearchBar);

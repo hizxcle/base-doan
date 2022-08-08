@@ -1,17 +1,24 @@
+import { memo } from 'react';
 import styles from './HeaderAdmin.module.scss';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOut } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import useAuth from '~/hooks/useAuth';
 
 const cx = classNames.bind(styles);
-
 function HeaderAdmin({
     onChangeToProduct,
     onChangeToCustomer,
     onChangeToOrder,
     user,
 }) {
+    const auth = useAuth();
+    const navigate = useNavigate();
+    const logout = () => {
+        auth.logout();
+        return navigate('/', { replace: true });
+    };
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -61,12 +68,12 @@ function HeaderAdmin({
                 <div className={cx('actions')}>
                     <div className={cx('actions-items')}>
                         <div>
-                            <Link to="/" className={cx('link-router')}>
+                            <div onClick={logout}>
                                 <span className={cx('sign-out')}>
                                     Đăng xuất
                                 </span>
                                 <FontAwesomeIcon icon={faSignOut} />
-                            </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,4 +83,4 @@ function HeaderAdmin({
     );
 }
 
-export default HeaderAdmin;
+export default memo(HeaderAdmin);

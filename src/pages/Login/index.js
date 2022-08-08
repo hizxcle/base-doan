@@ -37,6 +37,7 @@ const Login = () => {
         console.log('thong tin user', json);
         if (response.status === 200) {
             auth.setState(true, json.token, { Quyen: json.role, ...json.info });
+            console.log('auth login', auth.isLogin);
             if (json.role === 'admin') {
                 navigate('/adminlayout', { replace: true });
                 return;
