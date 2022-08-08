@@ -15,41 +15,6 @@
     }
 }
 
-.container-empty {
-    width: 1200px;
-    height: 200px;
-    margin-top: 80px;
-    margin-bottom: 80px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-
-    .icon-empty {
-        width: 80px;
-        height: 80px;
-        opacity: 40%;
-    }
-
-    p {
-        font-size: 3.2rem;
-        margin-bottom: 30px;
-    }
-
-    button {
-        width: 126px;
-        height: 40px;
-        font-size: 1rem;
-        font-weight: 500;
-        background-color: #f2f3f5;
-        transition: background-color linear 0.4s;
-
-        &:hover {
-            background-color: rgb(180, 176, 176);
-            color: var(--white-color);
-        }
-    }
-}
-
 .title {
     height: 150px;
     display: flex;

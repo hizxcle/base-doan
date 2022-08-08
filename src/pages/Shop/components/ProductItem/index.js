@@ -14,12 +14,10 @@ const cx = classNames.bind(styles);
 
 function ProductItem({ item }) {
     const [showDetail, setShowDetail] = useState(false);
-    const [selected, setSelected] = useState([]);
 
     const handleShowDetail = () => {
         setShowDetail(true);
-        getProductById(item.masp).then(setSelected).catch(console.log);
-        console.log(selected);
+        getProductById(item.masp);
     };
 
     return (
