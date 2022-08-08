@@ -25,7 +25,9 @@ function ShowItem({ data, action }) {
                 </div>
                 <div className={cx('item')}>
                     <span className={cx('item-desc')}>Date of birth :</span>
-                    <span className={cx('item-cont')}>{data.ngaysinh}</span>
+                    <span className={cx('item-cont')}>
+                        {data.ngaysinh.slice(0, 10)}
+                    </span>
                 </div>
                 <div className={cx('item')}>
                     <span className={cx('item-desc')}>Phone :</span>
