@@ -12,8 +12,37 @@ const cx = classNames.bind(styles);
 
 function QLSP({ data, setPosts, setAlert }) {
     const [editID, setEditId] = useState(null);
+    const [addPro, setAddPro] = useState({});
 
     const selectedRef = useRef();
+
+    const handleAddNew = (e) => {
+        e.preventDefault();
+        console.log('data', addPro);
+        var formData = new FormData();
+        Object.keys(addPro).forEach((ele) => {
+            if (ele == 'thumb') {
+                return formData.append(`${ele}`, addPro[ele]);
+            } else if (ele == 'images') {
+                return Object.keys(addPro[ele]).forEach((ele2) => {
+                    console.log('anh khac', addPro[ele][ele2]);
+                    return formData.append('images', addPro[ele][ele2]);
+                });
+            } else {
+                return formData.append(`${ele}`, `${addPro[ele]}`);
+            }
+        });
+        const options = {
+            method: 'POST',
+            body: formData,
+            headers: {},
+        };
+        fetch('http://localhost:2222/api/product', options)
+            .then((res) => res.json)
+            .then((res) => {
+                window.location.reload();
+            });
+    };
 
     const handleEdit = (e, item) => {
         e.preventDefault();
@@ -43,17 +72,17 @@ function QLSP({ data, setPosts, setAlert }) {
             </div>
 
             <div className={cx('form')}>
-                <form
-                    action="http://localhost:2222/api/product"
-                    method="post"
-                    encType="multipart/form-data"
-                >
+                <form encType="multipart/form-data">
                     <p>
                         Ten san pham :
                         <input
                             className={cx('input')}
                             type="text"
                             name="tensp"
+                            value={addPro.tensp || ''}
+                            onChange={(e) => {
+                                setAddPro({ ...addPro, tensp: e.target.value });
+                            }}
                             placeholder="Nhap vao  Ten san pham...."
                         />
                     </p>
@@ -63,6 +92,13 @@ function QLSP({ data, setPosts, setAlert }) {
                             className={cx('input')}
                             type="text"
                             name="loaisp"
+                            value={addPro.loaisp || ''}
+                            onChange={(e) => {
+                                setAddPro({
+                                    ...addPro,
+                                    loaisp: e.target.value,
+                                });
+                            }}
                             placeholder="Nhap vao Loai San Pham....."
                         />
                     </p>
@@ -72,6 +108,10 @@ function QLSP({ data, setPosts, setAlert }) {
                             className={cx('input')}
                             type="text"
                             name="gia"
+                            value={addPro.gia || ''}
+                            onChange={(e) => {
+                                setAddPro({ ...addPro, gia: e.target.value });
+                            }}
                             placeholder="Nhap vao Gia...."
                         />
                     </p>
@@ -81,6 +121,13 @@ function QLSP({ data, setPosts, setAlert }) {
                             className={cx('input')}
                             type="text"
                             name="nhacungcap"
+                            value={addPro.nhacungcap || ''}
+                            onChange={(e) => {
+                                setAddPro({
+                                    ...addPro,
+                                    nhacungcap: e.target.value,
+                                });
+                            }}
                             placeholder="Nhap vao Nha cung cap...."
                         />
                     </p>
@@ -90,6 +137,10 @@ function QLSP({ data, setPosts, setAlert }) {
                             className={cx('input')}
                             type="text"
                             name="donvi"
+                            value={addPro.donvi || ''}
+                            onChange={(e) => {
+                                setAddPro({ ...addPro, donvi: e.target.value });
+                            }}
                             placeholder="Nhap vao Don vi tinh...."
                         />
                     </p>
@@ -99,6 +150,13 @@ function QLSP({ data, setPosts, setAlert }) {
                             className={cx('input')}
                             type="text"
                             name="soluong"
+                            value={addPro.soluong || ''}
+                            onChange={(e) => {
+                                setAddPro({
+                                    ...addPro,
+                                    soluong: e.target.value,
+                                });
+                            }}
                             placeholder="Nhap vao So luong...."
                         />
                     </p>
@@ -108,6 +166,13 @@ function QLSP({ data, setPosts, setAlert }) {
                             className={cx('input')}
                             type="file"
                             name="thumb"
+                            //  files={addPro.thumb || ''}
+                            onChange={(e) => {
+                                setAddPro({
+                                    ...addPro,
+                                    thumb: e.target.files[0],
+                                });
+                            }}
                             placeholder="Nhap vao Anh dai dien...."
                         />
                     </p>
@@ -118,10 +183,20 @@ function QLSP({ data, setPosts, setAlert }) {
                             type="file"
                             multiple
                             name="images"
+                            onChange={(e) => {
+                                setAddPro({
+                                    ...addPro,
+                                    images: e.target.files,
+                                });
+                            }}
                             placeholder="Nhap vao Anh trung bay...."
                         />
                     </p>
-                    <button type="submit" className={cx('button-add')}>
+                    <button
+                        type="submit"
+                        className={cx('button-add')}
+                        onClick={handleAddNew}
+                    >
                         Add product
                     </button>
                 </form>
