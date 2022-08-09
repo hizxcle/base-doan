@@ -28,8 +28,6 @@ function SearchBarAdmin() {
             });
     }, [searchValue]);
 
-    console.log(searchResult);
-
     const focusRef = useRef(null);
 
     const handleFocus = () => {
