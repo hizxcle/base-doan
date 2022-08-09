@@ -5,7 +5,6 @@ import styles from './OrderTable.module.scss';
 import OrderItem from '~/components/orders/OrderItem';
 const cx = classNames.bind(styles);
 function OrderTable({ data, action, type }) {
-    console.log(data);
     // 0 da huy cancel
     // 1 chua xac nha
     // 2 don hang dang duoc gui di

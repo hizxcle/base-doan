@@ -16,7 +16,6 @@ function Order() {
         )
             .then((res) => res.json())
             .then((res) => {
-                console.log('data : ', res);
                 setData(res);
             });
     }, []);

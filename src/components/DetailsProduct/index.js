@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus, faClose } from '@fortawesome/free-solid-svg-icons';
 
 import { addToCart, getCart } from '~/Services';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, memo } from 'react';
 import useAuth from '~/hooks/useAuth';
 import Alert from '../infoModals/Alert';
 
@@ -104,4 +104,4 @@ function DetailProduct({ setShowDetail, item }) {
     );
 }
 
-export default DetailProduct;
+export default memo(DetailProduct);

@@ -16,12 +16,49 @@
 // 2 don hang dang duoc gui di
 // 3 giao hang thanh cong
 // 4 da nhan duoc hang
-import { memo, useMemo, useCallback } from 'react';
+import { memo, useMemo, useCallback, useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import OrderProReview from '../OrderProReview';
 import styles from './OrderItem.module.scss';
 const cx = classNames.bind(styles);
 function OrderItem({ data, action, type }) {
+    console.log('data :', data);
+    const [showDetail, setShowDetail] = useState(false);
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            let pros = await fetch(
+                `http://localhost:2222/api/dssp/${data.madh}`,
+            );
+            pros = await pros.json();
+            if (pros.length > 0) {
+                pros = pros.map((ele) => {
+                    const masp = ele.masp;
+                    const soluong = ele.soluong;
+                    return { masp, soluong };
+                });
+                pros.map(async (ele) => {
+                    const soluong = ele.soluong;
+                    let result = await fetch(
+                        `http://localhost:2222/api/product/${ele.masp}`,
+                    );
+                    result = await result.json();
+                    result = result[0];
+                    result.soluong = soluong;
+                    setProducts([...products, result]);
+                });
+            }
+        };
+        fetchData();
+    }, [data]);
+    console.log('product list', products);
+    const prices = useMemo(() => {
+        return products.reduce((cross, cur) => {
+            const gia = Number(cur.soluong) * Number(cur.gia);
+            return (cross = cross + gia);
+        }, 0);
+    }, [products]);
+
     const mess = useMemo(() => {
         if (type == 1) return 'huy don';
         if (type == 2) return 'huy don';
@@ -59,9 +96,14 @@ function OrderItem({ data, action, type }) {
             <td>{data.email}</td>
             <td>{data.diachinhan}</td>
             <td>{data.tgdathang}</td>
-            <td>dang bao tri</td>
             <td>
-                gia<span>.vnd</span>
+                <button onClick={(e) => setShowDetail(true)}>
+                    show detail
+                </button>
+                {showDetail ? 'show' : 'off'}
+            </td>
+            <td>
+                gia<span>{`${prices}.vnd`}</span>
             </td>
             <td>{data.ghichu}</td>
             <td>{status}</td>

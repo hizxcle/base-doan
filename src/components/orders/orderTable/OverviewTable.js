@@ -5,7 +5,6 @@ import styles from './OrderTable.module.scss';
 import OrderItem from '~/components/orders/OrderItem';
 const cx = classNames.bind(styles);
 function OverviewTable({ data, action }) {
-    console.log(data);
     // 0 da huy
     // 1 chua xac nha
     // 2 don hang dang duoc gui di
@@ -20,9 +19,6 @@ function OverviewTable({ data, action }) {
     const success = useMemo(() => {
         return data.filter((ele) => ele.trangthai == 3);
     }, [data]);
-    console.log('dang ship', shipping);
-    console.log('doi xac nhan', unverified);
-    console.log('giao thanh cong', success);
     return (
         <div className={cx('wrapper')}>
             <h2>shipping</h2>
