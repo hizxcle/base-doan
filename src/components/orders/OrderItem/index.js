@@ -91,17 +91,19 @@ function OrderItem({ data, action, type }) {
     return (
         <tr className={cx('order-item')}>
             <td>{data.madh}</td>
-            <td>{data.tenkhnhan}</td>
-            <td>{data.sdt}</td>
-            <td>{data.email}</td>
-            <td>{data.diachinhan}</td>
-            <td>{data.tgdathang}</td>
             <td>
                 <button onClick={(e) => setShowDetail(true)}>
                     show detail
                 </button>
-                {showDetail ? 'show' : 'off'}
+                {showDetail && (
+                    <OrderProReview data={products} action={setShowDetail} />
+                )}
             </td>
+            {/* <td>{data.tenkhnhan}</td>
+            <td>{data.sdt}</td>
+            <td>{data.email}</td> */}
+            <td>{data.diachinhan}</td>
+            <td>{data.tgdathang}</td>
             <td>
                 gia<span>{`${prices}.vnd`}</span>
             </td>
