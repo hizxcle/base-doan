@@ -2,38 +2,39 @@ import styles from './OrderProReview.module.scss';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { Fragment } from 'react';
 const cx = classNames.bind(styles);
-function OrderProReview({ data, action }) {
+function OrderProReview({ data, action, showDetail }) {
     return (
-        <div className={cx('wrapper')}>
-            <div className={cx('header')}>
-                <span>Index</span>
-                <span>Product 'Name</span>
-                <span>Provider</span>
-                <span>Quantity</span>
-                <span>Price</span>
-            </div>
-            <div className={cx('items')}>
+        <div className={cx('wrapper')} onClick={() => action(false)}>
+            <div className={cx('container')}>
                 {data.map((ele, index) => {
                     return (
-                        <div key={index} className={cx('items')}>
-                            <span>{index}</span>
-                            <span>{ele.tensp}</span>
-                            <span>{ele.nhacungcap}</span>
-                            <span>{ele.soluong}</span>
-                            <span>{ele.gia}</span>
+                        <Fragment key={index}>
                             <span>
                                 <img
                                     src={`http://localhost:2222/images/${ele.anhdaidien}`}
                                     alt={ele.tensp}
                                 />
                             </span>
-                        </div>
+                            <span>{ele.tensp}</span>
+                            <span>Brand : {ele.nhacungcap}</span>
+                            <span>Quantity : {ele.soluong}</span>
+                            <span>
+                                Price :{' '}
+                                {ele.gia.toLocaleString(undefined, {
+                                    maximumFractionDigits: 2,
+                                })}{' '}
+                                VND
+                            </span>
+                        </Fragment>
                     );
                 })}
-            </div>
-            <div className={cx('close-btn')} onClick={() => action(false)}>
-                <FontAwesomeIcon icon={faClose} />
+                <div className={cx('close-btn')}>
+                    <button onClick={() => action(false)}>
+                        <FontAwesomeIcon icon={faClose} />
+                    </button>
+                </div>
             </div>
         </div>
     );

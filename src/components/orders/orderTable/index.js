@@ -26,22 +26,21 @@ function OrderTable({ data, action, type }) {
         if (type == 3) return 'Success delivered';
         if (type == 4) return 'Receied orders ';
     }, [type]);
-    console.log('order', order);
-    console.log('type', header);
+
     return (
         <div className={cx('wrapper')}>
             <h2>{header}</h2>
             <table className={cx('table', 'table-shipping')}>
                 <thead>
                     <tr>
-                        <th>Order code</th>
-                        <th>Product detail</th>
-                        <th>Address</th>
-                        <th>Order time</th>
-                        <th>Total price</th>
-                        <th colSpan="2">Note</th>
-                        <th className={cx('')}>Status</th>
-                        <th>Action</th>
+                        <td>Order code</td>
+                        <td>Product detail</td>
+                        <td>Address</td>
+                        <td>Order time</td>
+                        <td>Total price</td>
+                        <td>Note</td>
+                        <td>Status</td>
+                        {type === 'all' ? <td></td> : <td>Action</td>}
                     </tr>
                 </thead>
                 <tbody>
@@ -56,7 +55,7 @@ function OrderTable({ data, action, type }) {
                         ))
                     ) : (
                         <tr>
-                            <td colSpan={11}>
+                            <td colSpan={8}>
                                 <div className={cx('notice')}>
                                     <h3>Empty !!!!</h3>
                                     <FontAwesomeIcon

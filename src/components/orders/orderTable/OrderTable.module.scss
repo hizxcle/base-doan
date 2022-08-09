@@ -13,14 +13,13 @@
 
 .table {
     width: 100%;
-    thead {
-        tr {
-            display: flex;
-            justify-content: space-between;
+    text-align: center;
 
-            th {
-                width: 100%;
-            }
+    tr {
+        width: 100%;
+
+        td {
+            width: 12%;
         }
     }
 }

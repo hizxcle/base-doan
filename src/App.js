@@ -6,8 +6,6 @@ import DefaultLayout from './LayOut/DefaultLayout';
 import ProtectedRoutes from './routes/ProtectedRoutes';
 import AdminLayout from './LayOut/LayoutAdmin';
 import Login from './pages/Login';
-import Header from './LayOut/DefaultLayout/components/Header';
-import Footer from './LayOut/DefaultLayout/components/Footer';
 
 function App() {
     return (
