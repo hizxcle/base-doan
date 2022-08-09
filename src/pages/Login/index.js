@@ -28,7 +28,6 @@ const Login = () => {
                 show: true,
                 message: 'Tài khoản, mật khẩu không được trống',
             });
-
             return;
         }
         console.log('input val', inputValue);
@@ -38,6 +37,11 @@ const Login = () => {
         if (response.status === 200) {
             auth.setState(true, json.token, { Quyen: json.role, ...json.info });
             console.log('auth login', auth.isLogin);
+            setAlert({
+                type: 'success',
+                show: true,
+                message: 'Dang nhap thanh cong',
+            });
             if (json.role === 'admin') {
                 navigate('/adminlayout', { replace: true });
                 return;

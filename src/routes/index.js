@@ -33,7 +33,7 @@ const PublicRoutes = [
     {
         path: '/payment',
         component: PayMent,
-        type: null,
+        layout: null,
     },
 ];
 
@@ -50,7 +50,7 @@ const PrivateRoutes = [
     {
         path: '/payment',
         component: PayMent,
-        type: null,
+        layout: null,
     },
 ];
 

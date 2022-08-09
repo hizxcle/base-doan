@@ -10,6 +10,7 @@ import CartItem from './components/CartItem';
 import CartEmpty from '~/pages/Cart/components/CartEmpty';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { getCart } from '~/Services';
 
 const cx = classNames.bind(styles);
 
@@ -37,6 +38,10 @@ function Cart() {
         [auth.userInfo.manguoidung],
         [auth.isLogin],
     );
+
+    const handleCheckout = () => {
+        getCart(auth.userInfo.manguoidung);
+    };
 
     console.log(cart);
 
@@ -127,14 +132,11 @@ function Cart() {
                                     </div>
                                     <hr></hr>
                                     <div className={cx('total')}>
-                                        <span>
-                                            {filterData.gia *
-                                                filterData.soluong}
-                                        </span>
+                                        <span>Total Price</span>
                                         <span> $154.00</span>
                                     </div>
                                     <div>
-                                        <Link to="/shop">
+                                        <Link to="/cart">
                                             <button
                                                 className={cx('button-update')}
                                             >
@@ -148,6 +150,7 @@ function Cart() {
                                                 className={cx(
                                                     'button-checkout',
                                                 )}
+                                                onClick={handleCheckout}
                                             >
                                                 GO TO CHECK OUT
                                             </button>

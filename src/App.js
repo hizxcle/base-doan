@@ -16,7 +16,10 @@ function App() {
                 <div>
                     <Routes>
                         {PublicRoutes.map((route, index) => {
-                            const Layout = DefaultLayout;
+                            const Layout =
+                                route.layout === null
+                                    ? Fragment
+                                    : DefaultLayout;
                             const Page = route.component;
                             return (
                                 <Route
@@ -50,7 +53,10 @@ function App() {
                             }
                         >
                             {PrivateRoutes.map((route, index) => {
-                                const Layout = DefaultLayout;
+                                const Layout =
+                                    route.layout === null
+                                        ? Fragment
+                                        : DefaultLayout;
                                 const Page = route.component;
                                 return (
                                     <Route

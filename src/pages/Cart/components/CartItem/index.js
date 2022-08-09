@@ -16,8 +16,10 @@ function CartItem({ item, setCart }) {
     const auth = useAuth();
 
     const handleMinus = async () => {
-        if (quantity === 0) {
-            handleDelete();
+        if (quantity < 2) {
+            setTimeout(() => {
+                handleDelete();
+            }, 500);
         }
         const res = await updateCart(
             auth.userInfo.manguoidung,
@@ -43,13 +45,13 @@ function CartItem({ item, setCart }) {
     };
 
     const handleDelete = async () => {
+        setShow(false);
         try {
             const res = await deleteCartItem(
                 auth.userInfo.manguoidung,
                 item.masp,
             );
             await res.json();
-            await setShow(false);
             const newData = await getCart(auth.userInfo.manguoidung);
             await setCart(newData);
         } catch (e) {
