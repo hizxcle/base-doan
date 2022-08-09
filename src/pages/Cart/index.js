@@ -38,6 +38,8 @@ function Cart() {
         [auth.isLogin],
     );
 
+    console.log(cart);
+
     const filterData = useMemo(
         () =>
             data.filter((item) =>
@@ -47,9 +49,9 @@ function Cart() {
         [cart],
     );
 
-    const filterTotal = cart.map((item) => item.soluong);
+    // const filterTotal = cart.map((item) => item.soluong);
 
-    console.log('Total', filterTotal);
+    // console.log('Total', filterTotal);
 
     return (
         <div className={cx('wrapper')}>
