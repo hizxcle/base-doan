@@ -20,11 +20,11 @@ function OrderTable({ data, action, type }) {
     }, [type]);
     const header = useMemo(() => {
         if (type == 'all') return 'All orders';
-        if (type == 0) return 'cancel orders';
-        if (type == 1) return 'unverified orders';
-        if (type == 2) return 'shipping orders';
-        if (type == 3) return 'success delivered';
-        if (type == 4) return 'receied orders ';
+        if (type == 0) return 'Cancel orders';
+        if (type == 1) return 'Unverified orders';
+        if (type == 2) return 'Shipping orders';
+        if (type == 3) return 'Success delivered';
+        if (type == 4) return 'Receied orders ';
     }, [type]);
     console.log('order', order);
     console.log('type', header);

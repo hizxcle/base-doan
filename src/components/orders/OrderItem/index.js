@@ -99,9 +99,6 @@ function OrderItem({ data, action, type }) {
                     <OrderProReview data={products} action={setShowDetail} />
                 )}
             </td>
-            {/* <td>{data.tenkhnhan}</td>
-            <td>{data.sdt}</td>
-            <td>{data.email}</td> */}
             <td>{data.diachinhan}</td>
             <td>{data.tgdathang}</td>
             <td>
