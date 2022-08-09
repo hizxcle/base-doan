@@ -22,6 +22,16 @@ function QLDH() {
             <div className={cx('title')}>
                 <p>QUẢN LÝ ĐƠN HÀNG</p>
             </div>
+            <div className={cx('notice')}>
+                <div>
+                    <h3>Trạng thái đơn hàng</h3>
+                    <p>0 : Hủy đơn</p>
+                    <p>1 : Chưa xác nhận</p>
+                    <p>2 : Đã vận chuyển</p>
+                    <p>3 : Gửi hàng thành công</p>
+                    <p>4 : Nhận hàng thành công</p>
+                </div>
+            </div>
             <table border="1" className={cx('table')}>
                 <thead>
                     <tr>
@@ -29,11 +39,11 @@ function QLDH() {
                         <th className={cx('small')}>Mã KH</th>
                         <th>Tên tài khoản</th>
                         <th>Địa chỉ nhận hàng</th>
-                        <th>Số điện thoại</th>
                         <th>Email</th>
+                        <th>Số điện thoại</th>
                         <th>Trạng thái đơn hàng</th>
                         <th>Note</th>
-                        <th colSpan="2">Action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,19 +63,8 @@ function QLDH() {
                                     type="button"
                                     // onClick={(e) => handleEdit(e, item)}
                                 >
-                                    <FontAwesomeIcon icon={faCheck} /> Cấp quyền
-                                    Admin
-                                </button>
-                            </td>
-                            <td>
-                                <button
-                                    className={cx('delete-button')}
-                                    type="button"
-                                    // onClick={() => {
-                                    //     handleDelete(item.masp);
-                                    // }}
-                                >
-                                    <FontAwesomeIcon icon={faTrash} /> Xóa
+                                    <FontAwesomeIcon icon={faCheck} /> Cập nhập
+                                    trạng thái đơn hàng
                                 </button>
                             </td>
                         </tr>

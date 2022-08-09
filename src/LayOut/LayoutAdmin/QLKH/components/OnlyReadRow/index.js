@@ -31,23 +31,8 @@ function OnlyReadRow({ item, handleDelete }) {
                     : ''}
             </td>
             <td>
-                <button
-                    className={cx('edit-button')}
-                    type="button"
-                    // onClick={(e) => handleEdit(e, item)}
-                >
+                <button className={cx('edit-button')} type="button">
                     <FontAwesomeIcon icon={faCheck} /> Cấp quyền Admin
-                </button>
-            </td>
-            <td>
-                <button
-                    className={cx('delete-button')}
-                    type="button"
-                    onClick={() => {
-                        handleDelete(item.manguoidung);
-                    }}
-                >
-                    <FontAwesomeIcon icon={faTrash} /> Xóa
                 </button>
             </td>
         </tr>
