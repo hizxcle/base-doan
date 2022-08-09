@@ -31,14 +31,14 @@ function OverviewTable({ data, action }) {
             <table className={cx('table', 'table-shipping')}>
                 <thead>
                     <tr>
-                        <th>OrderID</th>
-                        <th>Product detail</th>
-                        <th>Address</th>
-                        <th>Order time</th>
-                        <th>Total price</th>
-                        <th colSpan="2">Note</th>
-                        <th className={cx('')}>Status</th>
-                        <th>Action</th>
+                        <td>OrderID</td>
+                        <td>Product detail</td>
+                        <td>Address</td>
+                        <td>Order time</td>
+                        <td>Total price</td>
+                        <td>Note</td>
+                        <td className={cx('')}>Status</td>
+                        <td>Action</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,7 +53,7 @@ function OverviewTable({ data, action }) {
                         ))
                     ) : (
                         <tr>
-                            <td colSpan={11}>
+                            <td colSpan={8}>
                                 <div className={cx('notice')}>
                                     <h3>You have no shipping order!</h3>
                                     <FontAwesomeIcon
@@ -70,14 +70,14 @@ function OverviewTable({ data, action }) {
             <table className={cx('table', 'table-unverified')}>
                 <thead>
                     <tr>
-                        <th>OrderID</th>
-                        <th>Product detail</th>
-                        <th>Address</th>
-                        <th>Order time</th>
-                        <th>Total price</th>
-                        <th colSpan="2">Note</th>
-                        <th className={cx('')}>Status</th>
-                        <th>Action</th>
+                        <td>OrderID</td>
+                        <td>Product detail</td>
+                        <td>Address</td>
+                        <td>Order time</td>
+                        <td>Total price</td>
+                        <td>Note</td>
+                        <td>Status</td>
+                        <td>Action</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -92,7 +92,7 @@ function OverviewTable({ data, action }) {
                         ))
                     ) : (
                         <tr>
-                            <td colSpan={11}>
+                            <td colSpan={8}>
                                 <div className={cx('notice')}>
                                     <h3>You have no verified order!</h3>
                                     <FontAwesomeIcon
@@ -109,14 +109,14 @@ function OverviewTable({ data, action }) {
             <table className={cx('table', 'table-success-delivered')}>
                 <thead>
                     <tr>
-                        <th>Order code</th>
-                        <th>Product detail</th>
-                        <th>Address</th>
-                        <th>Order time</th>
-                        <th>Total price</th>
-                        <th colSpan="2">Note</th>
-                        <th className={cx('')}>Status</th>
-                        <th>Action</th>
+                        <td>Order code</td>
+                        <td>Product detail</td>
+                        <td>Address</td>
+                        <td>Order time</td>
+                        <td>Total price</td>
+                        <td>Note</td>
+                        <td className={cx('')}>Status</td>
+                        <td>Action</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -131,7 +131,7 @@ function OverviewTable({ data, action }) {
                         ))
                     ) : (
                         <tr>
-                            <td colSpan={11}>
+                            <td colSpan={8}>
                                 <div className={cx('notice')}>
                                     <h3>You have no successed order!</h3>
                                     <FontAwesomeIcon

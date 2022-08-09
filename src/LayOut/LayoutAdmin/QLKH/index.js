@@ -45,7 +45,7 @@ function QLKH() {
                         <th>Địa chỉ nhà</th>
                         <th>Email</th>
                         <th>Quyền</th>
-                        <th colSpan="2">Action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>

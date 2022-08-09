@@ -80,6 +80,7 @@ function OrderItem({ data, action, type }) {
         };
         fetch(`http://localhost:2222/api/order/huydon/${data.madh}`, opt);
         action((pre) => pre);
+        window.location.reload();
     }, [type]);
     const received = useCallback(() => {
         const opt = {
@@ -87,31 +88,47 @@ function OrderItem({ data, action, type }) {
         };
         fetch(`http://localhost:2222/api/order/danhan/${data.madh}`, opt);
         action((pre) => pre);
+        window.location.reload();
     }, [type]);
+
     return (
         <tr className={cx('order-item')}>
             <td>{data.madh}</td>
             <td>
                 <button onClick={(e) => setShowDetail(true)}>
-                    show detail
+                    Detail product
                 </button>
                 {showDetail && (
-                    <OrderProReview data={products} action={setShowDetail} />
+                    <OrderProReview
+                        data={products}
+                        action={setShowDetail}
+                        showDetail={showDetail}
+                    />
                 )}
             </td>
             <td>{data.diachinhan}</td>
             <td>{data.tgdathang}</td>
             <td>
-                gia<span>{`${prices}.vnd`}</span>
+                <span>
+                    {`${prices} VND`.toLocaleString(undefined, {
+                        maximumFractionDigits: 2,
+                    })}
+                </span>
             </td>
             <td>{data.ghichu}</td>
             <td>{status}</td>
             {[1, 2].includes(Number(type)) ? (
-                <button onClick={cancel}>{mess}</button>
+                <td>
+                    <button onClick={cancel}>Cancel</button>
+                </td>
             ) : type == 3 ? (
-                <button onClick={received}>{mess}</button>
+                <td>
+                    <button onClick={received}>{mess}</button>
+                </td>
+            ) : type == 'all' ? (
+                <td></td>
             ) : (
-                ''
+                <td></td>
             )}
         </tr>
     );
