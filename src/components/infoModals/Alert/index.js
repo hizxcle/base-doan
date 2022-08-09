@@ -23,19 +23,19 @@ function Alert({ alert, setAlert }) {
         <div
             className={cx('wrapperAlert')}
             id={
-                'warning'
-                    ? cx('alertWaring')
-                    : 'error'
-                    ? cx('alertError')
-                    : cx('alertSucces')
+                type === 'warning'
+                    ? 'alertWaring'
+                    : type === 'error'
+                    ? 'alertError'
+                    : 'alertSucces'
             }
         >
-            {'warning' ? (
+            {type === 'warning' ? (
                 <FontAwesomeIcon
                     icon={faCircleExclamation}
                     className={cx('icon')}
                 />
-            ) : 'error' ? (
+            ) : type === 'error' ? (
                 <FontAwesomeIcon icon={faCircleXmark} className={cx('icon')} />
             ) : (
                 <FontAwesomeIcon icon={faCircleCheck} className={cx('icon')} />

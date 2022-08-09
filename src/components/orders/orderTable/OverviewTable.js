@@ -3,6 +3,12 @@ import classNames from 'classnames/bind';
 
 import styles from './OrderTable.module.scss';
 import OrderItem from '~/components/orders/OrderItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faCheckCircle,
+    faListCheck,
+    faShippingFast,
+} from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 function OverviewTable({ data, action }) {
     console.log(data);
@@ -25,17 +31,14 @@ function OverviewTable({ data, action }) {
     console.log('giao thanh cong', success);
     return (
         <div className={cx('wrapper')}>
-            <h2>shipping</h2>
+            <h2>On Shipping</h2>
             <table className={cx('table', 'table-shipping')}>
                 <thead>
                     <tr>
-                        <th>Order code</th>
-                        <th>Gust 'name</th>
-                        <th>Phone number</th>
-                        <th>Email</th>
+                        <th>OrderID</th>
+                        <th>Product detail</th>
                         <th>Address</th>
                         <th>Order time</th>
-                        <th>Product detail</th>
                         <th>Total price</th>
                         <th colSpan="2">Note</th>
                         <th className={cx('')}>Status</th>
@@ -55,25 +58,26 @@ function OverviewTable({ data, action }) {
                     ) : (
                         <tr>
                             <td colSpan={11}>
-                                <h3 className={cx('notice')}>
-                                    nothing here !!!
-                                </h3>
+                                <div className={cx('notice')}>
+                                    <h3>You have no shipping order!</h3>
+                                    <FontAwesomeIcon
+                                        icon={faShippingFast}
+                                        className={cx('icon')}
+                                    />
+                                </div>
                             </td>
                         </tr>
                     )}
                 </tbody>
             </table>
-            <h2>unverified</h2>
+            <h2>Unverified</h2>
             <table className={cx('table', 'table-unverified')}>
                 <thead>
                     <tr>
-                        <th>Order code</th>
-                        <th>Gust 'name</th>
-                        <th>Phone number</th>
-                        <th>Email</th>
+                        <th>OrderID</th>
+                        <th>Product detail</th>
                         <th>Address</th>
                         <th>Order time</th>
-                        <th>Product detail</th>
                         <th>Total price</th>
                         <th colSpan="2">Note</th>
                         <th className={cx('')}>Status</th>
@@ -93,25 +97,26 @@ function OverviewTable({ data, action }) {
                     ) : (
                         <tr>
                             <td colSpan={11}>
-                                <h3 className={cx('notice')}>
-                                    nothing here !!!
-                                </h3>
+                                <div className={cx('notice')}>
+                                    <h3>You have no verified order!</h3>
+                                    <FontAwesomeIcon
+                                        icon={faListCheck}
+                                        className={cx('icon')}
+                                    />
+                                </div>
                             </td>
                         </tr>
                     )}
                 </tbody>
             </table>
-            <h2>success delivered</h2>
+            <h2>Successed</h2>
             <table className={cx('table', 'table-success-delivered')}>
                 <thead>
                     <tr>
                         <th>Order code</th>
-                        <th>Gust 'name</th>
-                        <th>Phone number</th>
-                        <th>Email</th>
+                        <th>Product detail</th>
                         <th>Address</th>
                         <th>Order time</th>
-                        <th>Product detail</th>
                         <th>Total price</th>
                         <th colSpan="2">Note</th>
                         <th className={cx('')}>Status</th>
@@ -131,9 +136,13 @@ function OverviewTable({ data, action }) {
                     ) : (
                         <tr>
                             <td colSpan={11}>
-                                <h3 className={cx('notice')}>
-                                    nothing here !!!
-                                </h3>
+                                <div className={cx('notice')}>
+                                    <h3>You have no successed order!</h3>
+                                    <FontAwesomeIcon
+                                        icon={faCheckCircle}
+                                        className={cx('icon')}
+                                    />
+                                </div>
                             </td>
                         </tr>
                     )}

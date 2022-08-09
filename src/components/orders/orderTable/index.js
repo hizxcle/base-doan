@@ -3,6 +3,8 @@ import classNames from 'classnames/bind';
 
 import styles from './OrderTable.module.scss';
 import OrderItem from '~/components/orders/OrderItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCancel } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 function OrderTable({ data, action, type }) {
     console.log(data);
@@ -34,12 +36,9 @@ function OrderTable({ data, action, type }) {
                 <thead>
                     <tr>
                         <th>Order code</th>
-                        <th>Gust 'name</th>
-                        <th>Phone number</th>
-                        <th>Email</th>
+                        <th>Product detail</th>
                         <th>Address</th>
                         <th>Order time</th>
-                        <th>Product detail</th>
                         <th>Total price</th>
                         <th colSpan="2">Note</th>
                         <th className={cx('')}>Status</th>
@@ -59,9 +58,13 @@ function OrderTable({ data, action, type }) {
                     ) : (
                         <tr>
                             <td colSpan={11}>
-                                <h3 className={cx('nocie')}>
-                                    nothing here !!!
-                                </h3>
+                                <div className={cx('notice')}>
+                                    <h3>Empty !!!!</h3>
+                                    <FontAwesomeIcon
+                                        icon={faCancel}
+                                        className={cx('icon')}
+                                    />
+                                </div>
                             </td>
                         </tr>
                     )}

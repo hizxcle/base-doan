@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import useAuth from '~/hooks/useAuth';
 import OverviewTable from '~/components/orders/orderTable/OverviewTable';
 import OrderTable from '~/components/orders/orderTable';
+
 const cx = classNames.bind(styles);
 function Order() {
     const auth = useAuth();
@@ -27,30 +28,32 @@ function Order() {
     // 4 da nhan duoc hang
     return (
         <div className={cx('wrapper')}>
+            <div className={cx('breadcrums')}> Home / Your Order / </div>
+            <div className={cx('banner')}> Your Order </div>
             <div className={cx('navigation')}>
                 <button
                     onClick={() => setTable('overview')}
                     className={cx('', { active: table === 'overview' })}
                 >
-                    Overview orders
+                    All Order
                 </button>
                 <button
                     onClick={() => setTable(0)}
                     className={cx('', { active: table == 0 })}
                 >
-                    Cancelled orders
+                    Cancelled
                 </button>
                 <button
                     onClick={() => setTable(4)}
                     className={cx('', { active: table == 4 })}
                 >
-                    Received orders
+                    Received
                 </button>
                 <button
                     onClick={() => setTable('all')}
                     className={cx('', { active: table === 'all' })}
                 >
-                    All orders
+                    History Order
                 </button>
             </div>
 

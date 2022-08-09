@@ -82,7 +82,11 @@ function Header() {
                     <div className={cx('actions-items')}>
                         <div className={cx('actions-item-login')}>
                             {auth.isLogin ? (
-                                <a onClick={logout}>LOGOUT</a>
+                                <a onClick={logout}>
+                                    <Link to="/" className={cx('link-router')}>
+                                        LOGOUT
+                                    </Link>
+                                </a>
                             ) : (
                                 <Link to="/login" className={cx('link-router')}>
                                     LOGIN
