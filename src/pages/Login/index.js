@@ -25,7 +25,7 @@ const Login = () => {
     const handleSubmit = async () => {
         if (!inputValue.tentk || !inputValue.matkhau) {
             setAlert({
-                type: 'error',
+                type: 'warning',
                 show: true,
                 message: 'Tài khoản, mật khẩu không được trống',
             });
@@ -38,7 +38,6 @@ const Login = () => {
         console.log('thong tin user', json);
         if (response.status === 200) {
             auth.setState(true, json.token, { Quyen: json.role, ...json.info });
-            console.log('auth login', auth.isLogin);
             if (json.role === 'admin') {
                 navigate('/adminlayout', { replace: true });
             }
@@ -47,9 +46,8 @@ const Login = () => {
             setAlert({
                 type: 'error',
                 show: true,
-                message: json.message,
+                message: "incorrect user'name or password",
             });
-            console.log('false');
         }
     };
     return (
