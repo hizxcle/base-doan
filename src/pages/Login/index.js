@@ -4,6 +4,7 @@ import { userApi } from '~/Services';
 import useAuth from '~/hooks/useAuth';
 import style from './Login.module.scss';
 import classNames from 'classnames/bind';
+// import { LoginRegisterWrapper } from './style';
 
 import SignIn from './SignIn';
 import SignUp from './SignUp';
@@ -20,11 +21,10 @@ const Login = () => {
     });
     const auth = useAuth();
     const navigate = useNavigate();
-
     const handleSubmit = async () => {
         if (!inputValue.tentk || !inputValue.matkhau) {
             setAlert({
-                type: 'error',
+                type: 'warning',
                 show: true,
                 message: 'Tài khoản, mật khẩu không được trống',
             });
@@ -42,16 +42,16 @@ const Login = () => {
                 show: true,
                 message: 'Dang nhap thanh cong',
             });
+
             if (json.role === 'admin') {
                 navigate('/adminlayout', { replace: true });
-                return;
             }
             navigate(-1);
         } else {
             setAlert({
                 type: 'error',
                 show: true,
-                message: json.message,
+                message: "incorrect user'name or password",
             });
         }
     };

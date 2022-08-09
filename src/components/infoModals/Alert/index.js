@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
     faCircleCheck,
     faCircleExclamation,
@@ -14,22 +15,19 @@ const cx = classNames.bind(style);
 
 function Alert({ alert, setAlert }) {
     const { type = '', message = '' } = alert;
-
+    const cls = useMemo(() => {
+        return type === 'warning'
+            ? 'alertWaring'
+            : type === 'error'
+            ? 'alertError'
+            : 'alertSucces';
+    }, [type]);
     setTimeout(() => {
         setAlert({ ...alert, show: false });
     }, 5000);
 
     return (
-        <div
-            className={cx('wrapperAlert')}
-            id={
-                type === 'warning'
-                    ? 'alertWaring'
-                    : type === 'error'
-                    ? 'alertError'
-                    : 'alertSucces'
-            }
-        >
+        <div className={cx('wrapperAlert', [cls])}>
             {type === 'warning' ? (
                 <FontAwesomeIcon
                     icon={faCircleExclamation}

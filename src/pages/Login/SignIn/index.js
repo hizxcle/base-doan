@@ -7,7 +7,6 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
 import Alert from '~/components/infoModals/Alert';
-
 const cx = classNames.bind(style);
 
 function SignIn({ setInputValue, inputValue, handleSubmit, alert, setAlert }) {
@@ -21,7 +20,7 @@ function SignIn({ setInputValue, inputValue, handleSubmit, alert, setAlert }) {
     };
     return (
         <div className={cx('container-left')}>
-            <Alert alert={alert} setAlert={setAlert} />
+            {alert.show && <Alert alert={alert} setAlert={setAlert} />}
             <div className={cx('container-left-title')}>
                 <span> Sign In</span>
             </div>

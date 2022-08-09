@@ -95,7 +95,9 @@ function OrderItem({ data, action, type }) {
                 <button onClick={(e) => setShowDetail(true)}>
                     show detail
                 </button>
-                {showDetail ? 'show' : 'off'}
+                {showDetail && (
+                    <OrderProReview data={products} action={setShowDetail} />
+                )}
             </td>
             <td>{data.diachinhan}</td>
             <td>{data.tgdathang}</td>
