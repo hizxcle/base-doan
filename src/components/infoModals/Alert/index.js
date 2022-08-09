@@ -14,6 +14,7 @@ const cx = classNames.bind(style);
 
 function Alert({ alert, setAlert }) {
     const { type = '', message = '' } = alert;
+    console.log('hien thi');
 
     setTimeout(() => {
         setAlert({ ...alert, show: false });

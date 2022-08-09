@@ -4,6 +4,7 @@ import { userApi } from '~/Services';
 import useAuth from '~/hooks/useAuth';
 import style from './Login.module.scss';
 import classNames from 'classnames/bind';
+// import { LoginRegisterWrapper } from './style';
 
 import SignIn from './SignIn';
 import SignUp from './SignUp';
@@ -40,7 +41,6 @@ const Login = () => {
             console.log('auth login', auth.isLogin);
             if (json.role === 'admin') {
                 navigate('/adminlayout', { replace: true });
-                return;
             }
             navigate(-1);
         } else {
@@ -49,6 +49,7 @@ const Login = () => {
                 show: true,
                 message: json.message,
             });
+            console.log('false');
         }
     };
     return (
