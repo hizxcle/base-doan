@@ -11,7 +11,6 @@ function Profile() {
     const auth = useAuth();
     const [edit, setEdit] = useState(false);
     const [data, setData] = useState(auth.userInfo);
-    console.log('user', data);
 
     const saveInfo = useCallback((data) => {
         setData(data);

@@ -26,23 +26,14 @@ const Login = () => {
             setAlert({
                 type: 'warning',
                 show: true,
-                message: 'Tài khoản, mật khẩu không được trống',
+                message: 'Username, password must not be empty',
             });
             return;
         }
-        console.log('input val', inputValue);
         const response = await userApi('login', inputValue);
         const json = await response.json();
-        console.log('thong tin user', json);
         if (response.status === 200) {
             auth.setState(true, json.token, { Quyen: json.role, ...json.info });
-            console.log('auth login', auth.isLogin);
-            setAlert({
-                type: 'success',
-                show: true,
-                message: 'Dang nhap thanh cong',
-            });
-
             if (json.role === 'admin') {
                 navigate('/adminlayout', { replace: true });
             }
@@ -51,7 +42,7 @@ const Login = () => {
             setAlert({
                 type: 'error',
                 show: true,
-                message: "incorrect user'name or password",
+                message: 'incorrect username or password',
             });
         }
     };

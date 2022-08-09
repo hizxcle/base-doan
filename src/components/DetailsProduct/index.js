@@ -4,32 +4,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus, faClose } from '@fortawesome/free-solid-svg-icons';
 
 import { addToCart, getCart } from '~/Services';
-import { useEffect, useState, useMemo, memo } from 'react';
+import { useState, memo, useEffect } from 'react';
 import useAuth from '~/hooks/useAuth';
 import Alert from '../infoModals/Alert';
 
 const cx = classNames.bind(styles);
 
-function DetailProduct({ setShowDetail, item, selected }) {
+function DetailProduct({ setShowDetail, item }) {
     const [cart, setCart] = useState([]);
     const [alert, setAlert] = useState({ type: '', message: '', show: false });
     const auth = useAuth();
 
     useEffect(() => {
         getCart(auth.userInfo.manguoidung).then(setCart);
-    }, [auth.isLogin]);
+    }, [cart]);
 
     const handleAddToCart = () => {
-        const filterData = cart
-            .map((item) => item.masp)
-            .includes(selected.masp);
-        console.log('filterData', filterData);
-
         if (!filterData) {
             if (auth.isLogin) {
                 addToCart(auth.userInfo.manguoidung, item.masp, 1);
             }
-            setShowDetail(false);
             setAlert({
                 type: 'success',
                 message: 'Them vao gio hang thanh cong',
@@ -41,11 +35,11 @@ function DetailProduct({ setShowDetail, item, selected }) {
                 message: 'San pham da ton tai trong gio hang',
                 show: true,
             });
-            setShowDetail(false);
         }
+        getCart(auth.userInfo.manguoidung).then(setCart);
     };
 
-    console.log('cart', cart);
+    const filterData = cart.map((item) => item.masp).includes(item.masp);
 
     return (
         <div className={cx('wrapper')}>

@@ -4,10 +4,16 @@ import styles from './EditItem.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCancel, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '~/hooks/useAuth';
+import Alert from '~/components/infoModals/Alert';
 
 const cx = classNames.bind(styles);
 function EditItem({ data, action, setEdit }) {
     const auth = useAuth();
+    const [alert, setAlert] = useState({
+        type: '',
+        message: '',
+        show: false,
+    });
     const [input, setInput] = useState({
         hoten: data.hoten,
         gioitinh: Number(data.gioitinh),
@@ -29,7 +35,6 @@ function EditItem({ data, action, setEdit }) {
                 'Content-Type': 'application/json',
             },
         };
-        console.log('user id', input);
         fetch(
             `http://localhost:2222/api/user/updateInfo/${auth.userInfo.manguoidung}`,
             opt,
@@ -44,9 +49,15 @@ function EditItem({ data, action, setEdit }) {
                 });
                 action(input);
             });
+        setAlert({
+            type: 'success',
+            show: true,
+            message: 'Edit completed',
+        });
     };
     return (
         <div className={cx('wrapper')}>
+            {alert.show && <Alert alert={alert} setAlert={setAlert} />}
             <div className={cx('container')}>
                 <div className={cx('item')}>
                     <p className={cx('item-desc')}>Full name :</p>
