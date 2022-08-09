@@ -35,9 +35,12 @@ const Login = () => {
         if (response.status === 200) {
             auth.setState(true, json.token, { Quyen: json.role, ...json.info });
             if (json.role === 'admin') {
+                console.log('admin day');
                 navigate('/adminlayout', { replace: true });
             }
-            navigate(-1);
+            if (json.role === 'user') {
+                navigate(-1);
+            }
         } else {
             setAlert({
                 type: 'error',
