@@ -2,7 +2,7 @@ import styles from './QLSP.module.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useCallback, useRef, useState } from 'react';
 
 import OnlyReadRow from './components/OnlyReadRow';
 import EditRow from './components/EditRow';
