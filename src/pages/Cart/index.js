@@ -11,6 +11,7 @@ import CartEmpty from '~/pages/Cart/components/CartEmpty';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { getCart } from '~/Services';
+import PayMent from '../PayMent';
 
 const cx = classNames.bind(styles);
 

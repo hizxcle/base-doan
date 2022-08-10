@@ -19,7 +19,7 @@ input {
 
 .input-large {
     width: 86px;
-    display: table-cell;
+    // display: table-cell;
 }
 
 .edit-button,
@@ -31,9 +31,28 @@ input {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.img-view {
-    width: 200px;
-    height: 200px;
-    display: block;
-    position: relative;
+
+.avatar-img {
+    text-align: center;
+    padding: 0 auto;
+}
+
+.img-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .img-view {
+        width: 50px;
+        height: 50px;
+        display: block;
+    }
+
+    .other-img {
+        margin-right: 30px;
+    }
+
+    button {
+        background-color: var(--white-color);
+    }
 }

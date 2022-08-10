@@ -59,6 +59,8 @@ function CartItem({ item, setCart }) {
         }
     };
 
+    console.log('cart', item);
+
     return (
         <tbody>
             {show && (

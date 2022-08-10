@@ -6,6 +6,7 @@ import Contact from '~/pages/Contact';
 import Order from '~/pages/Order';
 import Profile from '~/pages/Profile';
 import PayMent from '~/pages/PayMent';
+import PayMethod from '~/pages/PayMent/PayMethod';
 
 // Public Routes
 const PublicRoutes = [
@@ -35,6 +36,11 @@ const PublicRoutes = [
         component: PayMent,
         layout: null,
     },
+    {
+        path: '/paymethod',
+        component: PayMethod,
+        layout: null,
+    },
 ];
 
 // Private Routes
@@ -50,6 +56,11 @@ const PrivateRoutes = [
     {
         path: '/payment',
         component: PayMent,
+        layout: null,
+    },
+    {
+        path: '/paymethod',
+        component: PayMethod,
         layout: null,
     },
 ];

@@ -12,7 +12,6 @@ function OnlyReadRow({ item, handleEdit, handleDelete }) {
     const [deleting, setDeleting] = useState(false);
     return (
         <tr className={cx('font')}>
-            {}
             <td>{item.masp}</td>
             <td>{item.tensp}</td>
             <td>{item.loaisp}</td>

@@ -1,8 +1,7 @@
 import styles from './QLSP.module.scss';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
 
-import { Fragment, useCallback, useRef, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 
 import OnlyReadRow from './components/OnlyReadRow';
 import EditRow from './components/EditRow';
@@ -21,9 +20,9 @@ function QLSP({ data, setPosts, setAlert }) {
         console.log('data', addPro);
         var formData = new FormData();
         Object.keys(addPro).forEach((ele) => {
-            if (ele == 'thumb') {
+            if (ele === 'thumb') {
                 return formData.append(`${ele}`, addPro[ele]);
-            } else if (ele == 'images') {
+            } else if (ele === 'images') {
                 return Object.keys(addPro[ele]).forEach((ele2) => {
                     console.log('anh khac', addPro[ele][ele2]);
                     return formData.append('images', addPro[ele][ele2]);
@@ -206,16 +205,16 @@ function QLSP({ data, setPosts, setAlert }) {
                 <table border="1" className={cx('table')}>
                     <thead>
                         <tr>
-                            <th>Ma San pham</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Loại sản phẩm</th>
-                            <th>Gia</th>
-                            <th>Nha cung cap</th>
-                            <th>Don vi</th>
-                            <th>So luong</th>
-                            <th>Anh dai dien</th>
-                            <th className={cx('album-images')}>Anh khac</th>
-                            <th colSpan="2">Action</th>
+                            <td>Ma San pham</td>
+                            <td>Tên sản phẩm</td>
+                            <td>Loại sản phẩm</td>
+                            <td>Gia</td>
+                            <td>Nha cung cap</td>
+                            <td>Don vi</td>
+                            <td>So luong</td>
+                            <td>Anh dai dien</td>
+                            <td className={cx('album-images')}>Anh khac</td>
+                            <td colSpan="2">Action</td>
                         </tr>
                     </thead>
                     <tbody>
