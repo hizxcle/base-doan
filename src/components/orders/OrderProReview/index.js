@@ -4,27 +4,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { Fragment } from 'react';
 const cx = classNames.bind(styles);
-function OrderProReview({ data, action, showDetail }) {
+function OrderProReview({ data, action }) {
     return (
-        <div className={cx('wrapper')} onClick={() => action(false)}>
+        <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                {data.map((ele, index) => {
+                {data.map((item, index) => {
                     return (
                         <Fragment key={index}>
                             <span>
                                 <img
-                                    src={`http://localhost:2222/images/${ele.anhdaidien}`}
-                                    alt={ele.tensp}
+                                    src={`http://localhost:2222/images/${item.anhdaidien}`}
+                                    alt={item.tensp}
                                 />
                             </span>
-                            <span>{ele.tensp}</span>
-                            <span>Brand : {ele.nhacungcap}</span>
-                            <span>Quantity : {ele.soluong}</span>
+                            <span>{item.tensp}</span>
+                            <span>Brand : {item.nhacungcap}</span>
+                            <span>Quantity : {item.soluong}</span>
                             <span>
-                                Price :{' '}
-                                {ele.gia.toLocaleString(undefined, {
+                                Price :
+                                {item.gia.toLocaleString(undefined, {
                                     maximumFractionDigits: 2,
-                                })}{' '}
+                                })}
                                 VND
                             </span>
                         </Fragment>

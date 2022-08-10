@@ -25,6 +25,7 @@ function OrderItem({ data, action, type }) {
     console.log('data :', data);
     const [showDetail, setShowDetail] = useState(false);
     const [products, setProducts] = useState([]);
+
     useEffect(() => {
         const fetchData = async () => {
             let pros = await fetch(
@@ -51,7 +52,9 @@ function OrderItem({ data, action, type }) {
         };
         fetchData();
     }, [data]);
-    console.log('product list', products);
+
+    console.log('product', products);
+
     const prices = useMemo(() => {
         return products.reduce((cross, cur) => {
             const gia = Number(cur.soluong) * Number(cur.gia);
@@ -71,6 +74,7 @@ function OrderItem({ data, action, type }) {
         if (type == 3) return 'completed delivery';
         if (type == 4) return 'received order';
     }, [type]);
+
     const cancel = useCallback(() => {
         const opt = {
             method: 'put',
@@ -82,6 +86,7 @@ function OrderItem({ data, action, type }) {
         action((pre) => pre);
         window.location.reload();
     }, [type]);
+
     const received = useCallback(() => {
         const opt = {
             method: 'put',
@@ -109,11 +114,7 @@ function OrderItem({ data, action, type }) {
             <td>{data.diachinhan}</td>
             <td>{data.tgdathang}</td>
             <td>
-                <span>
-                    {`${prices} VND`.toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                    })}
-                </span>
+                <span>{`${prices} VND`}</span>
             </td>
             <td>{data.ghichu}</td>
             <td>{status}</td>

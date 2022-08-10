@@ -7,10 +7,17 @@ import { faCancel, faSave } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './EditRow.module.scss';
 import classNames from 'classnames/bind';
+import Alert from '~/components/infoModals/Alert';
 
 const cx = classNames.bind(styles);
 
 function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
+    const [alert, setAlert] = useState({
+        type: '',
+        message: '',
+        show: false,
+    });
+
     const [inputValue, setInputValue] = useState({
         tensp: selectedProduct.tensp,
         loaisp: selectedProduct.loaisp,
@@ -36,12 +43,20 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
             );
             const response = await res.json();
             if (response?.status !== 'OK') {
-                console.log('Error');
+                setAlert({
+                    type: 'error',
+                    message: 'Update fail',
+                    show: true,
+                });
             } else {
                 const newData = await getData();
                 console.log('new data', newData);
                 await setPosts(newData);
-                console.log('Success');
+                setAlert({
+                    type: 'success',
+                    message: 'Update success',
+                    show: true,
+                });
             }
         } catch (e) {
             console.log(e);
@@ -50,6 +65,7 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
 
     return (
         <tr>
+            {alert.show && <Alert alert={alert} setAlert={setAlert} />}
             <td>{item.masp}</td>
             <td className={cx('ten')}>
                 <input
