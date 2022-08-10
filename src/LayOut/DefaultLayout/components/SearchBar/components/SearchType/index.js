@@ -7,7 +7,7 @@ function SearchType({ data }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <p>{data.loaisp}</p>
+                <p>{data}</p>
             </div>
         </div>
     );

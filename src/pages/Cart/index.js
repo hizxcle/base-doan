@@ -43,9 +43,6 @@ function Cart() {
     const handleCheckout = () => {
         getCart(auth.userInfo.manguoidung);
     };
-
-    console.log(cart);
-
     const filterData = useMemo(
         () =>
             data.filter((item) =>
@@ -54,11 +51,6 @@ function Cart() {
         [data],
         [cart],
     );
-
-    // const filterTotal = cart.map((item) => item.soluong);
-
-    // console.log('Total', filterTotal);
-
     return (
         <div className={cx('wrapper')}>
             {filterData.length >= 1 ? (

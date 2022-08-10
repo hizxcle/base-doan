@@ -47,6 +47,24 @@ function ProductItem({ item }) {
             </div>
             <div className={cx('info')}>
                 <span className={cx('name-product')}>{item.tensp}</span>
+                {item.soluong <= 2 ? (
+                    <>
+                        <span className={cx('price-product')}>
+                            {((item.gia * 4) / 5).toLocaleString(undefined, {
+                                maximumFractionDigits: 2,
+                            })}
+                            VND
+                        </span>
+                    </>
+                ) : (
+                    <span className={cx('price-product')}>
+                        {item.gia.toLocaleString(undefined, {
+                            maximumFractionDigits: 2,
+                        })}
+                        VND
+                    </span>
+                )}
+
                 <span className={cx('price-product')}>
                     {item.gia.toLocaleString(undefined, {
                         maximumFractionDigits: 2,

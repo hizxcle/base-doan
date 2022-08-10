@@ -13,32 +13,27 @@ function PayMent() {
     const [cart, setCart] = useState([]);
     const [data, setData] = useState([]);
 
-    useEffect(
-        () => {
-            if (auth.isLogin) {
-                fetch(
-                    `http://localhost:2222/api/cart/getByUser/${auth.userInfo.manguoidung}`,
-                )
-                    .then((res) => res.json())
-                    .then((res) => setCart(res));
-            }
-            fetch(`http://localhost:2222/api/product`)
+    useEffect(() => {
+        if (auth.isLogin) {
+            fetch(
+                `http://localhost:2222/api/cart/getByUser/${auth.userInfo.manguoidung}`,
+            )
                 .then((res) => res.json())
-                .then((res) => {
-                    setData(res);
-                });
-        },
-        [auth.userInfo.manguoidung],
-        [auth.isLogin],
-    );
+                .then((res) => setCart(res));
+        }
+        fetch(`http://localhost:2222/api/product`)
+            .then((res) => res.json())
+            .then((res) => {
+                setData(res);
+            });
+    }, []);
 
     const filterData = useMemo(
         () =>
             data.filter((item) =>
                 cart.map((item) => item.masp).includes(item.masp),
             ),
-        [data],
-        [cart],
+        [auth.isLogin],
     );
 
     const filterQuantity = cart.find((item) => item.masp === filterData.masp);
