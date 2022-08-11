@@ -19,6 +19,7 @@ const getData = async () => {
     const reponse = await res.json();
     return reponse;
 };
+
 const getProductById = async (id) => {
     const res = await fetch(`http://localhost:2222/api/product/${id}`);
     const reponse = await res.json();

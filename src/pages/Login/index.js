@@ -21,6 +21,7 @@ const Login = () => {
     });
     const auth = useAuth();
     const navigate = useNavigate();
+
     const handleSubmit = async () => {
         if (!inputValue.tentk || !inputValue.matkhau) {
             setAlert({
@@ -34,6 +35,11 @@ const Login = () => {
         const json = await response.json();
         if (response.status === 200) {
             auth.setState(true, json.token, { Quyen: json.role, ...json.info });
+            setAlert({
+                type: 'success',
+                show: true,
+                message: 'Sign in successed',
+            });
             if (json.role === 'admin') {
                 console.log('admin day');
                 navigate('/adminlayout', { replace: true });

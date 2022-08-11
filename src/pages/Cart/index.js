@@ -43,6 +43,7 @@ function Cart() {
     const handleCheckout = () => {
         getCart(auth.userInfo.manguoidung);
     };
+
     const filterData = useMemo(
         () =>
             data.filter((item) =>
@@ -51,6 +52,7 @@ function Cart() {
         [data],
         [cart],
     );
+
     return (
         <div className={cx('wrapper')}>
             {filterData.length >= 1 ? (

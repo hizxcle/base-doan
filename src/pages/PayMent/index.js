@@ -33,11 +33,8 @@ function PayMent() {
             data.filter((item) =>
                 cart.map((item) => item.masp).includes(item.masp),
             ),
-        [auth.isLogin],
+        [cart],
     );
-
-    const filterQuantity = cart.find((item) => item.masp === filterData.masp);
-    console.log('filterQUantity', filterQuantity);
 
     return (
         <div className={cx('wrapper')}>

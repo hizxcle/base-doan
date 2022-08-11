@@ -6,7 +6,8 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import { useState } from 'react';
 
-import Alert from '~/components/infoModals/Alert';
+import Alert from '~/components/infoModals/AlertNotify';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(style);
 
 function SignIn({ setInputValue, inputValue, handleSubmit, alert, setAlert }) {
