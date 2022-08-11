@@ -4,7 +4,7 @@ import styles from './EditItem.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCancel, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '~/hooks/useAuth';
-import Alert from '~/components/infoModals/Alert';
+import Alert from '~/components/infoModals/AlertNotify';
 
 const cx = classNames.bind(styles);
 function EditItem({ data, action, setEdit }) {

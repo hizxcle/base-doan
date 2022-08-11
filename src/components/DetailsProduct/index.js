@@ -6,7 +6,7 @@ import { faCartPlus, faClose } from '@fortawesome/free-solid-svg-icons';
 import { addToCart, getCart } from '~/Services';
 import { useState, memo, useEffect } from 'react';
 import useAuth from '~/hooks/useAuth';
-import Alert from '../infoModals/Alert';
+import Alert from '../infoModals/AlertNotify';
 
 const cx = classNames.bind(styles);
 
