@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { Fragment } from 'react';
+import { Fragment, memo } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Info.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,7 +7,7 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
-function Info() {
+function Info({ action }) {
     return (
         <Fragment>
             <h3>MobileX</h3>
@@ -70,4 +70,4 @@ function Info() {
     );
 }
 
-export default Info;
+export default memo(Info);

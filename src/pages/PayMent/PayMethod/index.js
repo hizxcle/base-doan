@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { Fragment } from 'react';
+import { Fragment, memo } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PayMethod.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,7 @@ import useAuth from '~/hooks/useAuth';
 
 const cx = classNames.bind(styles);
 
-function PayMethod() {
+function PayMethod({ data, action, pay }) {
     const auth = useAuth();
 
     return (
@@ -21,25 +21,49 @@ function PayMethod() {
             <div className={cx('container-item')}>
                 <div className={cx('item-changed')}>
                     <div>
-                        <span>Contact</span>
-                        <span>{auth.userInfo.sdt}</span>
+                        <p>Full name</p>
+                        <input
+                            value={data.hoten}
+                            onChange={(e) => {
+                                action({ ...data, hoten: e.target.value });
+                            }}
+                        />
                     </div>
-                    <button>
-                        <Link to="/profile" className={cx('link-router')}>
-                            Change
-                        </Link>
-                    </button>
                 </div>
                 <div className={cx('item-changed')}>
                     <div>
-                        <span>Address</span>
-                        <span>{auth.userInfo.diachi}</span>
+                        <p>Phone number</p>
+                        <input
+                            value={data.sdt}
+                            onChange={(e) => {
+                                action({ ...data, sdt: e.target.value });
+                            }}
+                        />
                     </div>
-                    <button>
-                        <Link to="/profile" className={cx('link-router')}>
-                            Change
-                        </Link>
-                    </button>
+                </div>
+                <div className={cx('item-changed')}>
+                    <div>
+                        <p>Address</p>
+                        <input
+                            value={data.diachi}
+                            onChange={(e) => {
+                                action({ ...data, diachi: e.target.value });
+                            }}
+                        />
+                    </div>
+                </div>
+                <div className={cx('item-changed')}>
+                    <div>
+                        <p>Note</p>
+                        <textarea
+                            placeholder="note some things"
+                            value={data.ghichu}
+                            onChange={(e) => {
+                                console.log('paymethod', data);
+                                action({ ...data, ghichu: e.target.value });
+                            }}
+                        ></textarea>
+                    </div>
                 </div>
             </div>
 
@@ -75,7 +99,7 @@ function PayMethod() {
                     </Link>
                 </div>
                 <div className={cx('button')}>
-                    <button>
+                    <button onClick={pay}>
                         <span>Agree</span>
                         <FontAwesomeIcon icon={faCheckCircle} />
                     </button>
@@ -85,4 +109,4 @@ function PayMethod() {
     );
 }
 
-export default PayMethod;
+export default memo(PayMethod);
