@@ -12,6 +12,20 @@ function PayMent() {
     const auth = useAuth();
     const [cart, setCart] = useState([]);
     const [data, setData] = useState([]);
+    const [customerInfo, setCustomerInfo] = useState(() => {
+        if (auth.isLogin === true) {
+            const {
+                hoten,
+                sdt,
+                email,
+                diachi,
+                manguoidung: makh,
+            } = auth.userInfo;
+            return { hoten, sdt, email, diachi, makh, ghichu: '' };
+        } else {
+            return {};
+        }
+    });
 
     useEffect(() => {
         if (auth.isLogin) {
@@ -19,7 +33,9 @@ function PayMent() {
                 `http://localhost:2222/api/cart/getByUser/${auth.userInfo.manguoidung}`,
             )
                 .then((res) => res.json())
-                .then((res) => setCart(res));
+                .then((res) => {
+                    setCart(res);
+                });
         }
         fetch(`http://localhost:2222/api/product`)
             .then((res) => res.json())
@@ -28,22 +44,65 @@ function PayMent() {
             });
     }, []);
 
-    const filterData = useMemo(
-        () =>
-            data.filter((item) =>
-                cart.map((item) => item.masp).includes(item.masp),
-            ),
-        [auth.isLogin],
-    );
-
-    const filterQuantity = cart.find((item) => item.masp === filterData.masp);
-    console.log('filterQUantity', filterQuantity);
+    const filterData = useMemo(() => {
+        return data.filter((item) =>
+            cart.map((item) => item.masp).includes(item.masp),
+        );
+    }, [cart]);
+    console.log('filter data', filterData);
+    const acceptPayment = () => {
+        const products = filterData.map((ele) => {
+            const { nhacungcap: tenncc, masp, ...rest } = ele;
+            const soluong = cart.find((ele) => ele.masp == masp)?.soluong;
+            console.log('so luong ', soluong);
+            console.log('ten nha cung cap ', tenncc);
+            return { ...rest, soluong, tenncc, masp };
+        });
+        const { hoten: tenkh, ...info } = customerInfo;
+        console.log('info', info);
+        const opt = {
+            method: 'post',
+            body: JSON.stringify({
+                ...customerInfo,
+                tenkh,
+                products,
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        console.log('result', opt.body);
+        fetch(`http://localhost:2222/api/order/addNew`, opt)
+            .then((res) => res.json())
+            .then((res) => {});
+        cart.forEach((ele) => {
+            fetch(
+                `http://localhost:2222/api/cart/delete/${ele.mand}/${ele.masp}`,
+                {
+                    method: 'delete',
+                },
+            )
+                .then((res) => res.json())
+                .then((res) => {});
+        });
+        setCart([]);
+    };
+    // const filterQuantity = cart.find((item) => item.masp === filterData.masp);
+    // console.log('filterQUantity', filterQuantity);
 
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <div className={cx('container-left')}>
-                    {auth.isLogin ? <PayMethod /> : <Info />}
+                    {auth.isLogin ? (
+                        <PayMethod
+                            data={customerInfo}
+                            action={setCustomerInfo}
+                            pay={acceptPayment}
+                        />
+                    ) : (
+                        <Info action={setCustomerInfo} />
+                    )}
                     <div className={cx('policy')}>
                         <span>Refund Policy</span>
                         <span>Pricy policy</span>
@@ -51,9 +110,14 @@ function PayMent() {
                     </div>
                 </div>
                 <div className={cx('container-right')}>
-                    {filterData.map((item) => (
-                        <TotalCart item={item} cart={cart} key={item.masp} />
-                    ))}
+                    {filterData &&
+                        filterData.map((item) => (
+                            <TotalCart
+                                item={item}
+                                cart={cart}
+                                key={item.masp}
+                            />
+                        ))}
                     <div className={cx('container-right-total')}>
                         <div className={cx('total')}>
                             <span>Subtotal</span>
