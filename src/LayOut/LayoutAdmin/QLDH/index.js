@@ -4,18 +4,26 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import { useEffect, useState } from 'react';
-
+import { useEffect, useState, memo } from 'react';
+import OverviewTable from '~/components/orders/orderTable/OverviewTable';
+import OrderTable from '~/components/orders/orderTable';
 const cx = classNames.bind(styles);
 
-function QLDH() {
-    const [data, setData] = useState([]);
+function QLDH({ data: dt, setTable: setTab, isSearch = false }) {
+    const [data, setData] = useState(dt);
+    const [table, setTable] = useState('overview');
 
     useEffect(() => {
-        fetch(`http://localhost:2222/api/order/getAll`)
-            .then((res) => res.json())
-            .then((res) => setData(res));
-    }, []);
+        if (dt.length > 0 || isSearch) {
+            setData(dt);
+        } else if (dt.length < 1) {
+            fetch(`http://localhost:2222/api/order/getAll`)
+                .then((res) => res.json())
+                .then((res) => {
+                    setData(res);
+                });
+        }
+    }, [dt]);
 
     return (
         <div>
@@ -32,7 +40,50 @@ function QLDH() {
                     <p>4 : Nhận hàng thành công</p>
                 </div>
             </div>
-            <table border="1" className={cx('table')}>
+            <div className={cx('navigation')}>
+                <button
+                    onClick={() => setTable('overview')}
+                    className={cx('', { active: table === 'overview' })}
+                >
+                    All Order
+                </button>
+                <button
+                    onClick={() => setTable(0)}
+                    className={cx('', { active: table == 0 })}
+                >
+                    Cancelled
+                </button>
+                <button
+                    onClick={() => setTable(4)}
+                    className={cx('', { active: table == 4 })}
+                >
+                    Received
+                </button>
+                <button
+                    onClick={() => setTable('all')}
+                    className={cx('', { active: table === 'all' })}
+                >
+                    History Order
+                </button>
+            </div>
+
+            <div className={cx('content')}>
+                {table === 'overview' ? (
+                    <OverviewTable
+                        data={data}
+                        action={setData}
+                        setTab={setTab}
+                    />
+                ) : (
+                    <OrderTable
+                        data={data}
+                        action={setData}
+                        type={table}
+                        setTab={setTab}
+                    />
+                )}
+            </div>
+            {/* <table border="1" className={cx('table')}>
                 <thead>
                     <tr>
                         <th className={cx('small')}>Mã đơn hàng</th>
@@ -70,9 +121,9 @@ function QLDH() {
                         </tr>
                     ))}
                 </tbody>
-            </table>
+            </table> */}
         </div>
     );
 }
 
-export default QLDH;
+export default memo(QLDH);

@@ -40,7 +40,7 @@ const Login = () => {
                 show: true,
                 message: 'Sign in successed',
             });
-            if (json.role === 'admin') {
+            if (json.role === 'admin' || json.role === 'superAdmin') {
                 console.log('admin day');
                 navigate('/adminlayout', { replace: true });
             }

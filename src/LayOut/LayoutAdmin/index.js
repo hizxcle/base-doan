@@ -17,12 +17,14 @@ function AdminLayout() {
     const [table, setTable] = useState('product');
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState([]);
-
     useEffect(() => {
-        fetch(`http://localhost:2222/api/${table}/`)
+        fetch(`http://localhost:2222/api/${table}`)
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
+            })
+            .catch((res) => {
+                setPosts([]);
             });
         fetch(`http://localhost:2222/api/user/allUser`)
             .then((res) => res.json())
@@ -36,7 +38,7 @@ function AdminLayout() {
     };
 
     const handleCustomer = () => {
-        setTable('customer');
+        setTable('user');
     };
 
     const handleOrder = () => {
@@ -54,8 +56,16 @@ function AdminLayout() {
             />
             <SearchBarAdmin />
             {table === 'product' && <QLSP data={posts} setPosts={setPosts} />}
-            {table === 'customer' && <QLKH data={posts} />}
-            {table === 'order' && <QLDH data={posts} />}
+            {(table.includes('user/') || table === 'user') && (
+                <QLKH data={posts} setTable={setTable} />
+            )}
+            {(table.includes('order/getByMakh') || table === 'order') && (
+                <QLDH
+                    data={posts}
+                    setTable={setTable}
+                    isSearch={table === 'order' ? false : true}
+                />
+            )}
 
             <Footer />
         </div>

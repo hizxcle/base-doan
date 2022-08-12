@@ -17,12 +17,14 @@
 // 3 giao hang thanh cong
 // 4 da nhan duoc hang
 import { memo, useMemo, useCallback, useState, useEffect } from 'react';
+import useAuth from '~/hooks/useAuth';
 import classNames from 'classnames/bind';
 import OrderProReview from '../OrderProReview';
 import styles from './OrderItem.module.scss';
 const cx = classNames.bind(styles);
-function OrderItem({ data, action, type }) {
-    console.log('data :', data);
+function OrderItem({ data, action, type, setTab = false }) {
+    const auth = useAuth();
+    const isAdmin = auth.userInfo.Quyen !== 'user';
     const [showDetail, setShowDetail] = useState(false);
     const [products, setProducts] = useState([]);
 
@@ -52,8 +54,6 @@ function OrderItem({ data, action, type }) {
         };
         fetchData();
     }, [data]);
-
-    console.log('product', products);
 
     const prices = useMemo(() => {
         return products.reduce((cross, cur) => {
@@ -96,6 +96,27 @@ function OrderItem({ data, action, type }) {
         window.location.reload();
     }, [type]);
 
+    const update = useCallback(
+        ({ trangthai, ghichu }) => {
+            const opt = {
+                method: 'put',
+                body: JSON.stringify({
+                    trangthai,
+                    ghichu,
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            };
+            fetch(
+                `http://localhost:2222/api/order/updateState/${data.madh}`,
+                opt,
+            );
+            action((pre) => pre);
+            window.location.reload();
+        },
+        [type],
+    );
     return (
         <tr className={cx('order-item')}>
             <td>{data.madh}</td>
@@ -118,16 +139,57 @@ function OrderItem({ data, action, type }) {
             </td>
             <td>{data.ghichu}</td>
             <td>{status}</td>
-            {[1, 2].includes(Number(type)) ? (
+            {isAdmin && Number(type) === 1 ? (
+                <td>
+                    <button
+                        onClick={() => {
+                            update({
+                                trangthai: 2,
+                                ghichu: 'don hang dang dc van chuyen',
+                            });
+                        }}
+                    >
+                        xac nhan don hang
+                    </button>
+                </td>
+            ) : isAdmin && Number(type) === 2 ? (
+                <td>
+                    <button
+                        onClick={() => {
+                            update({
+                                trangthai: 3,
+                                ghichu: 'van chuyen thanh cong',
+                            });
+                        }}
+                    >
+                        giao T.cong
+                    </button>
+                </td>
+            ) : Number(type) === 3 ? (
+                <td>
+                    <button onClick={received}>da nhan hang</button>
+                </td>
+            ) : (
+                <td></td>
+            )}
+            {[1, 2, 3].includes(Number(type)) ? (
                 <td>
                     <button onClick={cancel}>Cancel</button>
                 </td>
-            ) : type == 3 ? (
-                <td>
-                    <button onClick={received}>{mess}</button>
-                </td>
-            ) : type == 'all' ? (
+            ) : (
                 <td></td>
+            )}
+            {isAdmin ? (
+                <td>
+                    <button
+                        onClick={() => {
+                            const url = `user/${data.makh}`;
+                            setTab(url);
+                        }}
+                    >
+                        View Info
+                    </button>
+                </td>
             ) : (
                 <td></td>
             )}

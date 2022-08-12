@@ -1,5 +1,6 @@
 import { memo, useMemo } from 'react';
 import classNames from 'classnames/bind';
+import useAuth from '~/hooks/useAuth';
 
 import styles from './OrderTable.module.scss';
 import OrderItem from '~/components/orders/OrderItem';
@@ -10,12 +11,14 @@ import {
     faShippingFast,
 } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
-function OverviewTable({ data, action }) {
+function OverviewTable({ data, action, setTab = false }) {
     // 0 da huy
     // 1 chua xac nha
     // 2 don hang dang duoc gui di
     // 3 giao hang thanh cong
     // 4 da nhan duoc hang
+    const auth = useAuth();
+    const isAdmin = auth.userInfo.Quyen !== 'user';
     const shipping = useMemo(() => {
         return data.filter((ele) => ele.trangthai == 2);
     }, [data]);
@@ -39,6 +42,8 @@ function OverviewTable({ data, action }) {
                         <td>Note</td>
                         <td className={cx('')}>Status</td>
                         <td>Action</td>
+                        <td>Cancel</td>
+                        {isAdmin && <td>View info</td>}
                     </tr>
                 </thead>
                 <tbody>
@@ -49,6 +54,7 @@ function OverviewTable({ data, action }) {
                                 data={ele}
                                 action={action}
                                 type={ele.trangthai}
+                                setTab={setTab}
                             />
                         ))
                     ) : (
@@ -78,6 +84,8 @@ function OverviewTable({ data, action }) {
                         <td>Note</td>
                         <td>Status</td>
                         <td>Action</td>
+                        <td>Cancel</td>
+                        {isAdmin && <td>View info</td>}
                     </tr>
                 </thead>
                 <tbody>
@@ -88,6 +96,7 @@ function OverviewTable({ data, action }) {
                                 data={ele}
                                 action={action}
                                 type={ele.trangthai}
+                                setTab={setTab}
                             />
                         ))
                     ) : (
@@ -117,6 +126,8 @@ function OverviewTable({ data, action }) {
                         <td>Note</td>
                         <td className={cx('')}>Status</td>
                         <td>Action</td>
+                        <td>Cancel</td>
+                        {isAdmin && <td>View info</td>}
                     </tr>
                 </thead>
                 <tbody>
@@ -127,6 +138,7 @@ function OverviewTable({ data, action }) {
                                 data={ele}
                                 action={action}
                                 type={ele.trangthai}
+                                setTab={setTab}
                             />
                         ))
                     ) : (

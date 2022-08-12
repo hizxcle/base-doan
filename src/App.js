@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import AuthContentProvider from '~/components/contexts/AuthContext';
+import AdminContextProvider from '~/components/contexts/AdminContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { PublicRoutes, PrivateRoutes } from '~/routes';
 import DefaultLayout from './LayOut/DefaultLayout';
@@ -33,15 +34,17 @@ function App() {
                         })}
                         <Route
                             element={
-                                <ProtectedRoutes allowedRoles={['admin']} />
+                                <ProtectedRoutes
+                                    allowedRoles={['admin', 'superAdmin']}
+                                />
                             }
                         >
                             <Route
                                 path="/adminlayout"
                                 element={
-                                    <Fragment>
+                                    <AdminContextProvider>
                                         <AdminLayout />
-                                    </Fragment>
+                                    </AdminContextProvider>
                                 }
                             />
                         </Route>

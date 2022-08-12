@@ -1,18 +1,21 @@
 import { memo, useMemo } from 'react';
 import classNames from 'classnames/bind';
+import useAuth from '~/hooks/useAuth';
 
 import styles from './OrderTable.module.scss';
 import OrderItem from '~/components/orders/OrderItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCancel } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
-function OrderTable({ data, action, type }) {
+function OrderTable({ data, action, type, setTab = false }) {
     // 0 da huy cancel
     // 1 chua xac nha
     // 2 don hang dang duoc gui di
     // 3 giao hang thanh cong
     // 4 da nhan duoc hang received
     // all
+    const auth = useAuth();
+    const isAdmin = auth.userInfo.Quyen !== 'user';
     const order = useMemo(() => {
         return type == 'all'
             ? data
@@ -40,7 +43,13 @@ function OrderTable({ data, action, type }) {
                         <td>Total price</td>
                         <td>Note</td>
                         <td>Status</td>
-                        {type === 'all' ? <td></td> : <td>Action</td>}
+                        {['all', 0, 4].includes(type) ? (
+                            <td></td>
+                        ) : (
+                            <td>Action</td>
+                        )}
+                        {[1, 2, 3].includes(type) ? <td>Cancel</td> : <td></td>}
+                        {isAdmin && <td>View info</td>}
                     </tr>
                 </thead>
                 <tbody>
@@ -51,6 +60,7 @@ function OrderTable({ data, action, type }) {
                                 data={ele}
                                 action={action}
                                 type={ele.trangthai}
+                                setTab={setTab}
                             />
                         ))
                     ) : (
