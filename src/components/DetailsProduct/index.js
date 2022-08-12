@@ -10,25 +10,33 @@ import Alert from '../infoModals/AlertNotify';
 
 const cx = classNames.bind(styles);
 
-function DetailProduct({ setShowDetail, item }) {
+function DetailProduct({ setShowDetail, item, alert, setAlert }) {
     const [cart, setCart] = useState([]);
-    const [alert, setAlert] = useState({ type: '', message: '', show: false });
     const auth = useAuth();
 
     useEffect(() => {
         getCart(auth.userInfo.manguoidung).then(setCart);
-    }, [cart]);
+    }, []);
 
     const handleAddToCart = () => {
         if (!filterData) {
             if (auth.isLogin) {
-                addToCart(auth.userInfo.manguoidung, item.masp, 1);
+                if (item.soluong === 0) {
+                    setAlert({
+                        type: 'error',
+                        message: 'This product is outstock',
+                        show: true,
+                    });
+                } else {
+                    addToCart(auth.userInfo.manguoidung, item.masp, 1);
+                    setAlert({
+                        type: 'success',
+                        message: 'Them vao gio hang thanh cong',
+                        show: true,
+                    });
+                }
             }
-            setAlert({
-                type: 'success',
-                message: 'Them vao gio hang thanh cong',
-                show: true,
-            });
+            // else { } /// Xu ly logic cho khach khong dang nhap o day4
         } else {
             setAlert({
                 type: 'error',
@@ -36,6 +44,7 @@ function DetailProduct({ setShowDetail, item }) {
                 show: true,
             });
         }
+
         getCart(auth.userInfo.manguoidung).then(setCart);
     };
 
