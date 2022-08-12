@@ -117,3 +117,28 @@
     z-index: 1;
     color: var(--white-color);
 }
+
+.name-product-sale {
+    text-align: center;
+}
+
+.price-product-sale {
+    width: 50%;
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+}
+
+.red {
+    color: rgb(210, 4, 4);
+    &::after {
+        content: '';
+        position: absolute;
+        width: calc(100% - 30px);
+        border-bottom: 1px solid #000;
+        top: -11px;
+        left: 15px;
+    }
+}

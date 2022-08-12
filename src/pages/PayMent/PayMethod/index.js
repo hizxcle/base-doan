@@ -65,6 +65,7 @@ function PayMethod({ data, action, pay }) {
                         ></textarea>
                     </div>
                 </div>
+                <span>Note : You can change your delivery address here </span>
             </div>
 
             <div className={cx('breadcrums')}></div>

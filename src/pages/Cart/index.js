@@ -30,6 +30,7 @@ function Cart() {
                     .then((res) => res.json())
                     .then((res) => setCart(res));
             }
+            // Logic cho nguoi khong dang nhap
             fetch(`http://localhost:2222/api/product`)
                 .then((res) => res.json())
                 .then((res) => {
@@ -39,6 +40,8 @@ function Cart() {
         [auth.userInfo.manguoidung],
         [auth.isLogin],
     );
+
+    console.log('cart', cart);
 
     const handleCheckout = () => {
         getCart(auth.userInfo.manguoidung);

@@ -15,6 +15,7 @@ const cx = classNames.bind(styles);
 function ProductItem({ item }) {
     const [showDetail, setShowDetail] = useState(false);
     const [selected, setSelected] = useState([]);
+    const [alert, setAlert] = useState({ type: '', message: '', show: false });
 
     const handleShowDetail = () => {
         setShowDetail(true);
@@ -46,10 +47,16 @@ function ProductItem({ item }) {
                 </button>
             </div>
             <div className={cx('info')}>
-                <span className={cx('name-product')}>{item.tensp}</span>
-                {item.soluong <= 2 ? (
+                <span className={cx('name-product-sale')}>{item.tensp}</span>
+                {item.soluong <= 2 && item.soluong > 0 ? (
                     <>
-                        <span className={cx('price-product')}>
+                        <span className={cx('price-product-sale')}>
+                            {item.gia.toLocaleString(undefined, {
+                                maximumFractionDigits: 2,
+                            })}
+                            VND
+                        </span>
+                        <span className={cx('price-product-sale', 'red')}>
                             {((item.gia * 4) / 5).toLocaleString(undefined, {
                                 maximumFractionDigits: 2,
                             })}
@@ -74,6 +81,8 @@ function ProductItem({ item }) {
             </div>
             {showDetail && (
                 <DetailProduct
+                    alert={alert}
+                    setAlert={setAlert}
                     item={item}
                     setShowDetail={setShowDetail}
                     selected={selected}

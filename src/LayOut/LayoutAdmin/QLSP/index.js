@@ -7,17 +7,22 @@ import OnlyReadRow from './components/OnlyReadRow';
 import EditRow from './components/EditRow';
 
 import { getData, deleteApi } from '~/Services';
+// import Alert from '~/components/infoModals/AlertNotify';
 const cx = classNames.bind(styles);
 
 function QLSP({ data, setPosts, setAlert }) {
     const [editID, setEditId] = useState(null);
     const [addPro, setAddPro] = useState({});
+    // const [alert, setAlert] = useState({
+    //     type: '',
+    //     message: '',
+    //     show: false,
+    // });
 
     const selectedRef = useRef();
 
     const handleAddNew = (e) => {
         e.preventDefault();
-        console.log('data', addPro);
         var formData = new FormData();
         Object.keys(addPro).forEach((ele) => {
             if (ele === 'thumb') {
@@ -31,6 +36,20 @@ function QLSP({ data, setPosts, setAlert }) {
                 return formData.append(`${ele}`, `${addPro[ele]}`);
             }
         });
+
+        // if (res?.status === 200) {
+        //     setAlert({
+        //         type: 'success',
+        //         message: 'Them thanh cong',
+        //         show: true,
+        //     });
+        // } else {
+        //     setAlert({
+        //         type: 'error',
+        //         message: 'Them san pham that bai',
+        //         show: true,
+        //     });
+        // }
         const options = {
             method: 'POST',
             body: formData,
@@ -66,6 +85,7 @@ function QLSP({ data, setPosts, setAlert }) {
 
     return (
         <div className={cx('wrapper')}>
+            {/* <Alert alert={alert} setAlert={setAlert} /> */}
             <div className={cx('title')}>
                 <p>QUẢN LÝ SẢN PHẨM</p>
             </div>
