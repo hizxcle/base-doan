@@ -15,6 +15,8 @@ function CartItem({ item, setCart }) {
     const [show, setShow] = useState(true);
     const auth = useAuth();
 
+    const totalPrice = item.gia * quantity;
+
     const handleMinus = async () => {
         if (quantity < 2) {
             setTimeout(() => {
@@ -91,12 +93,9 @@ function CartItem({ item, setCart }) {
                     <td className={cx('table-item2')}>
                         <div className={cx('total-box')}>
                             <span>
-                                {(item.gia * quantity).toLocaleString(
-                                    undefined,
-                                    {
-                                        maximumFractionDigits: 2,
-                                    },
-                                )}{' '}
+                                {totalPrice.toLocaleString(undefined, {
+                                    maximumFractionDigits: 2,
+                                })}
                                 $
                             </span>
                             <button onClick={handleDelete}>

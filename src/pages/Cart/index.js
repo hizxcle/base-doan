@@ -11,14 +11,12 @@ import CartEmpty from '~/pages/Cart/components/CartEmpty';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { getCart } from '~/Services';
-import PayMent from '../PayMent';
 
 const cx = classNames.bind(styles);
 
 function Cart() {
     const [data, setData] = useState([]);
     const [cart, setCart] = useState([]);
-
     const auth = useAuth();
 
     useEffect(
@@ -40,8 +38,6 @@ function Cart() {
         [auth.userInfo.manguoidung],
         [auth.isLogin],
     );
-
-    console.log('cart', cart);
 
     const handleCheckout = () => {
         getCart(auth.userInfo.manguoidung);
@@ -134,13 +130,12 @@ function Cart() {
                                         <span> $154.00</span>
                                     </div>
                                     <div>
-                                        <Link to="/cart">
-                                            <button
-                                                className={cx('button-update')}
-                                            >
-                                                UPDATE ITEM
-                                            </button>
-                                        </Link>
+                                        <button
+                                            className={cx('button-update')}
+                                            // onClick={handleUpdate}
+                                        >
+                                            UPDATE
+                                        </button>
                                     </div>
                                     <div>
                                         <Link to="/payment">
