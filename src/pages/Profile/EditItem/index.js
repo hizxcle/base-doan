@@ -24,7 +24,7 @@ function EditItem({ data, action, setEdit }) {
     });
 
     const handleShowEdit = () => {
-        setEdit(false);
+        setEdit('view');
     };
 
     const saveInfo = () => {

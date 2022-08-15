@@ -36,6 +36,17 @@ function Header() {
                 <div className={cx('page')}>
                     <ul className={cx('page-list')}>
                         <li className={cx('page-list-item')}>
+                            {auth.userInfo.Quyen !== 'user' &&
+                                auth.isLogin === true && (
+                                    <Link
+                                        to="/adminlayout"
+                                        className={cx('link-router')}
+                                    >
+                                        DASHBOARD
+                                    </Link>
+                                )}
+                        </li>
+                        <li className={cx('page-list-item')}>
                             <Link to="/" className={cx('link-router')}>
                                 HOME
                             </Link>
@@ -65,15 +76,6 @@ function Header() {
                                         YOUR ORDER
                                     </Link>
                                 </li>
-                                <li className={cx('page-list-item')}>
-                                    {' '}
-                                    <Link
-                                        to="/profile"
-                                        className={cx('link-router')}
-                                    >
-                                        PROFILE
-                                    </Link>{' '}
-                                </li>
                             </Fragment>
                         )}
                     </ul>
@@ -95,10 +97,16 @@ function Header() {
                         </div>
                         <div className={cx('actions-item', 'heart-box')}>
                             {auth.isLogin && (
-                                <span>
-                                    <FontAwesomeIcon icon={faUser} />{' '}
-                                    {auth.userInfo.hoten || auth.userInfo.tentk}
-                                </span>
+                                <Link
+                                    to="/profile"
+                                    className={cx('link-router')}
+                                >
+                                    <span>
+                                        <FontAwesomeIcon icon={faUser} />{' '}
+                                        {auth.userInfo.hoten ||
+                                            auth.userInfo.tentk}
+                                    </span>
+                                </Link>
                             )}
                         </div>
                         <div className={cx('actions-item')}>

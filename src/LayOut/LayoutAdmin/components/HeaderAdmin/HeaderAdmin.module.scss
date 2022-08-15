@@ -34,6 +34,11 @@
 .page {
     width: 50%;
     display: inline-block;
+    position: relative;
+}
+.home-link {
+    position: absolute;
+    left: -25px;
 }
 
 .page-list {
@@ -65,12 +70,14 @@
 
 .actions {
     width: 25%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .actions-items {
     display: flex;
-    flex-flow: row-reverse;
     align-items: center;
+    margin-right: 24px;
 }
 
 .actions-item {

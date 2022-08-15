@@ -2,8 +2,8 @@ import { memo } from 'react';
 import styles from './HeaderAdmin.module.scss';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOut } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+import { faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate, Link } from 'react-router-dom';
 import useAuth from '~/hooks/useAuth';
 
 const cx = classNames.bind(styles);
@@ -23,15 +23,20 @@ function HeaderAdmin({
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('img-block')}>
-                    <a href="/">
+                    <Link to="/">
                         <img
                             className={cx('img-logo')}
                             src="https://cdn.shopify.com/s/files/1/0453/5035/5103/files/img_02_130x30_crop_center.png?v=1644318438"
                             alt="img"
                         ></img>
-                    </a>
+                    </Link>
                 </div>
                 <div className={cx('page')}>
+                    <div className={cx('home-link')}>
+                        <Link to="/" className={cx('link-router')}>
+                            HOME
+                        </Link>
+                    </div>
                     <ul className={cx('page-list')}>
                         <button
                             onClick={onChangeToProduct}
@@ -66,6 +71,14 @@ function HeaderAdmin({
                     </ul>
                 </div>
                 <div className={cx('actions')}>
+                    <div className={cx('actions-items')}>
+                        <Link to="/profile" className={cx('link-router')}>
+                            <span>
+                                <FontAwesomeIcon icon={faUser} />{' '}
+                                {auth.userInfo.hoten || auth.userInfo.tentk}
+                            </span>
+                        </Link>
+                    </div>
                     <div className={cx('actions-items')}>
                         <div>
                             <div onClick={logout}>

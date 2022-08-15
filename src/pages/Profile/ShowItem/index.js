@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
-function ShowItem({ data, action }) {
+function ShowItem({ data, action, setEdit }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -30,7 +30,7 @@ function ShowItem({ data, action }) {
                 <div className={cx('item')}>
                     <span className={cx('item-desc')}>Date of birth :</span>
                     <span className={cx('item-cont')}>
-                        {data.ngaysinh.slice(0, 10)}
+                        {data?.ngaysinh?.slice(0, 10)}
                     </span>
                 </div>
                 <div className={cx('item')}>
@@ -41,6 +41,19 @@ function ShowItem({ data, action }) {
                 <div className={cx('item')}>
                     <span className={cx('item-desc')}>Address : </span>
                     <span className={cx('item-cont')}>{data.diachi}</span>
+                </div>
+                <div className={cx('item')}>
+                    <span className={cx('item-desc')}>Password : </span>
+                    <span className={cx('item-cont')}>
+                        <button
+                            onClick={() => {
+                                setEdit('editPasswd');
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faPenToSquare} />
+                            <span>Edit Password</span>
+                        </button>
+                    </span>
                 </div>
                 <div className={cx('edit')}>
                     <button onClick={action}>
