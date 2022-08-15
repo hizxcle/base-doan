@@ -83,8 +83,9 @@ function OrderItem({ data, action, type, setTab = false }) {
             }),
         };
         fetch(`http://localhost:2222/api/order/huydon/${data.madh}`, opt);
-        action((pre) => pre);
-        window.location.reload();
+        fetch(`http://localhost:2222/api/order/getbyMakh/${data.makh}`)
+            .then((res) => res.json())
+            .then((res) => action(res));
     }, [type]);
 
     const received = useCallback(() => {
@@ -92,8 +93,10 @@ function OrderItem({ data, action, type, setTab = false }) {
             method: 'put',
         };
         fetch(`http://localhost:2222/api/order/danhan/${data.madh}`, opt);
-        action((pre) => pre);
-        window.location.reload();
+
+        fetch(`http://localhost:2222/api/order/getbyMakh/${data.makh}`)
+            .then((res) => res.json())
+            .then((res) => action(res));
     }, [type]);
 
     const update = useCallback(
@@ -112,8 +115,10 @@ function OrderItem({ data, action, type, setTab = false }) {
                 `http://localhost:2222/api/order/updateState/${data.madh}`,
                 opt,
             );
-            action((pre) => pre);
-            window.location.reload();
+
+            fetch(`http://localhost:2222/api/order/getbyMakh/${data.makh}`)
+                .then((res) => res.json())
+                .then((res) => action(res));
         },
         [type],
     );
