@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { Fragment, memo } from 'react';
+import { Fragment, memo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PayMethod.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,7 @@ import useAuth from '~/hooks/useAuth';
 
 const cx = classNames.bind(styles);
 
-function PayMethod({ data, action, pay }) {
+function PayMethod({ data, action, setShowAlertW }) {
     const auth = useAuth();
 
     return (
@@ -100,7 +100,7 @@ function PayMethod({ data, action, pay }) {
                     </Link>
                 </div>
                 <div className={cx('button')}>
-                    <button onClick={pay}>
+                    <button onClick={() => setShowAlertW(true)}>
                         <span>Agree</span>
                         <FontAwesomeIcon icon={faCheckCircle} />
                     </button>

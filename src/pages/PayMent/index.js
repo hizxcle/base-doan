@@ -5,6 +5,7 @@ import useAuth from '~/hooks/useAuth';
 import TotalCart from './TotalCart';
 import Info from './Info';
 import PayMethod from './PayMethod';
+import AlertConfirm from '~/components/infoModals/AlertConfirm';
 
 const cx = classNames.bind(styles);
 
@@ -12,6 +13,7 @@ function PayMent() {
     const auth = useAuth();
     const [cart, setCart] = useState([]);
     const [data, setData] = useState([]);
+    const [showAlertW, setShowAlertW] = useState(false);
     const [customerInfo, setCustomerInfo] = useState(() => {
         if (auth.isLogin === true) {
             const {
@@ -71,6 +73,7 @@ function PayMent() {
                 'Content-Type': 'application/json',
             },
         };
+        setShowAlertW(false);
         console.log('result', opt.body);
         fetch(`http://localhost:2222/api/order/addNew`, opt)
             .then((res) => res.json())
@@ -92,6 +95,12 @@ function PayMent() {
 
     return (
         <div className={cx('wrapper')}>
+            {showAlertW && (
+                <AlertConfirm
+                    pay={acceptPayment}
+                    setShowAlertW={setShowAlertW}
+                />
+            )}
             <div className={cx('container')}>
                 <div className={cx('container-left')}>
                     {auth.isLogin ? (
@@ -99,6 +108,7 @@ function PayMent() {
                             data={customerInfo}
                             action={setCustomerInfo}
                             pay={acceptPayment}
+                            setShowAlertW={setShowAlertW}
                         />
                     ) : (
                         <Info action={setCustomerInfo} />
