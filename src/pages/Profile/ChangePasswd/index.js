@@ -124,7 +124,8 @@ const ChangePasswd = ({ savePass, setEdit }) => {
                 </div>
                 <div>
                     <span className={cx('invalid-text')}>
-                        {validator.compare(data.newPass, data.oldPass)
+                        {validator.compare(data.newPass, data.oldPass) &&
+                        data.newPass !== ''
                             ? 'mat khau trung voi mat khau cu'
                             : !isValid.new
                             ? 'do dai mat khau duoi 6 ky tu'
