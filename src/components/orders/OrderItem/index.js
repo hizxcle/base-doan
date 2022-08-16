@@ -22,7 +22,7 @@ import classNames from 'classnames/bind';
 import OrderProReview from '../OrderProReview';
 import styles from './OrderItem.module.scss';
 const cx = classNames.bind(styles);
-function OrderItem({ data, action, type, setTab = false }) {
+function OrderItem({ data, action, type, setTab = false, isSameUser = false }) {
     const auth = useAuth();
     const isAdmin = auth.userInfo.Quyen !== 'user';
     const [showDetail, setShowDetail] = useState(false);
@@ -35,19 +35,18 @@ function OrderItem({ data, action, type, setTab = false }) {
             );
             pros = await pros.json();
             if (pros.length > 0) {
-                pros = pros.map((ele) => {
-                    const masp = ele.masp;
-                    const soluong = ele.soluong;
-                    return { masp, soluong };
-                });
                 pros.map(async (ele) => {
-                    const soluong = ele.soluong;
+                    const { soluong, tensp, tenncc, gia } = ele;
+
                     let result = await fetch(
                         `http://localhost:2222/api/product/${ele.masp}`,
                     );
                     result = await result.json();
                     result = result[0];
                     result.soluong = soluong;
+                    result.gia = gia;
+                    result.nhacungcap = tenncc;
+                    result.tensp = tensp;
                     setProducts([...products, result]);
                 });
             }
@@ -83,9 +82,16 @@ function OrderItem({ data, action, type, setTab = false }) {
             }),
         };
         fetch(`http://localhost:2222/api/order/huydon/${data.madh}`, opt);
-        fetch(`http://localhost:2222/api/order/getbyMakh/${data.makh}`)
-            .then((res) => res.json())
-            .then((res) => action(res));
+
+        if (isSameUser) {
+            fetch(`http://localhost:2222/api/order/getbyMakh/${data.makh}`)
+                .then((res) => res.json())
+                .then((res) => action(res));
+        } else {
+            fetch(`http://localhost:2222/api/order/getAll`)
+                .then((res) => res.json())
+                .then((res) => action(res));
+        }
     }, [type]);
 
     const received = useCallback(() => {
@@ -94,9 +100,15 @@ function OrderItem({ data, action, type, setTab = false }) {
         };
         fetch(`http://localhost:2222/api/order/danhan/${data.madh}`, opt);
 
-        fetch(`http://localhost:2222/api/order/getbyMakh/${data.makh}`)
-            .then((res) => res.json())
-            .then((res) => action(res));
+        if (isSameUser) {
+            fetch(`http://localhost:2222/api/order/getbyMakh/${data.makh}`)
+                .then((res) => res.json())
+                .then((res) => action(res));
+        } else {
+            fetch(`http://localhost:2222/api/order/getAll`)
+                .then((res) => res.json())
+                .then((res) => action(res));
+        }
     }, [type]);
 
     const update = useCallback(
@@ -115,10 +127,15 @@ function OrderItem({ data, action, type, setTab = false }) {
                 `http://localhost:2222/api/order/updateState/${data.madh}`,
                 opt,
             );
-
-            fetch(`http://localhost:2222/api/order/getbyMakh/${data.makh}`)
-                .then((res) => res.json())
-                .then((res) => action(res));
+            if (isSameUser) {
+                fetch(`http://localhost:2222/api/order/getbyMakh/${data.makh}`)
+                    .then((res) => res.json())
+                    .then((res) => action(res));
+            } else {
+                fetch(`http://localhost:2222/api/order/getAll`)
+                    .then((res) => res.json())
+                    .then((res) => action(res));
+            }
         },
         [type],
     );
@@ -137,6 +154,8 @@ function OrderItem({ data, action, type, setTab = false }) {
                     />
                 )}
             </td>
+            <td>{data.sdt}</td>
+            <td>{data.email}</td>
             <td>{data.diachinhan}</td>
             <td>{data.tgdathang}</td>
             <td>

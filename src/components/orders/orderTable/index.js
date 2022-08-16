@@ -16,11 +16,15 @@ function OrderTable({ data, action, type, setTab = false }) {
     // all
     const auth = useAuth();
     const isAdmin = auth.userInfo.Quyen !== 'user';
+    const isSameUser = useMemo(() => {
+        const makhs = data.map((ele) => ele.makh);
+        return [...new Set(makhs)].length === 1;
+    }, [data]);
     const order = useMemo(() => {
         return type == 'all'
             ? data
             : data.filter((ele) => ele.trangthai == type);
-    }, [type]);
+    }, [data, type]);
     const header = useMemo(() => {
         if (type == 'all') return 'All orders';
         if (type == 0) return 'Cancel orders';
@@ -38,6 +42,8 @@ function OrderTable({ data, action, type, setTab = false }) {
                     <tr>
                         <td>Order code</td>
                         <td>Product detail</td>
+                        <td>Receiver 'phone</td>
+                        <td>Receiver 'email</td>
                         <td>Address</td>
                         <td>Order time</td>
                         <td>Total price</td>
@@ -61,6 +67,7 @@ function OrderTable({ data, action, type, setTab = false }) {
                                 action={action}
                                 type={ele.trangthai}
                                 setTab={setTab}
+                                isSameUser={isSameUser}
                             />
                         ))
                     ) : (

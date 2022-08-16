@@ -6,9 +6,6 @@ const cx = classNames.bind(styles);
 function TotalCart({ item, cart }) {
     const filterQuantity = cart.find((item) => item.masp === item.masp);
     const totalItem = item.gia * filterQuantity.soluong;
-    // const totalPrice = totalItem.reduce((result, item) => {
-    //     return result + item;
-    // });
 
     return (
         <div className={cx('container-right-item')}>

@@ -51,7 +51,12 @@ function PayMent() {
             cart.map((item) => item.masp).includes(item.masp),
         );
     }, [cart]);
-    console.log('filter data', filterData);
+    const total = useMemo(() => {
+        return cart.reduce((total, cur) => {
+            const price = data.find((ele) => ele.masp == cur.masp)?.gia;
+            return (total = total + price * cur.soluong);
+        }, 0);
+    }, [data, cart]);
     const acceptPayment = () => {
         const products = filterData.map((ele) => {
             const { nhacungcap: tenncc, masp, ...rest } = ele;
@@ -143,7 +148,7 @@ function PayMent() {
                             <h3>Total</h3>
                         </div>
                         <div className={cx('total')}>
-                            <h3>100.000 VND</h3>
+                            <h3>{`${total}VND`}</h3>
                         </div>
                     </div>
                 </div>

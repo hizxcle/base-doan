@@ -19,6 +19,10 @@ function OverviewTable({ data, action, setTab = false }) {
     // 4 da nhan duoc hang
     const auth = useAuth();
     const isAdmin = auth.userInfo.Quyen !== 'user';
+    const isSameUser = useMemo(() => {
+        const makhs = data.map((ele) => ele.makh);
+        return [...new Set(makhs)].length === 1;
+    }, [data]);
     const shipping = useMemo(() => {
         return data.filter((ele) => ele.trangthai == 2);
     }, [data]);
@@ -36,6 +40,8 @@ function OverviewTable({ data, action, setTab = false }) {
                     <tr>
                         <td>OrderID</td>
                         <td>Product detail</td>
+                        <td>Receiver 'phone</td>
+                        <td>Receiver 'email</td>
                         <td>Address</td>
                         <td>Order time</td>
                         <td>Total price</td>
@@ -55,6 +61,7 @@ function OverviewTable({ data, action, setTab = false }) {
                                 action={action}
                                 type={ele.trangthai}
                                 setTab={setTab}
+                                isSameUser={isSameUser}
                             />
                         ))
                     ) : (
@@ -78,6 +85,8 @@ function OverviewTable({ data, action, setTab = false }) {
                     <tr>
                         <td>OrderID</td>
                         <td>Product detail</td>
+                        <td>Receiver 'phone</td>
+                        <td>Receiver 'email</td>
                         <td>Address</td>
                         <td>Order time</td>
                         <td>Total price</td>
@@ -97,6 +106,7 @@ function OverviewTable({ data, action, setTab = false }) {
                                 action={action}
                                 type={ele.trangthai}
                                 setTab={setTab}
+                                isSameUser={isSameUser}
                             />
                         ))
                     ) : (
@@ -120,6 +130,8 @@ function OverviewTable({ data, action, setTab = false }) {
                     <tr>
                         <td>Order code</td>
                         <td>Product detail</td>
+                        <td>Receiver 'phone</td>
+                        <td>Receiver 'email</td>
                         <td>Address</td>
                         <td>Order time</td>
                         <td>Total price</td>
@@ -139,6 +151,7 @@ function OverviewTable({ data, action, setTab = false }) {
                                 action={action}
                                 type={ele.trangthai}
                                 setTab={setTab}
+                                isSameUser={isSameUser}
                             />
                         ))
                     ) : (
