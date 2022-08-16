@@ -139,7 +139,9 @@ function PayMent() {
                             <span>Shipping Fee</span>
                         </div>
                         <div className={cx('total')}>
-                            <p>asdasd</p>
+                            <p>{`${total.toLocaleString(undefined, {
+                                maximumFractionDigits: 2,
+                            })}VND`}</p>
                             <p>100.000 VND</p>
                         </div>
                     </div>
@@ -148,7 +150,12 @@ function PayMent() {
                             <h3>Total</h3>
                         </div>
                         <div className={cx('total')}>
-                            <h3>{`${total}VND`}</h3>
+                            <h3>
+                                {(total + 100000).toLocaleString(undefined, {
+                                    maximumFractionDigits: 2,
+                                })}{' '}
+                                VND
+                            </h3>
                         </div>
                     </div>
                 </div>
