@@ -51,7 +51,12 @@ function Cart() {
         [data],
         [cart],
     );
-
+    const total = useMemo(() => {
+        return cart.reduce((total, cur) => {
+            const price = data.find((ele) => ele.masp == cur.masp)?.gia;
+            return (total = total + price * cur.soluong);
+        }, 0);
+    }, [data, cart]);
     return (
         <div className={cx('wrapper')}>
             {filterData.length >= 1 ? (
@@ -127,7 +132,7 @@ function Cart() {
                                     <hr></hr>
                                     <div className={cx('total')}>
                                         <span>Total Price</span>
-                                        <span> $154.00</span>
+                                        <span>{`\$${total}`}</span>
                                     </div>
                                     <div>
                                         <button

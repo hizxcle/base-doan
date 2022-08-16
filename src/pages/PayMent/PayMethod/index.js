@@ -23,7 +23,7 @@ function PayMethod({ data, action, pay }) {
                     <div>
                         <p>Full name</p>
                         <input
-                            value={data.hoten}
+                            value={data?.hoten || ''}
                             onChange={(e) => {
                                 action({ ...data, hoten: e.target.value });
                             }}
@@ -34,7 +34,7 @@ function PayMethod({ data, action, pay }) {
                     <div>
                         <p>Phone number</p>
                         <input
-                            value={data.sdt}
+                            value={data?.sdt || ''}
                             onChange={(e) => {
                                 action({ ...data, sdt: e.target.value });
                             }}
@@ -45,7 +45,7 @@ function PayMethod({ data, action, pay }) {
                     <div>
                         <p>Address</p>
                         <input
-                            value={data.diachi}
+                            value={data?.diachi || ''}
                             onChange={(e) => {
                                 action({ ...data, diachi: e.target.value });
                             }}
@@ -57,7 +57,7 @@ function PayMethod({ data, action, pay }) {
                         <p>Note</p>
                         <textarea
                             placeholder="note some things"
-                            value={data.ghichu}
+                            value={data?.ghichu || ''}
                             onChange={(e) => {
                                 console.log('paymethod', data);
                                 action({ ...data, ghichu: e.target.value });
