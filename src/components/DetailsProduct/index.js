@@ -7,11 +7,14 @@ import { addToCart, getCart } from '~/Services';
 import { useState, memo, useEffect } from 'react';
 import useAuth from '~/hooks/useAuth';
 import Alert from '../infoModals/AlertNotify';
+import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css';
 
 const cx = classNames.bind(styles);
 
 function DetailProduct({ setShowDetail, item, alert, setAlert }) {
     const [cart, setCart] = useState([]);
+
     const auth = useAuth();
 
     useEffect(() => {
@@ -55,11 +58,21 @@ function DetailProduct({ setShowDetail, item, alert, setAlert }) {
             {alert.show && <Alert alert={alert} setAlert={setAlert} />}
             <div className={cx('container')}>
                 <div className={cx('container-image')}>
-                    <img
-                        src={`http://localhost:2222/images/${item.anhdaidien}`}
-                        alt="anh san pham"
-                        className={cx('image')}
-                    />
+                    <Slide>
+                        {/* {data.map((item, index) => (
+                            <img
+                                key={index}
+                                src={`http://localhost:2222/images/${item.anhsp}`}
+                                alt="anh san pham"
+                                className={cx('image')}
+                            />
+                        ))} */}
+                        <img
+                            src={`http://localhost:2222/images/${item.anhdaidien}`}
+                            alt="anh san pham"
+                            className={cx('image')}
+                        />
+                    </Slide>
                 </div>
 
                 <div className={cx('container-info')}>

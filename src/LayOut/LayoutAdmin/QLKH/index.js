@@ -62,7 +62,7 @@ function QLKH({ data: dt, setTable: setTab }) {
     };
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('navigation')}>
+            {/* <div className={cx('navigation')}>
                 <button
                     className={cx('btn-user-tab', 'table', {
                         active: table === 'user',
@@ -83,7 +83,7 @@ function QLKH({ data: dt, setTable: setTab }) {
                 >
                     Admin Table
                 </button>
-            </div>
+            </div> */}
             <div className={cx('content')}>
                 <Table
                     type="admin"

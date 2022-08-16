@@ -3,6 +3,9 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { Fragment } from 'react';
+import { Slide } from 'react-slideshow-image/';
+import 'react-slideshow-image/dist/styles.css';
+
 const cx = classNames.bind(styles);
 function OrderProReview({ data, action }) {
     return (
