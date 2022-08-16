@@ -6,10 +6,23 @@ import {
     faCreditCard,
     faPlaneUp,
 } from '@fortawesome/free-solid-svg-icons';
+import 'react-slideshow-image/dist/styles.css';
+import { Slide } from 'react-slideshow-image';
+import { useEffect, useState } from 'react';
 
 const cx = classNames.bind(styles);
 
 function Home() {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:2222/api/product`)
+            .then((res) => res.json())
+            .then((res) => {
+                setData(res);
+            });
+    }, []);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container-1')}>
@@ -61,7 +74,43 @@ function Home() {
             <div className={cx('wrapper-slider')}>
                 <div className={cx('container-slider')}>
                     <div className={cx('slider-title')}>
-                        <h3> On sale </h3>
+                        <h3> On sale 15% </h3>
+                        <Slide>
+                            {data.map((item, index) => (
+                                <div key={index} className={cx('slider')}>
+                                    <img
+                                        src={`http://localhost:2222/images/${item.anhdaidien}`}
+                                        alt="anh dai dien"
+                                    />
+                                    <div>
+                                        <span>{item.tensp}</span>
+                                        <p>
+                                            <span
+                                                className={cx(
+                                                    'price-product-sale',
+                                                )}
+                                            >
+                                                {item.gia.toLocaleString(
+                                                    undefined,
+                                                    {
+                                                        maximumFractionDigits: 2,
+                                                    },
+                                                )}
+                                                VND
+                                            </span>
+                                            <span className={cx('red')}>
+                                                {(
+                                                    item.gia * 0.85
+                                                ).toLocaleString(undefined, {
+                                                    maximumFractionDigits: 2,
+                                                })}
+                                                VND
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </Slide>
                     </div>
                 </div>
             </div>

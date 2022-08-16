@@ -30,8 +30,8 @@ function ProductItem({ item }) {
                     src={`http://localhost:2222/images/${item.anhdaidien}`}
                     alt={item.tensp}
                 />
-                {item.soluong <= 2 && <span className={cx('sale')}>-15%</span>}
-                {item.soluong >= 5 && <span className={cx('new')}>New</span>}
+                {item.soluong <= 3 && <span className={cx('sale')}>-15%</span>}
+                {item.soluong >= 10 && <span className={cx('new')}>New</span>}
                 {item.soluong === 0 && (
                     <span className={cx('outstock')}>Out Stock</span>
                 )}
@@ -57,7 +57,7 @@ function ProductItem({ item }) {
                             VND
                         </span>
                         <span className={cx('price-product-sale', 'red')}>
-                            {((item.gia * 4) / 5).toLocaleString(undefined, {
+                            {(item.gia * 0.85).toLocaleString(undefined, {
                                 maximumFractionDigits: 2,
                             })}
                             VND

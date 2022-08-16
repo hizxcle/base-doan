@@ -26,3 +26,23 @@ tbody {
 .delete-button {
     margin: 8px;
 }
+
+.wrapper {
+    width: calc(100% - 350px);
+    margin: 0 auto;
+}
+
+.navigation {
+    display: flex;
+    width: auto;
+
+    button {
+        width: 10%;
+        height: 50px;
+        border-radius: 15px;
+    }
+}
+
+.content {
+    width: 100%;
+}
