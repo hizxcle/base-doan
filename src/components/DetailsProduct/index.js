@@ -56,6 +56,10 @@ function DetailProduct({ setShowDetail, item, alert, setAlert }) {
     return (
         <div className={cx('wrapper')}>
             {alert.show && <Alert alert={alert} setAlert={setAlert} />}
+            <div
+                className={cx('container-outside')}
+                onClick={() => setShowDetail(false)}
+            ></div>
             <div className={cx('container')}>
                 <div className={cx('container-image')}>
                     <Slide>
@@ -78,34 +82,37 @@ function DetailProduct({ setShowDetail, item, alert, setAlert }) {
                 <div className={cx('container-info')}>
                     <ul className={cx('list-info')}>
                         <li>
-                            <span>In Stock</span>
-                        </li>
-                        <li className={cx('infor-nameprod')}>
-                            Product ID {item.masp}
+                            {item.soluong <= 3 && (
+                                <span className={cx('sale')}>-15%</span>
+                            )}
+                            {item.soluong >= 10 && (
+                                <span className={cx('new')}>New</span>
+                            )}
+                            {item.soluong === 0 && (
+                                <span className={cx('outstock')}>
+                                    Out Stock
+                                </span>
+                            )}
                         </li>
                         <li className={cx('infor-nameprod')}>{item.tensp}</li>
-                        <li className={cx('infor-nameprod')}>
+                        <li className={cx('infor-brand')}>
                             Brand : {item.nhacungcap}
                         </li>
                         <li className={cx('infor-price')}>
                             Price :{' '}
                             {item.gia.toLocaleString(undefined, {
                                 maximumFractionDigits: 2,
-                            })}{' '}
+                            })}
                             VND
                         </li>
-                        <li className={cx('infor-nameprod')}>
-                            quanity : {item.soluong}
-                        </li>
-                        <li>
-                            <button
-                                className={cx('button-addtocart')}
-                                onClick={handleAddToCart}
-                            >
-                                <FontAwesomeIcon icon={faCartPlus} />
-                                Add to Cart
-                            </button>
-                        </li>
+                        <li>Quanity : {item.soluong}</li>
+                        <button
+                            className={cx('button-addtocart')}
+                            onClick={handleAddToCart}
+                        >
+                            <FontAwesomeIcon icon={faCartPlus} />
+                            Add to Cart
+                        </button>
                     </ul>
 
                     <button
