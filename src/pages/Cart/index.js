@@ -132,7 +132,12 @@ function Cart() {
                                     <hr></hr>
                                     <div className={cx('total')}>
                                         <span>Total Price</span>
-                                        <span>{`\$${total}`}</span>
+                                        <span>
+                                            {total.toLocaleString(undefined, {
+                                                maximumFractionDigits: 2,
+                                            })}{' '}
+                                            VND
+                                        </span>
                                     </div>
                                     <div>
                                         <button
