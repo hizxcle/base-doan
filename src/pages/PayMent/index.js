@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './PayMent.module.scss';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useMemo } from 'react';
 import useAuth from '~/hooks/useAuth';
 import TotalCart from './TotalCart';
@@ -10,6 +11,7 @@ import AlertConfirm from '~/components/infoModals/AlertConfirm';
 const cx = classNames.bind(styles);
 
 function PayMent() {
+    const navigate = useNavigate();
     const auth = useAuth();
     const [cart, setCart] = useState([]);
     const [data, setData] = useState([]);
@@ -79,7 +81,6 @@ function PayMent() {
             },
         };
         setShowAlertW(false);
-        console.log('result', opt.body);
         fetch(`http://localhost:2222/api/order/addNew`, opt)
             .then((res) => res.json())
             .then((res) => {});
@@ -94,6 +95,7 @@ function PayMent() {
                 .then((res) => {});
         });
         setCart([]);
+        navigate('/order', { replace: true });
     };
     // const filterQuantity = cart.find((item) => item.masp === filterData.masp);
     // console.log('filterQUantity', filterQuantity);
@@ -112,7 +114,6 @@ function PayMent() {
                         <PayMethod
                             data={customerInfo}
                             action={setCustomerInfo}
-                            pay={acceptPayment}
                             setShowAlertW={setShowAlertW}
                         />
                     ) : (

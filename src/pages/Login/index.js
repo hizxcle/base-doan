@@ -41,7 +41,6 @@ const Login = () => {
                 message: 'Sign in successed',
             });
             if (json.role === 'admin' || json.role === 'superAdmin') {
-                console.log('admin day');
                 navigate('/adminlayout', { replace: true });
             }
             if (json.role === 'user') {
@@ -74,7 +73,7 @@ const Login = () => {
                     alert={alert}
                     setAlert={setAlert}
                 />
-                <SignUp setInputValue={setInputValue} inputValue={inputValue} />
+                <SignUp alert={alert} setAlert={setAlert} />
             </div>
         </div>
     );
