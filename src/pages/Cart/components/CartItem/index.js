@@ -77,7 +77,7 @@ function CartItem({ item, setCart }) {
                         {item.gia.toLocaleString(undefined, {
                             maximumFractionDigits: 2,
                         })}{' '}
-                        $
+                        VND
                     </td>
                     <td className={cx('table-item3')}>
                         <div className={cx('quantity-box')}>
@@ -95,8 +95,8 @@ function CartItem({ item, setCart }) {
                             <span>
                                 {totalPrice.toLocaleString(undefined, {
                                     maximumFractionDigits: 2,
-                                })}
-                                $
+                                })}{' '}
+                                VND
                             </span>
                             <button onClick={handleDelete}>
                                 <FontAwesomeIcon icon={faTrash} />
