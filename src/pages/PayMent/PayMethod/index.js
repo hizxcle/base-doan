@@ -5,15 +5,28 @@ import styles from './PayMethod.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '~/hooks/useAuth';
+import Alert from '~/components/infoModals/AlertNotify';
+import validator from '~/utils/validator.utils';
 
 const cx = classNames.bind(styles);
 
 function PayMethod({ data, action, setShowAlertW }) {
+    const [isValid, setIsValid] = useState({
+        ten: true,
+        sdt: true,
+        diachi: true,
+    });
+    const [alert, setAlert] = useState({
+        type: '',
+        show: false,
+        message: '',
+    });
     const auth = useAuth();
 
     return (
         <Fragment>
             <h3>MobileX</h3>
+            {alert.show && <Alert alert={alert} setAlert={setAlert} />}
             <span className={cx('container-sub')}>
                 Cart {'>'} Information {'>'}{' '}
                 <span className={cx('scale-item')}>Pay method </span>
@@ -24,8 +37,20 @@ function PayMethod({ data, action, setShowAlertW }) {
                         <p>Full name</p>
                         <input
                             value={data?.hoten || ''}
+                            onInput={() => {
+                                setIsValid({ ...isValid, ten: true });
+                            }}
                             onChange={(e) => {
-                                action({ ...data, hoten: e.target.value });
+                                action({
+                                    ...data,
+                                    hoten: e.target.value.trim(),
+                                });
+                            }}
+                            onBlur={(e) => {
+                                setIsValid({
+                                    ...isValid,
+                                    ten: e.target.value !== '',
+                                });
                             }}
                         />
                     </div>
@@ -35,8 +60,17 @@ function PayMethod({ data, action, setShowAlertW }) {
                         <p>Phone number</p>
                         <input
                             value={data?.sdt || ''}
+                            onInput={() => {
+                                setIsValid({ ...isValid, sdt: true });
+                            }}
                             onChange={(e) => {
-                                action({ ...data, sdt: e.target.value });
+                                action({ ...data, sdt: e.target.value.trim() });
+                            }}
+                            onBlur={(e) => {
+                                setIsValid({
+                                    ...isValid,
+                                    sdt: validator.phoneNumber(e.target.value),
+                                });
                             }}
                         />
                     </div>
@@ -46,8 +80,20 @@ function PayMethod({ data, action, setShowAlertW }) {
                         <p>Address</p>
                         <input
                             value={data?.diachi || ''}
+                            onInput={() => {
+                                setIsValid({ ...isValid, sdt: true });
+                            }}
                             onChange={(e) => {
-                                action({ ...data, diachi: e.target.value });
+                                action({
+                                    ...data,
+                                    diachi: e.target.value.trim(),
+                                });
+                            }}
+                            onBlur={(e) => {
+                                setIsValid({
+                                    ...isValid,
+                                    diachi: e.target.value !== '',
+                                });
                             }}
                         />
                     </div>
@@ -100,7 +146,27 @@ function PayMethod({ data, action, setShowAlertW }) {
                     </Link>
                 </div>
                 <div className={cx('button')}>
-                    <button onClick={() => setShowAlertW(true)}>
+                    <button
+                        onClick={() => {
+                            console.log('check', isValid);
+                            const isEnough =
+                                data?.hoten?.length > 0 &&
+                                data?.sdt?.length > 0 &&
+                                data?.diachi?.length > 0;
+                            const isTrueInfo =
+                                !Object.values(isValid).includes(false);
+                            if (isEnough && isTrueInfo) {
+                                setShowAlertW(true);
+                            } else {
+                                setAlert({
+                                    type: 'warning',
+                                    show: true,
+                                    message:
+                                        'have problem with order info, please review info',
+                                });
+                            }
+                        }}
+                    >
                         <span>Agree</span>
                         <FontAwesomeIcon icon={faCheckCircle} />
                     </button>

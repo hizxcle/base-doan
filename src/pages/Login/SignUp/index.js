@@ -44,7 +44,9 @@ function SignUp({ alert, setAlert }) {
                 sdt: sdt,
             }),
         };
-        const isTrueInfo = [...new Set(Object.values(isValid))][0];
+        const isTrueInfo = ![...new Set(Object.values(isValid))].includes(
+            false,
+        );
         if (isTrueInfo) {
             const sendInfo = await fetch(url, opt);
             const result = await sendInfo.json();
@@ -230,10 +232,11 @@ function SignUp({ alert, setAlert }) {
                             setIsValid({
                                 ...isValid,
                                 matkhau2:
+                                    e.target.value !== '' &&
                                     validator.compare(
                                         data.matkhau,
                                         e.target.value,
-                                    ) && e.target.value != '',
+                                    ),
                             });
                         }}
                         onInput={(e) => {

@@ -35,15 +35,17 @@ function CartItem({ item, setCart }) {
     };
 
     const handlePlus = async () => {
-        await setQuantity(quantity + 1);
-        const res = await updateCart(
-            auth.userInfo.manguoidung,
-            item.masp,
-            quantity + 1,
-        );
-        await res.json();
-        const newData = await getCart(auth.userInfo.manguoidung);
-        await setCart(newData);
+        if (quantity < item.soluong) {
+            await setQuantity(quantity + 1);
+            const res = await updateCart(
+                auth.userInfo.manguoidung,
+                item.masp,
+                quantity + 1,
+            );
+            await res.json();
+            const newData = await getCart(auth.userInfo.manguoidung);
+            await setCart(newData);
+        }
     };
 
     const handleDelete = async () => {
@@ -59,6 +61,28 @@ function CartItem({ item, setCart }) {
         } catch (e) {
             console.log(e);
         }
+    };
+    const handleInput = (e) => {
+        const test = async () => {
+            let val = e.target.value.match(/\d+/g);
+            if (val > item.soluong) {
+                val = item.soluong;
+            }
+            if (val < 0) {
+                val = 0;
+            }
+            console.log(val);
+            await setQuantity(Number(val));
+            const res = await updateCart(
+                auth.userInfo.manguoidung,
+                item.masp,
+                quantity,
+            );
+            await res.json();
+            const newData = await getCart(auth.userInfo.manguoidung);
+            await setCart(newData);
+        };
+        test();
     };
 
     return (
@@ -84,7 +108,14 @@ function CartItem({ item, setCart }) {
                             <button onClick={handleMinus}>
                                 <FontAwesomeIcon icon={faMinus} />
                             </button>
-                            <span>{quantity}</span>
+                            <span>
+                                <input
+                                    className={cx('input-quantity')}
+                                    type="text"
+                                    value={quantity}
+                                    onChange={handleInput}
+                                />
+                            </span>
                             <button onClick={handlePlus}>
                                 <FontAwesomeIcon icon={faPlus} />
                             </button>

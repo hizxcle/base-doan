@@ -85,6 +85,10 @@ function PayMent() {
             .then((res) => res.json())
             .then((res) => {});
         cart.forEach((ele) => {
+            const item = filterData.find((item) => {
+                return item.masp === ele.masp;
+            });
+            const quantity = item.soluong - ele.soluong;
             fetch(
                 `http://localhost:2222/api/cart/delete/${ele.mand}/${ele.masp}`,
                 {
@@ -93,6 +97,18 @@ function PayMent() {
             )
                 .then((res) => res.json())
                 .then((res) => {});
+            console.log('masp', ele.masp);
+            console.log('soluong', quantity);
+            fetch('http://localhost:2222/api/product/update/quantity', {
+                method: 'put',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: ele.masp,
+                    quantity: quantity,
+                }),
+            });
         });
         setCart([]);
         navigate('/order', { replace: true });
