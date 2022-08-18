@@ -67,7 +67,7 @@ const ChangePasswd = ({ savePass, setEdit }) => {
                 </div>
                 <div>
                     <span className={cx('invalid-text')}>
-                        {!isValid.old ? 'do dai mat khau duoi 6 ky tu' : ' '}
+                        {!isValid.old ? 'Password length < 6 characters' : ' '}
                     </span>
                 </div>
             </div>
@@ -126,9 +126,9 @@ const ChangePasswd = ({ savePass, setEdit }) => {
                     <span className={cx('invalid-text')}>
                         {validator.compare(data.newPass, data.oldPass) &&
                         data.newPass !== ''
-                            ? 'mat khau trung voi mat khau cu'
+                            ? 'Your new password is same with the old'
                             : !isValid.new
-                            ? 'do dai mat khau duoi 6 ky tu'
+                            ? 'Length > 6 characters'
                             : ' '}
                     </span>
                 </div>
@@ -184,7 +184,7 @@ const ChangePasswd = ({ savePass, setEdit }) => {
                 </div>
                 <div>
                     <span className={cx('invalid-text')}>
-                        {!isValid.re ? 'mat khau khong trung hop' : ' '}
+                        {!isValid.re ? 'Your password is not matched' : ' '}
                     </span>
                 </div>
             </div>

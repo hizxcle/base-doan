@@ -75,7 +75,7 @@ function SignUp({ alert, setAlert }) {
             setAlert({
                 type: 'error',
                 show: true,
-                message: 'thong tin chua chinh xac',
+                message: 'Incorrect information',
             });
         }
     };

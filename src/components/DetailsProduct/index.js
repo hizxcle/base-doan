@@ -34,7 +34,7 @@ function DetailProduct({ setShowDetail, item, alert, setAlert }) {
                     addToCart(auth.userInfo.manguoidung, item.masp, 1);
                     setAlert({
                         type: 'success',
-                        message: 'Them vao gio hang thanh cong',
+                        message: 'Add to cart success',
                         show: true,
                     });
                 }
@@ -43,7 +43,7 @@ function DetailProduct({ setShowDetail, item, alert, setAlert }) {
         } else {
             setAlert({
                 type: 'error',
-                message: 'San pham da ton tai trong gio hang',
+                message: 'Add to cart fail',
                 show: true,
             });
         }
