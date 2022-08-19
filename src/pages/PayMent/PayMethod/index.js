@@ -43,7 +43,7 @@ function PayMethod({ data, action, setShowAlertW }) {
                             onChange={(e) => {
                                 action({
                                     ...data,
-                                    hoten: e.target.value.trim(),
+                                    hoten: e.target.value,
                                 });
                             }}
                             onBlur={(e) => {
