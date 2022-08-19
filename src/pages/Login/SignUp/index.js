@@ -6,6 +6,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import validator from '~/utils/validator.utils';
 
 import { useMemo, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
 
 const cx = classNames.bind(style);
 
@@ -32,9 +33,11 @@ function SignUp({ alert, setAlert }) {
         const isTrueInfo = ![...new Set(Object.values(isValid))].includes(
             false,
         );
+        const notNull = !Object.values(data).includes('');
+        console.log('not null', notNull);
         const truePass = validator.compare(data.matkhau, data.matkhau2);
 
-        return isTrueInfo && truePass;
+        return notNull && isTrueInfo && truePass;
     }, [data, isValid]);
     const createSubmit = async () => {
         const { tentk, matkhau, email, sdt } = data;
@@ -65,7 +68,7 @@ function SignUp({ alert, setAlert }) {
                 setAlert({
                     type: 'success',
                     show: true,
-                    message: 'Sign in successed',
+                    message: 'Sign up success',
                 });
                 setData({
                     tentk: '',

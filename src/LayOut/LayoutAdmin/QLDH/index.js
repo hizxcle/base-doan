@@ -28,16 +28,16 @@ function QLDH({ data: dt, setTable: setTab, isSearch = false }) {
     return (
         <div>
             <div className={cx('title')}>
-                <p>QUẢN LÝ ĐƠN HÀNG</p>
+                <p>Order management</p>
             </div>
             <div className={cx('notice')}>
                 <div>
-                    <h3>Trạng thái đơn hàng</h3>
-                    <p>0 : Hủy đơn</p>
-                    <p>1 : Chưa xác nhận</p>
-                    <p>2 : Đã vận chuyển</p>
-                    <p>3 : Gửi hàng thành công</p>
-                    <p>4 : Nhận hàng thành công</p>
+                    <h3>Status</h3>
+                    <p>0 : Cancelled</p>
+                    <p>1 : Unverify</p>
+                    <p>2 : On shipping</p>
+                    <p>3 : Success Delivery</p>
+                    <p>4 : Received </p>
                 </div>
             </div>
             <div className={cx('navigation')}>
@@ -45,7 +45,7 @@ function QLDH({ data: dt, setTable: setTab, isSearch = false }) {
                     onClick={() => setTable('overview')}
                     className={cx('', { active: table === 'overview' })}
                 >
-                    All Order
+                    Overview order
                 </button>
                 <button
                     onClick={() => setTable(0)}

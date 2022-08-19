@@ -86,7 +86,7 @@ function PayMethod({ data, action, setShowAlertW }) {
                             onChange={(e) => {
                                 action({
                                     ...data,
-                                    diachi: e.target.value.trim(),
+                                    diachi: e.target.value,
                                 });
                             }}
                             onBlur={(e) => {

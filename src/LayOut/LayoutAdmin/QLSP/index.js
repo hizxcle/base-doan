@@ -5,6 +5,7 @@ import { Fragment, useRef, useState } from 'react';
 
 import OnlyReadRow from './components/OnlyReadRow';
 import EditRow from './components/EditRow';
+import validator from '~/utils/validator.utils';
 
 import { getData, deleteApi } from '~/Services';
 // import Alert from '~/components/infoModals/AlertNotify';
@@ -87,26 +88,29 @@ function QLSP({ data, setPosts, setAlert }) {
         <div className={cx('wrapper')}>
             {/* <Alert alert={alert} setAlert={setAlert} /> */}
             <div className={cx('title')}>
-                <p>QUẢN LÝ SẢN PHẨM</p>
+                <p>Product manager</p>
             </div>
 
             <div className={cx('form')}>
                 <form encType="multipart/form-data">
                     <p>
-                        Ten san pham :
+                        Product 'name':
                         <input
                             className={cx('input')}
                             type="text"
                             name="tensp"
                             value={addPro.tensp || ''}
                             onChange={(e) => {
-                                setAddPro({ ...addPro, tensp: e.target.value });
+                                setAddPro({
+                                    ...addPro,
+                                    tensp: validator.firstSpace(e.target.value),
+                                });
                             }}
-                            placeholder="Nhap vao  Ten san pham...."
+                            placeholder="Input product 'name...."
                         />
                     </p>
                     <p>
-                        Loai San Pham :
+                        Type :
                         <input
                             className={cx('input')}
                             type="text"
@@ -115,27 +119,33 @@ function QLSP({ data, setPosts, setAlert }) {
                             onChange={(e) => {
                                 setAddPro({
                                     ...addPro,
-                                    loaisp: e.target.value,
+                                    loaisp: validator.firstSpace(
+                                        e.target.value,
+                                    ),
                                 });
                             }}
-                            placeholder="Nhap vao Loai San Pham....."
+                            placeholder="Input product 'type....."
                         />
                     </p>
                     <p>
-                        Gia :
+                        Price :
                         <input
                             className={cx('input')}
                             type="text"
                             name="gia"
                             value={addPro.gia || ''}
                             onChange={(e) => {
-                                setAddPro({ ...addPro, gia: e.target.value });
+                                setAddPro({
+                                    ...addPro,
+                                    gia: validator.onlyNumber(e.target.value),
+                                });
                             }}
-                            placeholder="Nhap vao Gia...."
+                            placeholder="Input price...."
                         />
+                        <span>.Vnd</span>
                     </p>
                     <p>
-                        Nha cung cap :
+                        Provider :
                         <input
                             className={cx('input')}
                             type="text"
@@ -144,27 +154,32 @@ function QLSP({ data, setPosts, setAlert }) {
                             onChange={(e) => {
                                 setAddPro({
                                     ...addPro,
-                                    nhacungcap: e.target.value,
+                                    nhacungcap: validator.firstSpace(
+                                        e.target.value,
+                                    ),
                                 });
                             }}
-                            placeholder="Nhap vao Nha cung cap...."
+                            placeholder="Provider 'name...."
                         />
                     </p>
                     <p>
-                        Don vi tinh :
+                        Unit :
                         <input
                             className={cx('input')}
                             type="text"
                             name="donvi"
                             value={addPro.donvi || ''}
                             onChange={(e) => {
-                                setAddPro({ ...addPro, donvi: e.target.value });
+                                setAddPro({
+                                    ...addPro,
+                                    donvi: validator.firstSpace(e.target.value),
+                                });
                             }}
-                            placeholder="Nhap vao Don vi tinh...."
+                            placeholder="Input unit...."
                         />
                     </p>
                     <p>
-                        So luong :
+                        Quantity :
                         <input
                             className={cx('input')}
                             type="text"
@@ -173,18 +188,21 @@ function QLSP({ data, setPosts, setAlert }) {
                             onChange={(e) => {
                                 setAddPro({
                                     ...addPro,
-                                    soluong: e.target.value,
+                                    soluong: validator.onlyNumber(
+                                        e.target.value,
+                                    ),
                                 });
                             }}
-                            placeholder="Nhap vao So luong...."
+                            placeholder="Input quantity...."
                         />
                     </p>
                     <p>
-                        Anh dai dien :
+                        Thumbnail :
                         <input
                             className={cx('input')}
                             type="file"
                             name="thumb"
+                            accept="image/png, image/gif, image/jpeg"
                             //  files={addPro.thumb || ''}
                             onChange={(e) => {
                                 setAddPro({
@@ -192,15 +210,16 @@ function QLSP({ data, setPosts, setAlert }) {
                                     thumb: e.target.files[0],
                                 });
                             }}
-                            placeholder="Nhap vao Anh dai dien...."
+                            placeholder="Enter thumbnail...."
                         />
                     </p>
                     <p>
-                        Anh trung bay san pham :
+                        Other imgs :
                         <input
                             className={cx('input')}
                             type="file"
                             multiple
+                            accept="image/png, image/gif, image/jpeg"
                             name="images"
                             onChange={(e) => {
                                 setAddPro({
@@ -208,7 +227,7 @@ function QLSP({ data, setPosts, setAlert }) {
                                     images: e.target.files,
                                 });
                             }}
-                            placeholder="Nhap vao Anh trung bay...."
+                            placeholder="Input other imgs...."
                         />
                     </p>
                     <button
@@ -225,15 +244,15 @@ function QLSP({ data, setPosts, setAlert }) {
                 <table border="1" className={cx('table')}>
                     <thead>
                         <tr>
-                            <td>Ma San pham</td>
-                            <td>Tên sản phẩm</td>
-                            <td>Loại sản phẩm</td>
-                            <td>Gia</td>
-                            <td>Nha cung cap</td>
-                            <td>Don vi</td>
-                            <td>So luong</td>
-                            <td>Anh dai dien</td>
-                            <td className={cx('album-images')}>Anh khac</td>
+                            <td>Product code</td>
+                            <td>Product name</td>
+                            <td>Type</td>
+                            <td>Price</td>
+                            <td>Provider 'name</td>
+                            <td>Unit</td>
+                            <td>Quantity</td>
+                            <td>ThumbNail</td>
+                            <td className={cx('album-images')}>Other imgs</td>
                             <td colSpan="2">Action</td>
                         </tr>
                     </thead>

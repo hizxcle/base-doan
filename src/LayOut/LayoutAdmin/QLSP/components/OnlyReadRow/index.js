@@ -41,7 +41,7 @@ function OnlyReadRow({ item, handleEdit, handleDelete }) {
                     type="button"
                     onClick={(e) => handleEdit(e, item)}
                 >
-                    <FontAwesomeIcon icon={faPenToSquare} /> Sửa
+                    <FontAwesomeIcon icon={faPenToSquare} /> Change
                 </button>
             </td>
             <td>
@@ -52,7 +52,7 @@ function OnlyReadRow({ item, handleEdit, handleDelete }) {
                         handleDelete(item.masp);
                     }}
                 >
-                    <FontAwesomeIcon icon={faTrash} /> Xóa
+                    <FontAwesomeIcon icon={faTrash} /> Delete
                 </button>
             </td>
         </tr>

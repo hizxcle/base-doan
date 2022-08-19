@@ -5,22 +5,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCancel, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '~/hooks/useAuth';
 import Alert from '~/components/infoModals/AlertNotify';
-
+import validator from '~/utils/validator.utils';
 const cx = classNames.bind(styles);
 function EditItem({ data, action, setEdit }) {
     const auth = useAuth();
+    const [isValid, setIsValid] = useState({
+        sdt: true,
+        email: true,
+    });
     const [alert, setAlert] = useState({
         type: '',
         message: '',
         show: false,
     });
     const [input, setInput] = useState({
-        hoten: data.hoten,
+        hoten: data.hoten || '',
         gioitinh: Number(data.gioitinh),
         ngaysinh: data.ngaysinh || '',
-        sdt: data.sdt,
-        email: data.email,
-        diachi: data.diachi,
+        sdt: data.sdt || '',
+        email: data.email || '',
+        diachi: data.diachi || '',
     });
 
     const handleShowEdit = () => {
@@ -63,9 +67,12 @@ function EditItem({ data, action, setEdit }) {
                     <p className={cx('item-desc')}>Full name :</p>
                     <input
                         className={cx('item-val')}
-                        value={input.hoten}
+                        value={input.hoten || ''}
                         onChange={(e) => {
-                            setInput({ ...input, hoten: e.target.value });
+                            setInput({
+                                ...input,
+                                hoten: e.target.value.match(/^\S.*/),
+                            });
                         }}
                     />
                 </div>
@@ -79,12 +86,12 @@ function EditItem({ data, action, setEdit }) {
                             className={cx('item-val')}
                             type="radio"
                             checked={input.gioitinh == 1}
-                            onChange={(e) => {
+                            onChange={(e) =>
                                 setInput({
                                     ...input,
                                     gioitinh: e.target.value,
-                                });
-                            }}
+                                })
+                            }
                         />
                         <label htmlFor="gendernam">Male</label>
                     </p>
@@ -97,7 +104,7 @@ function EditItem({ data, action, setEdit }) {
                             type="radio"
                             checked={input.gioitinh == 0}
                             onChange={(e) => {
-                                setInput({
+                                return setInput({
                                     ...input,
                                     gioitinh: e.target.value,
                                 });
@@ -114,7 +121,7 @@ function EditItem({ data, action, setEdit }) {
                             type="radio"
                             checked={![1, 0].includes(input.gioitinh)}
                             onChange={(e) => {
-                                setInput({
+                                return setInput({
                                     ...input,
                                     gioitinh: e.target.value,
                                 });
@@ -131,7 +138,7 @@ function EditItem({ data, action, setEdit }) {
                         className={cx('item-val')}
                         value={input.ngaysinh}
                         onChange={(e) => {
-                            setInput({
+                            return setInput({
                                 ...input,
                                 ngaysinh: e.target.value,
                             });
@@ -143,10 +150,24 @@ function EditItem({ data, action, setEdit }) {
                     <p className={cx('item-desc')}>Phone :</p>
                     <input
                         type="text"
-                        className={cx('item-val')}
-                        value={input.sdt}
+                        className={cx('item-val', { invalid: !isValid.sdt })}
+                        onBlur={(e) =>
+                            setIsValid({
+                                ...isValid,
+                                sdt:
+                                    e.target.value === ''
+                                        ? true
+                                        : validator.phoneNumber(e.target.value),
+                            })
+                        }
+                        onInput={(e) => setIsValid({ ...isValid, sdt: true })}
+                        value={input.sdt || ''}
+                        placeholder="Phone number ten digits, please"
                         onChange={(e) => {
-                            setInput({ ...input, sdt: e.target.value });
+                            return setInput({
+                                ...input,
+                                sdt: validator.onlyNumber(e.target.value),
+                            });
                         }}
                     />
                 </div>
@@ -155,10 +176,24 @@ function EditItem({ data, action, setEdit }) {
                     <p className={cx('item-desc')}>Email :</p>
                     <input
                         type="email"
-                        className={cx('item-val')}
-                        value={input.email}
+                        className={cx('item-val', { invalid: !isValid.email })}
+                        placeholder="example@gmail.com"
+                        value={input.email || ''}
+                        onBlur={(e) =>
+                            setIsValid({
+                                ...isValid,
+                                email:
+                                    e.target.value === ''
+                                        ? true
+                                        : validator.email(e.target.value),
+                            })
+                        }
+                        onInput={(e) => setIsValid({ ...isValid, email: true })}
                         onChange={(e) => {
-                            setInput({ ...input, email: e.target.value });
+                            return setInput({
+                                ...input,
+                                email: validator.firstSpace(e.target.value),
+                            });
                         }}
                     />
                 </div>
@@ -168,9 +203,12 @@ function EditItem({ data, action, setEdit }) {
                     <input
                         type="text"
                         className={cx('item-val')}
-                        value={input.diachi}
+                        value={input.diachi || ''}
                         onChange={(e) => {
-                            setInput({ ...input, diachi: e.target.value });
+                            return setInput({
+                                ...input,
+                                diachi: validator.firstSpace(e.target.value),
+                            });
                         }}
                     />
                 </div>

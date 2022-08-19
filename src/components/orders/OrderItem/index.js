@@ -35,7 +35,7 @@ function OrderItem({ data, action, type, setTab = false, isSameUser = false }) {
             );
             pros = await pros.json();
             if (pros.length > 0) {
-                pros.map(async (ele) => {
+                pros = pros.map(async (ele) => {
                     const { soluong, tensp, tenncc, gia } = ele;
 
                     let result = await fetch(
@@ -47,9 +47,11 @@ function OrderItem({ data, action, type, setTab = false, isSameUser = false }) {
                     result.gia = gia;
                     result.nhacungcap = tenncc;
                     result.tensp = tensp;
-                    setProducts([...products, result]);
+                    return result;
                 });
             }
+            const result = await Promise.all(pros);
+            setProducts(result);
         };
         fetchData();
     }, [data]);
@@ -62,9 +64,9 @@ function OrderItem({ data, action, type, setTab = false, isSameUser = false }) {
     }, [products]);
 
     const mess = useMemo(() => {
-        if (type == 1) return 'huy don';
-        if (type == 2) return 'huy don';
-        if (type == 3) return 'da nhan hang';
+        if (type == 1) return 'cancel';
+        if (type == 2) return 'cancel';
+        if (type == 3) return 'received order';
     }, [type]);
     const status = useMemo(() => {
         if (type == 0) return 'cancelled';
@@ -78,7 +80,7 @@ function OrderItem({ data, action, type, setTab = false, isSameUser = false }) {
         const opt = {
             method: 'put',
             body: JSON.stringify({
-                ghichu: 'da huy',
+                ghichu: 'cancelled',
             }),
         };
         fetch(`http://localhost:2222/api/order/huydon/${data.madh}`, opt);
@@ -169,11 +171,11 @@ function OrderItem({ data, action, type, setTab = false, isSameUser = false }) {
                         onClick={() => {
                             update({
                                 trangthai: 2,
-                                ghichu: 'don hang dang dc van chuyen',
+                                ghichu: 'on shipping',
                             });
                         }}
                     >
-                        xac nhan don hang
+                        Verified
                     </button>
                 </td>
             ) : isAdmin && Number(type) === 2 ? (
@@ -182,7 +184,7 @@ function OrderItem({ data, action, type, setTab = false, isSameUser = false }) {
                         onClick={() => {
                             update({
                                 trangthai: 3,
-                                ghichu: 'van chuyen thanh cong',
+                                ghichu: 'success delivery',
                             });
                         }}
                     >
@@ -191,7 +193,7 @@ function OrderItem({ data, action, type, setTab = false, isSameUser = false }) {
                 </td>
             ) : Number(type) === 3 ? (
                 <td>
-                    <button onClick={received}>da nhan hang</button>
+                    <button onClick={received}>Received order</button>
                 </td>
             ) : (
                 <td></td>
@@ -211,7 +213,7 @@ function OrderItem({ data, action, type, setTab = false, isSameUser = false }) {
                             setTab(url);
                         }}
                     >
-                        View Info
+                        View gust 'info
                     </button>
                 </td>
             ) : (
