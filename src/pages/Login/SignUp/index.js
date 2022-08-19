@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import validator from '~/utils/validator.utils';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const cx = classNames.bind(style);
 
@@ -28,7 +28,14 @@ function SignUp({ alert, setAlert }) {
         pass: false,
         rePass: false,
     });
+    const isTrueInfo = useMemo(() => {
+        const isTrueInfo = ![...new Set(Object.values(isValid))].includes(
+            false,
+        );
+        const truePass = validator.compare(data.matkhau, data.matkhau2);
 
+        return isTrueInfo && truePass;
+    }, [data, isValid]);
     const createSubmit = async () => {
         const { tentk, matkhau, email, sdt } = data;
         const url = 'http://localhost:2222/api/user/signUp/';
@@ -44,9 +51,6 @@ function SignUp({ alert, setAlert }) {
                 sdt: sdt,
             }),
         };
-        const isTrueInfo = ![...new Set(Object.values(isValid))].includes(
-            false,
-        );
         if (isTrueInfo) {
             const sendInfo = await fetch(url, opt);
             const result = await sendInfo.json();
@@ -63,13 +67,13 @@ function SignUp({ alert, setAlert }) {
                     show: true,
                     message: 'Sign in successed',
                 });
-                // setData({
-                //     tentk: '',
-                //     matkhau: '',
-                //     matkhau2: '',
-                //     email: '',
-                //     sdt: '',
-                // });
+                setData({
+                    tentk: '',
+                    matkhau: '',
+                    matkhau2: '',
+                    email: '',
+                    sdt: '',
+                });
             }
         } else {
             setAlert({
