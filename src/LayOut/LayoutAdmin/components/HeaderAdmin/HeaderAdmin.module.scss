@@ -88,6 +88,7 @@
     margin-right: 5px;
 
     &:hover {
+        cursor: pointer;
         text-decoration: underline;
     }
 }
@@ -121,6 +122,10 @@
 .item-icon {
     width: 24px;
     height: 24px;
+}
+.title {
+    font-size: 3rem;
+    text-align: center;
 }
 
 //

@@ -26,71 +26,76 @@ function QLDH({ data: dt, setTable: setTab, isSearch = false }) {
     }, [dt]);
 
     return (
-        <div>
+        <div className={cx('cover')}>
             <div className={cx('banner')}>
                 <img
                     src="https://cdn.tgdd.vn/2021/07/campaign/uu-diem-khi-su-dung-phan-mem-quan-ly-van-chuyen-cho-don-vi-ban-hangcopy-640x360.jpg"
                     alt="anh quan ly don hang"
                 />
-                <div className={cx('title')}>
-                    <p>Order management</p>
-                </div>
-                <div className={cx('notice')}>
-                    <div>
-                        <h3>Status</h3>
-                        <p>0 : Cancelled</p>
-                        <p>1 : Unverify</p>
-                        <p>2 : On shipping</p>
-                        <p>3 : Success Delivery</p>
-                        <p>4 : Received </p>
+            </div>
+            <div className={cx('wrapper')}>
+                <div className={cx('header')}>
+                    <div className={cx('title')}>
+                        <p>Order management</p>
+                    </div>
+                    <div className={cx('notice')}>
+                        <div>
+                            <h3>Status</h3>
+                            <p>0 : Cancelled</p>
+                            <p>1 : Unverify</p>
+                            <p>2 : On shipping</p>
+                            <p>3 : Success Delivery</p>
+                            <p>4 : Received </p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className={cx('navigation')}>
-                <button
-                    onClick={() => setTable('overview')}
-                    className={cx('', { active: table === 'overview' })}
-                >
-                    Overview order
-                </button>
-                <button
-                    onClick={() => setTable(0)}
-                    className={cx('', { active: table == 0 })}
-                >
-                    Cancelled
-                </button>
-                <button
-                    onClick={() => setTable(4)}
-                    className={cx('', { active: table == 4 })}
-                >
-                    Received
-                </button>
-                <button
-                    onClick={() => setTable('all')}
-                    className={cx('', { active: table === 'all' })}
-                >
-                    History Order
-                </button>
-            </div>
+                <div className={cx('navigation')}>
+                    <button
+                        onClick={() => setTable('overview')}
+                        className={cx('nav-item', {
+                            active: table === 'overview',
+                        })}
+                    >
+                        Overview order
+                    </button>
+                    <button
+                        onClick={() => setTable(0)}
+                        className={cx('nav-item', { active: table == 0 })}
+                    >
+                        Cancelled
+                    </button>
+                    <button
+                        onClick={() => setTable(4)}
+                        className={cx('nav-item', { active: table == 4 })}
+                    >
+                        Received
+                    </button>
+                    <button
+                        onClick={() => setTable('all')}
+                        className={cx('nav-item', { active: table === 'all' })}
+                    >
+                        History Order
+                    </button>
+                </div>
 
-            <div className={cx('content')}>
-                {table === 'overview' ? (
-                    <OverviewTable
-                        data={data}
-                        action={setData}
-                        setTab={setTab}
-                    />
-                ) : (
-                    <OrderTable
-                        data={data}
-                        action={setData}
-                        type={table}
-                        setTab={setTab}
-                    />
-                )}
-            </div>
-            {/* <table border="1" className={cx('table')}>
+                <div className={cx('content')}>
+                    {table === 'overview' ? (
+                        <OverviewTable
+                            data={data}
+                            action={setData}
+                            setTab={setTab}
+                        />
+                    ) : (
+                        <OrderTable
+                            data={data}
+                            action={setData}
+                            type={table}
+                            setTab={setTab}
+                        />
+                    )}
+                </div>
+                {/* <table border="1" className={cx('table')}>
                 <thead>
                     <tr>
                         <th className={cx('small')}>Mã đơn hàng</th>
@@ -129,6 +134,7 @@ function QLDH({ data: dt, setTable: setTab, isSearch = false }) {
                     ))}
                 </tbody>
             </table> */}
+            </div>
         </div>
     );
 }
