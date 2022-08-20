@@ -27,19 +27,13 @@ function QLDH({ data: dt, setTable: setTab, isSearch = false }) {
 
     return (
         <div>
-            <div className={cx('title')}>
-                <p>QUẢN LÝ ĐƠN HÀNG</p>
+            <div className={cx('banner')}>
+                <img
+                    src="https://cdn.tgdd.vn/2021/07/campaign/uu-diem-khi-su-dung-phan-mem-quan-ly-van-chuyen-cho-don-vi-ban-hangcopy-640x360.jpg"
+                    alt="anh quan ly don hang"
+                />
             </div>
-            <div className={cx('notice')}>
-                <div>
-                    <h3>Trạng thái đơn hàng</h3>
-                    <p>0 : Hủy đơn</p>
-                    <p>1 : Chưa xác nhận</p>
-                    <p>2 : Đã vận chuyển</p>
-                    <p>3 : Gửi hàng thành công</p>
-                    <p>4 : Nhận hàng thành công</p>
-                </div>
-            </div>
+
             <div className={cx('navigation')}>
                 <button
                     onClick={() => setTable('overview')}

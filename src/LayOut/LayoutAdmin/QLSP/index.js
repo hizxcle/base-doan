@@ -87,7 +87,10 @@ function QLSP({ data, setPosts, setAlert }) {
         <div className={cx('wrapper')}>
             {/* <Alert alert={alert} setAlert={setAlert} /> */}
             <div className={cx('title')}>
-                <p>QUẢN LÝ SẢN PHẨM</p>
+                <img
+                    src="https://trustsales.vn/image/quan-ly-san-pham.jpg"
+                    alt="anh quan ly san pham"
+                />
             </div>
 
             <div className={cx('form')}>

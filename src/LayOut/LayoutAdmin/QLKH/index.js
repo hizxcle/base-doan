@@ -62,6 +62,12 @@ function QLKH({ data: dt, setTable: setTab }) {
     };
     return (
         <div className={cx('wrapper')}>
+            <div className={cx('banner')}>
+                <img
+                    src="https://bizflyportal.mediacdn.vn/thumb_wm/1000,100/bizflyportal/images/qua16393876766418.jpeg"
+                    alt="anh quan ly nguoi dung"
+                />
+            </div>
             {/* <div className={cx('navigation')}>
                 <button
                     className={cx('btn-user-tab', 'table', {
