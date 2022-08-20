@@ -32,6 +32,19 @@ function QLDH({ data: dt, setTable: setTab, isSearch = false }) {
                     src="https://cdn.tgdd.vn/2021/07/campaign/uu-diem-khi-su-dung-phan-mem-quan-ly-van-chuyen-cho-don-vi-ban-hangcopy-640x360.jpg"
                     alt="anh quan ly don hang"
                 />
+                <div className={cx('title')}>
+                    <p>Order management</p>
+                </div>
+                <div className={cx('notice')}>
+                    <div>
+                        <h3>Status</h3>
+                        <p>0 : Cancelled</p>
+                        <p>1 : Unverify</p>
+                        <p>2 : On shipping</p>
+                        <p>3 : Success Delivery</p>
+                        <p>4 : Received </p>
+                    </div>
+                </div>
             </div>
 
             <div className={cx('navigation')}>
@@ -39,7 +52,7 @@ function QLDH({ data: dt, setTable: setTab, isSearch = false }) {
                     onClick={() => setTable('overview')}
                     className={cx('', { active: table === 'overview' })}
                 >
-                    All Order
+                    Overview order
                 </button>
                 <button
                     onClick={() => setTable(0)}

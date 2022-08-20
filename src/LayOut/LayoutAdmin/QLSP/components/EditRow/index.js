@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCancel, faSave, faClose } from '@fortawesome/free-solid-svg-icons';
+import validator from '~/utils/validator.utils';
 
 import styles from './EditRow.module.scss';
 import classNames from 'classnames/bind';
@@ -90,12 +91,12 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                 <input
                     className={cx('input-large')}
                     type="text"
-                    placeholder="Ten san pham"
+                    placeholder="Product 'name"
                     value={inputValue.tensp}
                     onChange={(e) => {
                         setInputValue({
                             ...inputValue,
-                            tensp: e.target.value,
+                            tensp: validator.firstSpace(e.target.value),
                         });
                     }}
                 ></input>
@@ -104,12 +105,12 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                 <input
                     className={cx('input-medium')}
                     type="text"
-                    placeholder="Loai san pham"
+                    placeholder="Type"
                     value={inputValue.loaisp}
                     onChange={(e) => {
                         setInputValue({
                             ...inputValue,
-                            loaisp: e.target.value,
+                            loaisp: validator.firstSpace(e.target.value),
                         });
                     }}
                 />
@@ -118,12 +119,12 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                 <input
                     className={cx('input-medium')}
                     type="text"
-                    placeholder="Gia"
+                    placeholder="Price"
                     value={inputValue.gia}
                     onChange={(e) => {
                         setInputValue({
                             ...inputValue,
-                            gia: e.target.value,
+                            gia: validator.onlyNumber(e.target.value),
                         });
                     }}
                 />
@@ -132,12 +133,12 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                 <input
                     className={cx('input-medium')}
                     type="text"
-                    placeholder="Nha cung cap"
+                    placeholder="Provider"
                     value={inputValue.nhacungcap}
                     onChange={(e) => {
                         setInputValue({
                             ...inputValue,
-                            nhacungcap: e.target.value,
+                            nhacungcap: validator.firstSpace(e.target.value),
                         });
                     }}
                 />
@@ -146,12 +147,12 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                 <input
                     className={cx('input-small')}
                     type="text"
-                    placeholder="Don vi"
+                    placeholder="Unit"
                     value={inputValue.donvi}
                     onChange={(e) => {
                         setInputValue({
                             ...inputValue,
-                            donvi: e.target.value,
+                            donvi: validator.firstSpace(e.target.value),
                         });
                     }}
                 />
@@ -160,12 +161,12 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                 <input
                     className={cx('input-small')}
                     type="text"
-                    placeholder="So luong"
+                    placeholder="Quantity"
                     value={inputValue.soluong}
                     onChange={(e) => {
                         setInputValue({
                             ...inputValue,
-                            soluong: e.target.value,
+                            soluong: validator.onlyNumber(e.target.value),
                         });
                     }}
                 />
@@ -173,8 +174,9 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
             <td>
                 <input
                     className={cx('input-large')}
+                    accept="image/png, image/gif, image/jpeg"
                     type="file"
-                    placeholder="Anh dai dien"
+                    placeholder="thumbnail"
                     name="thumb"
                     // value={inputValue.anhdaidien}
                     onChange={(e) => {
@@ -214,7 +216,8 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
                     //     });
                     // }}
                     type="file"
-                    placeholder="Anh trung bay"
+                    placeholder="Other imgs"
+                    accept="image/png, image/gif, image/jpeg"
                     multiple
                     name="images"
                     onChange={(e) => {
@@ -253,12 +256,12 @@ function EditRow({ item, handleCancel, selectedProduct, setPosts }) {
             </td>
             <td>
                 <button className={cx('edit-button')} onClick={handleUpdate}>
-                    <FontAwesomeIcon icon={faSave} /> Lưu
+                    <FontAwesomeIcon icon={faSave} /> Save
                 </button>
             </td>
             <td>
                 <button className={cx('delete-button')} onClick={handleCancel}>
-                    <FontAwesomeIcon icon={faCancel} /> Hủy
+                    <FontAwesomeIcon icon={faCancel} /> Cancel
                 </button>
             </td>
         </tr>

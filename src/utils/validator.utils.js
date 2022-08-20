@@ -18,5 +18,11 @@ validator.checkLength = (val) => {
 validator.compare = (str1, str2) => {
     return str1 === str2;
 };
+validator.firstSpace = (str) => {
+    return (str = str.match(/^\S.*/));
+};
+validator.onlyNumber = (str) => {
+    return (str = str.match(/^\d+/));
+};
 
 export default validator;

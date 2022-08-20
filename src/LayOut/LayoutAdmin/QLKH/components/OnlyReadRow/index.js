@@ -19,9 +19,9 @@ function OnlyReadRow({ data, delUser, authSign, viewOrders }) {
             <td>{data.hoten}</td>
             <td>
                 {data.gioitinh === '1'
-                    ? 'Nam'
+                    ? 'Male'
                     : data.gioitinh === '0'
-                    ? 'Nữ'
+                    ? 'Female'
                     : ''}
             </td>
             <td>{data.ngaysinh}</td>
@@ -44,7 +44,8 @@ function OnlyReadRow({ data, delUser, authSign, viewOrders }) {
                             viewOrders(data.manguoidung);
                         }}
                     >
-                        <FontAwesomeIcon icon={faCheck} /> Xem don hang da mua
+                        <FontAwesomeIcon icon={faCheck} />
+                        View past orders
                     </button>
                 </td>
             )}
@@ -64,7 +65,7 @@ function OnlyReadRow({ data, delUser, authSign, viewOrders }) {
                             }}
                         >
                             <FontAwesomeIcon icon={faCheck} />{' '}
-                            {isAdData ? 'thu quyen ad' : 'Cấp quyền Admin'}
+                            {isAdData ? 'remove permission' : 'Admin authorize'}
                         </button>
                     </td>
                     <td>
@@ -75,7 +76,7 @@ function OnlyReadRow({ data, delUser, authSign, viewOrders }) {
                                 delUser(data.manguoidung);
                             }}
                         >
-                            <FontAwesomeIcon icon={faCheck} /> Xoa nguoi dung
+                            <FontAwesomeIcon icon={faCheck} /> Restrict account
                         </button>
                     </td>
                 </Fragment>

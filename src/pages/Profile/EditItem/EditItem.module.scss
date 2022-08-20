@@ -43,6 +43,9 @@
             height: 30px;
             padding-left: 10px;
             flex: 1;
+            &.invalid {
+                border: 1px solid red;
+            }
         }
 
         label {

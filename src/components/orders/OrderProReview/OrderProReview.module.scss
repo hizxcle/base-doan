@@ -39,3 +39,20 @@
         height: 30px;
     }
 }
+.item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 300px;
+}
+.img-box {
+    width: fit-content;
+    height: 80%;
+    overflow: hidden;
+}
+.img {
+    width: fit-content;
+    height: auto;
+}

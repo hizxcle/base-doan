@@ -24,20 +24,20 @@ const Table = ({ type = 'user', data: dt, delUser, authSign, viewOrders }) => {
             <table border="1" className={cx('table')}>
                 <thead>
                     <tr>
-                        <th className={cx('small')}>Mã người dùng</th>
-                        <th>Tên tài khoản</th>
-                        <th>Họ và tên</th>
-                        <th>Giới tính</th>
-                        <th>Ngày sinh</th>
-                        <th>Số điện thoại</th>
-                        <th>Địa chỉ nhà</th>
+                        <th className={cx('small')}>User code</th>
+                        <th>User Name</th>
+                        <th>Full name</th>
+                        <th>Gender</th>
+                        <th>Date of birth</th>
+                        <th>Phone number</th>
+                        <th>Adress</th>
                         <th>Email</th>
-                        <th>Quyền</th>
-                        <th>Xem don hang da mua</th>
+                        <th>Role</th>
+                        <th>view past Order</th>
                         {isSuper && (
                             <Fragment>
                                 <th>Action</th>
-                                <th>Xoa nguoi dung</th>
+                                <th>Restrict account</th>
                             </Fragment>
                         )}
                     </tr>

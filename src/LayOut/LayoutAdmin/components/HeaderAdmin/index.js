@@ -44,7 +44,7 @@ function HeaderAdmin({
                         >
                             <li className={cx('page-list-item')}>
                                 <span className={cx('link-router')}>
-                                    Quan li san pham
+                                    Products
                                 </span>
                             </li>
                         </button>
@@ -54,7 +54,7 @@ function HeaderAdmin({
                         >
                             <li className={cx('page-list-item')}>
                                 <span className={cx('link-router')}>
-                                    Quan li khach hang
+                                    Account
                                 </span>
                             </li>
                         </button>
@@ -64,7 +64,7 @@ function HeaderAdmin({
                         >
                             <li className={cx('page-list-item')}>
                                 <span to="/about" className={cx('link-router')}>
-                                    Quan li don hang
+                                    Orders
                                 </span>
                             </li>
                         </button>
@@ -82,9 +82,7 @@ function HeaderAdmin({
                     <div className={cx('actions-items')}>
                         <div>
                             <div onClick={logout}>
-                                <span className={cx('sign-out')}>
-                                    Đăng xuất
-                                </span>
+                                <span className={cx('sign-out')}>Sign out</span>
                                 <FontAwesomeIcon icon={faSignOut} />
                             </div>
                         </div>
