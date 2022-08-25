@@ -20,9 +20,9 @@ function ShowItem({ data, action, setEdit }) {
                 <div className={cx('item')}>
                     <span className={cx('item-desc')}>Gender :</span>
                     <span className={cx('item-cont')}>
-                        {data.gioitinh === 1
+                        {Number(data.gioitinh) === 1
                             ? 'Male'
-                            : data.gioitinh === 0
+                            : Number(data.gioitinh) === 0
                             ? 'Female'
                             : 'Other'}
                     </span>
