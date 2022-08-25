@@ -78,10 +78,10 @@ function EditItem({ data, action, setEdit }) {
                 </div>
                 <div className={cx('item')}>
                     <p className={cx('item-desc')}>Gender :</p>
-                    <p className={cx('item-radio')}>
+                    <span className={cx('item-radio')}>
                         <input
                             name="gender"
-                            id="gendernam"
+                            id="male-gender"
                             value="1"
                             className={cx('item-val')}
                             type="radio"
@@ -93,12 +93,17 @@ function EditItem({ data, action, setEdit }) {
                                 })
                             }
                         />
-                        <label htmlFor="gendernam">Male</label>
-                    </p>
-                    <p className={cx('item-radio')}>
+                        <label
+                            className={cx('gender-label')}
+                            htmlFor="male-gender"
+                        >
+                            Male
+                        </label>
+                    </span>
+                    <span className={cx('item-radio')}>
                         <input
                             name="gender"
-                            id="gendernu"
+                            id="female-gender"
                             value="0"
                             className={cx('item-val')}
                             type="radio"
@@ -110,12 +115,17 @@ function EditItem({ data, action, setEdit }) {
                                 });
                             }}
                         />
-                        <label htmlFor="gendernu">Female</label>
-                    </p>
-                    <p className={cx('item-radio')}>
+                        <label
+                            className={cx('gender-label')}
+                            htmlFor="female-gender"
+                        >
+                            Female
+                        </label>
+                    </span>
+                    <span className={cx('item-radio')}>
                         <input
                             name="gender"
-                            id="gender3"
+                            id="other-gender"
                             value="3"
                             className={cx('item-val')}
                             type="radio"
@@ -127,8 +137,13 @@ function EditItem({ data, action, setEdit }) {
                                 });
                             }}
                         />
-                        <label htmlFor="gender3">Other</label>
-                    </p>
+                        <label
+                            className={cx('gender-label')}
+                            htmlFor="other-gender"
+                        >
+                            Other
+                        </label>
+                    </span>
                 </div>
 
                 <div className={cx('item')}>

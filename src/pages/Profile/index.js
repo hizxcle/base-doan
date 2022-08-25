@@ -12,7 +12,6 @@ function Profile() {
     const auth = useAuth();
     const [edit, setEdit] = useState('view'); //editInfo --- editPasswd --- view
     const [data, setData] = useState(auth.userInfo);
-
     const saveInfo = useCallback((data) => {
         setData(data);
         setEdit('view');
@@ -21,7 +20,7 @@ function Profile() {
         setEdit('editInfo');
     }, []);
     const savePass = ({ oldPass, newPass }) => {
-        const url = `http://localhost:2222/api/user/updatePasswd/${data.manguoidung}`;
+        const url = `http://localhost:2222/api/user/updatePasswd/${auth.userInfo.manguoidung}`;
         const opt = {
             method: 'put',
             headers: {
@@ -32,9 +31,14 @@ function Profile() {
                 newPass,
             }),
         };
-        fetch(url, opt)
-            .then((res) => res.json())
-            .then((res) => setEdit('view'));
+        fetch(url, opt).then((res) => {
+            res.json();
+            if (res.status === 501)
+                return alert('wrong current password, please check again!');
+            else {
+                setEdit('view');
+            }
+        });
     };
     const mess = useMemo(() => {
         return edit === 'view'

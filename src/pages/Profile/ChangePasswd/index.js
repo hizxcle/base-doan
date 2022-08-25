@@ -189,18 +189,19 @@ const ChangePasswd = ({ savePass, setEdit }) => {
                 </div>
             </div>
             <div className={cx('action')}>
-                {!Object.values(isValid).includes(false) && (
-                    <button
-                        onClick={() => {
-                            savePass({
-                                oldPass: data.oldPass,
-                                newPass: data.newPass,
-                            });
-                        }}
-                    >
-                        Save
-                    </button>
-                )}
+                {!Object.values(isValid).includes(false) &&
+                    data.newPass === data.rePass && (
+                        <button
+                            onClick={() => {
+                                savePass({
+                                    oldPass: data.oldPass,
+                                    newPass: data.newPass,
+                                });
+                            }}
+                        >
+                            Save
+                        </button>
+                    )}
                 <button
                     onClick={() => {
                         setEdit('view');
