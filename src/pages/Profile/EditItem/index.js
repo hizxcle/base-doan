@@ -71,7 +71,7 @@ function EditItem({ data, action, setEdit }) {
                         onChange={(e) => {
                             setInput({
                                 ...input,
-                                hoten: e.target.value.match(/^\S.*/),
+                                hoten: validator.firstSpace(e.target.value),
                             });
                         }}
                     />

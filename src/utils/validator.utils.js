@@ -19,10 +19,16 @@ validator.compare = (str1, str2) => {
     return str1 === str2;
 };
 validator.firstSpace = (str) => {
-    return (str = str.match(/^\S.*/));
+    if (str !== '') {
+        const [result] = (str = str.match(/^\S.*/));
+        return result;
+    }
 };
 validator.onlyNumber = (str) => {
-    return (str = str.match(/^\d+/));
+    if (str !== '') {
+        const [result] = (str = str.match(/^\d+/));
+        return result;
+    }
 };
 
 export default validator;

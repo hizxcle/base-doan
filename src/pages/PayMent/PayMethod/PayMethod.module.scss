@@ -104,3 +104,9 @@ h3 {
         }
     }
 }
+
+.control-item {
+    &.invalid {
+        border: 1px solid red !important;
+    }
+}

@@ -59,6 +59,10 @@ function PayMethod({ data, action, setShowAlertW }) {
                     <div>
                         <p>Phone number</p>
                         <input
+                            placeholder="please, enter real phone number 1o digit"
+                            className={cx('control-item', {
+                                invalid: !isValid.sdt,
+                            })}
                             value={data?.sdt || ''}
                             onInput={() => {
                                 setIsValid({ ...isValid, sdt: true });
@@ -152,6 +156,7 @@ function PayMethod({ data, action, setShowAlertW }) {
                             const isEnough =
                                 data?.hoten?.length > 0 &&
                                 data?.sdt?.length > 0 &&
+                                validator.phoneNumber(data?.sdt) &&
                                 data?.diachi?.length > 0;
                             const isTrueInfo =
                                 !Object.values(isValid).includes(false);
