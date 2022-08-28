@@ -171,7 +171,7 @@ function SignUp({ alert, setAlert }) {
                                 sdt: e.target.value.replace(/\s/g, ''),
                             })
                         }
-                        placeholder="Phone Number"
+                        placeholder="Phone Number, 10 digit format please."
                     />
                 </div>
                 <div

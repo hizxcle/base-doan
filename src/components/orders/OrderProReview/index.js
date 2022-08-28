@@ -21,8 +21,8 @@ function OrderProReview({ data, action }) {
                                         alt={item.tensp}
                                     />
                                 </div>
-                                <div>
-                                    <span>{item.tensp} |</span>
+                                <div className={cx('pro-info')}>
+                                    <span>{item.tensp} |</span> <br />
                                     <span>Brand : {item.nhacungcap} |</span>
                                     <span>Quantity : {item.soluong} |</span>
                                     <span>
