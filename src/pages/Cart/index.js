@@ -39,6 +39,9 @@ function Cart() {
         [auth.isLogin],
     );
 
+    console.log('data', data);
+    console.log('cart', cart);
+
     const handleCheckout = () => {
         getCart(auth.userInfo.manguoidung);
     };
@@ -57,6 +60,8 @@ function Cart() {
             return (total = total + price * cur.soluong);
         }, 0);
     }, [data, cart]);
+
+    console.log('total', total);
     return (
         <div className={cx('wrapper')}>
             {filterData.length >= 1 ? (

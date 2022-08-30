@@ -92,9 +92,7 @@ function QLSP({ data, setPosts, setAlert }) {
                     src="https://trustsales.vn/image/quan-ly-san-pham.jpg"
                     alt="anh quan ly san pham"
                 />
-                <p>Product manager</p>
             </div>
-
             <div className={cx('form')}>
                 <form encType="multipart/form-data">
                     <p>
